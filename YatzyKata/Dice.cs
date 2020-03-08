@@ -1,11 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace DiceTests
 {
-    public class Dice
+    public class Dice 
     {
-        private int _result;
+        public static int _result;
         public bool _isHolding = false;
         
         public int RollDice()
@@ -25,5 +26,9 @@ namespace DiceTests
             set { _isHolding = value; }
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
