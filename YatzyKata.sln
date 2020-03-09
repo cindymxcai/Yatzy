@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YatzyKata", "YatzyKata\YatzyKata.csproj", "{D0E6AD32-9C06-4B77-87E7-CB2714C0FF8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiceTests", "DiceTests\DiceTests.csproj", "{5C2DCC45-C83C-4296-844D-AEEDDB0CA25F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YatzyTests", "YatzyTests\YatzyTests.csproj", "{5C2DCC45-C83C-4296-844D-AEEDDB0CA25F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace DiceTests
 {
@@ -22,91 +24,20 @@ namespace DiceTests
 
         public int Yatzy(List<int> dices)
         {
-            int yatzyStreak = 0;
 
-            foreach (var dice in dices)
+            if (dices.All(die => die == dices.First()))
             {
-                if (dices[dice] == dices[dice+1])
-                {
-                     yatzyStreak++;
-                }
-
-                if (yatzyStreak > 4)
-                {
-                    DiceSum = 50;
-                }
+                DiceSum = 50;
             }
 
             return DiceSum;
         }
 
-        public int Ones(List<int> dices) //find better way to do this!!
+        private int SumNumbers(List<int> dices, int Number)
         {
             foreach (var dice in dices)
             {
-                if (dice == 1)
-                {
-                    DiceSum+= dice;
-                }
-            }
-            return DiceSum;
-        }
-
-        
-        public int Twos(List<int> dices)
-        {
-            foreach (var dice in dices)
-            {
-                if (dice == 2)
-                {
-                    DiceSum+= dice;
-                }
-            }
-            return DiceSum;
-        }
-        
-        public int Threes(List<int> dices)
-        {
-            foreach (var dice in dices)
-            {
-                if (dice == 3)
-                {
-                    DiceSum+= dice;
-                }
-            }
-            return DiceSum;
-        }
-        
-        
-        public int Fours(List<int> dices)
-        {
-            foreach (var dice in dices)
-            {
-                if (dice == 4)
-                {
-                    DiceSum+= dice;
-                }
-            }
-            return DiceSum;
-        }
-        
-        public int Fives(List<int> dices)
-        {
-            foreach (var dice in dices)
-            {
-                if (dice == 5)
-                {
-                    DiceSum+= dice;
-                }
-            }
-            return DiceSum;
-        }
-
-        public int Sixes(List<int> dices)
-        {
-            foreach (var dice in dices)
-            {
-                if (dice == 6)
+                if (dice == Number)
                 {
                     DiceSum += dice;
                 }
@@ -114,7 +45,38 @@ namespace DiceTests
 
             return DiceSum;
         }
+
+        public int Ones(List<int> dices)
+        {
+            return SumNumbers(dices, 1);
+        }
+
+        public int Twos(List<int> dice)
+        {
+            return SumNumbers(dice, 2);
+        }
+
+        public int Threes(List<int> dice)
+        {
+            return SumNumbers(dice, 3);
+        }
+        public int Fours(List<int> dices)
+        {
+            return SumNumbers(dices, 4);
+        }
         
-        
+        public int Fives(List<int> dice)
+        {
+            return SumNumbers(dice, 5);
+        }
+        public int Sixes(List<int> dice)
+        {
+            return SumNumbers(dice, 6);
+        }
+
+        public int Pairs(List<int> dice)
+        {
+           
+        }
     }
 }
