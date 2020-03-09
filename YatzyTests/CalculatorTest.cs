@@ -97,7 +97,7 @@ namespace DiceTests
         public void PairsTest()
         {
             var calc = new ScoreCalculator();
-            var dice = SetUpDice(1, 1, 3, 4, 6);
+            var dice = SetUpDice(1, 1, 1, 4, 6);
             
             Assert.Equal(2, calc.Pairs(dice));
         }

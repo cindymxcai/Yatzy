@@ -76,7 +76,17 @@ namespace DiceTests
 
         public int Pairs(List<int> dice)
         {
-           
+            List<int> ordered = new List<int>(dice.OrderByDescending(die => die));
+            
+
+            for (int i = 0; i < ordered.Count - 1; i++)
+            {
+                if (ordered[i] == ordered[i + 1])
+                {
+                    return ordered[i] + ordered[i + 1];
+                }
+            }
+            return 0;
         }
     }
 }
