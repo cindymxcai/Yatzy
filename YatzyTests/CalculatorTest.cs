@@ -101,5 +101,36 @@ namespace DiceTests
             
             Assert.Equal(2, calc.Pairs(dice));
         }
+
+        [Fact]
+        public void TwoPairs()
+        {
+            var calc = new ScoreCalculator();
+            var dice = SetUpDice(3, 1, 5, 3, 1);
+            
+            Assert.Equal(8, calc.TwoPairs(dice));
+        }
+
+        [Theory]
+        [InlineData(9, 3, 3, 3, 5, 6)]
+        [InlineData(12, 4, 5 ,1 ,4 ,4 )]
+        public void ThreeOfAKind(int expected, int a, int b, int c, int d, int e)
+        {
+            var calc = new ScoreCalculator();
+            var dice = SetUpDice(a,b,c,d,e);
+            
+            Assert.Equal(expected, calc.ThreeOfAKind(dice) );
+        }
+        
+        [Theory]
+        [InlineData(12, 3, 3, 3, 3, 6)]
+        [InlineData(0, 4, 5 ,1 ,4 ,4 )]
+        public void FourOfAKind(int expected, int a, int b, int c, int d, int e)
+        {
+            var calc = new ScoreCalculator();
+            var dice = SetUpDice(a,b,c,d,e);
+            
+            Assert.Equal(expected, calc.FourOfAKind(dice) );
+        }
     }
 }
