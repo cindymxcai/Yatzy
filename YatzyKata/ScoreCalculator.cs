@@ -118,46 +118,38 @@ namespace DiceTests
 
         public int ThreeOfAKind(List<int> dice)
         {
-            for(int i = 0; i < dice.Count-1; i++)
-            {
-                int counter = 0;
-                for(int j = 0; j < dice.Count-2; j++)
-                {
-                    if (dice[j] == i)
-                    {
-                        counter++;
-                    }
+            List<int> ordered = new List<int>(dice.OrderBy(die => die));
 
-                    if (counter == 3)
+            for (int i = 0; i < ordered.Count - 1; i++)
+            {
+                if (ordered[i] == ordered[i + 1])
+                {
+                    if (ordered[i + 1] == ordered[i + 2])
                     {
-                        for( int k = 0; k < dice.Count-2; k++ )
-                        {
-                            DiceSum += dice[k];
-                        }
+                        return ordered[i] + ordered[i + 1] + ordered[i+2];
+
                     }
                 }
             }
+
             return DiceSum;
         }
         
         public int FourOfAKind(List<int> dice)
         {
-            for( int i = 0; i < dice.Count-1; i++ )
-            {
-                int counter = 0;
-                for (int j = 0; j < dice.Count - 2; j++)
-                {
-                    if (dice[j] == i)
-                    {
-                        counter++;
-                    }
+            List<int> ordered = new List<int>(dice.OrderBy(die => die));
 
-                    if (counter == 4)
+            for (int i = 0; i < ordered.Count - 1; i++)
+            {
+                if (ordered[i] == ordered[i + 1])
+                {
+                    if (ordered[i + 1] == ordered[i + 2])
                     {
-                        for(int k = 0; k < dice.Count-2; k++)
+                        if (ordered[i + 2] == ordered[i + 3])
                         {
-                            DiceSum += dice[k];
-                        }  
+                            return ordered[i] + ordered[i + 1] + ordered[i+2] + ordered[i+3]; 
+                        }
+
                     }
                 }
             }
