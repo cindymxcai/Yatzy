@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DiceTests
 {
-    public class Dice 
+    public class Dice : IDice
     {
         public static int _result;
         public bool _isHolding = false;

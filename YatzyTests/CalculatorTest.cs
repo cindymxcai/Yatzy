@@ -132,5 +132,43 @@ namespace DiceTests
             
             Assert.Equal(expected, calc.FourOfAKind(dice) );
         }
+
+        [Theory]
+        [InlineData(15, 2,3,4,5,1)]
+        [InlineData(15, 1,2,3,4,5)]
+        [InlineData(0, 1,3,5,4,6)]
+        public void SmallStraight(int expected, int a, int b, int c, int d, int e)
+        {
+            var calc = new ScoreCalculator();
+            var dice = SetUpDice(a,b,c,d,e);
+            
+            Assert.Equal(expected, calc.SmallStraight(dice));
+        }
+        
+        [Theory]
+        [InlineData(20, 2,3,4,5,6)]
+        [InlineData(20, 5,2,4,3,6)]
+        [InlineData(0, 1,3,5,4,6)]
+        [InlineData(0, 2,2,2,3,4)]
+        public void LargeStraight(int expected, int a, int b, int c, int d, int e)
+        {
+            var calc = new ScoreCalculator();
+            var dice = SetUpDice(a,b,c,d,e);
+            
+            Assert.Equal(expected, calc.LargeStraight(dice));
+        }
+
+        [Theory]
+        [InlineData(13,2, 2, 3, 3, 3 )]
+        [InlineData(0, 2,2,3,3,4)]
+        [InlineData(0,4,4,4,4,4)]
+        public void FullHouse(int expected, int a, int b, int c, int d, int e)
+        {
+            var calc = new ScoreCalculator();
+            var dice = SetUpDice(a,b,c,d,e);
+            
+           Assert.Equal(expected, calc.FullHouse(dice));
+        
+        }
     }
 }

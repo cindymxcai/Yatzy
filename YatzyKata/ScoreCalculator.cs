@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace DiceTests
 {
-    public class ScoreCalculator
+    public class ScoreCalculator : IScoreCalculator
     {
 
         public int DiceSum = 0;
@@ -155,6 +155,44 @@ namespace DiceTests
             }
             return DiceSum;
         }
-        
+
+        public int SmallStraight(List<int> dice)
+        {
+            List<int> ordered = new List<int>(dice.OrderBy(die => die));
+            List<int> smallStraight = new List<int>{1,2,3,4,5};
+            if (ordered.SequenceEqual(smallStraight))
+            {
+                return 15;
+            }
+            
+          
+
+            return DiceSum;
+        }
+
+        public int LargeStraight(List<int> dice)
+        {
+            var ordered = new List<int>(dice.OrderBy(die => die));
+            var largeStraight = new List<int> {2, 3, 4, 5, 6};
+
+            if (ordered.SequenceEqual(largeStraight))
+            {
+                return 20;
+            }
+            return DiceSum;        
+        }
+
+        public int FullHouse(List<int> dice)
+        {
+            
+            var ordered = (IEnumerable<int>)dice.OrderBy(die=> die);
+            
+            if ( !ordered.Select((number1,number2) => number1-number2).Distinct().Skip(1).Any())
+            {
+                DiceSum = ordered.Sum();
+            }
+            
+            return DiceSum;
+        }
     }
 }
