@@ -8,22 +8,12 @@ namespace DiceTests
 {
     public class DiceTests
     {
-        private readonly ITestOutputHelper _testOutputHelper;
-
-      
-
-        public DiceTests(ITestOutputHelper testOutputHelper)
-        {
-            _testOutputHelper = testOutputHelper;
-        }
-
         [Fact]
         public void DiceRollShouldChangeValue()
         {
             var dice = new Dice();
             int firstRoll = dice.RollDice();
             int secondRoll = dice.RollDice();
-
             Assert.NotSame((object)firstRoll, (object)secondRoll);
         }
 
@@ -36,7 +26,6 @@ namespace DiceTests
             int heldDice = dice.RollDice();
             Assert.Equal((object)rollDice, (object)heldDice);
         }
-
 
     }
 }

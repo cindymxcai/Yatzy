@@ -7,29 +7,22 @@ namespace DiceTests
 {
     public class ScoreCalculator : IScoreCalculator
     {
-
         public int DiceSum = 0;
-
-
-
         public int getSumOfDice(List<int> dices)
         {
             foreach (var dice in dices)
             {
                 DiceSum += dice;
             }
-
             return DiceSum;
         }
 
         public int Yatzy(List<int> dices)
         {
-
             if (dices.All(die => die == dices.First()))
             {
                 DiceSum = 50;
             }
-
             return DiceSum;
         }
 
@@ -42,7 +35,6 @@ namespace DiceTests
                     DiceSum += dice;
                 }
             }
-
             return DiceSum;
         }
 
@@ -79,8 +71,7 @@ namespace DiceTests
         public int Pairs(List<int> dice)
         {
             List<int> ordered = new List<int>(dice.OrderBy(die => die));
-
-
+            
             for (int i = 0; i < ordered.Count - 1; i++)
             {
                 if (ordered[i] == ordered[i + 1])
@@ -88,7 +79,6 @@ namespace DiceTests
                     return ordered[i] + ordered[i + 1];
                 }
             }
-
             return 0;
         }
 
@@ -96,7 +86,6 @@ namespace DiceTests
         {
             int numPairs = 0;
             int pairSum = 0;
-            
             
             List<int> ordered = new List<int>(dice.OrderBy(die => die));
 
@@ -120,17 +109,15 @@ namespace DiceTests
         {
             List<int> ordered = new List<int>(dice.OrderBy(die => die));
 
-            for (int i = 0; i < ordered.Count - 1; i++)
+            int i = 0;
+            if (ordered[i] == ordered[i + 1])
             {
-                if (ordered[i] == ordered[i + 1])
+                if (ordered[i + 1] == ordered[i + 2])
                 {
-                    if (ordered[i + 1] == ordered[i + 2])
-                    {
-                        return ordered[i] + ordered[i + 1] + ordered[i+2];
-
-                    }
+                    return ordered[i] + ordered[i + 1] + ordered[i+2];
                 }
             }
+            
 
             return DiceSum;
         }
@@ -139,20 +126,18 @@ namespace DiceTests
         {
             List<int> ordered = new List<int>(dice.OrderBy(die => die));
 
-            for (int i = 0; i < ordered.Count - 1; i++)
+            int  i = 0;
+            if (ordered[i] == ordered[i + 1])
             {
-                if (ordered[i] == ordered[i + 1])
+                if (ordered[i + 1] == ordered[i + 2])
                 {
-                    if (ordered[i + 1] == ordered[i + 2])
+                    if (ordered[i + 2] == ordered[i + 3])
                     {
-                        if (ordered[i + 2] == ordered[i + 3])
-                        {
-                            return ordered[i] + ordered[i + 1] + ordered[i+2] + ordered[i+3]; 
-                        }
-
+                        return ordered[i] + ordered[i + 1] + ordered[i+2] + ordered[i+3]; 
                     }
                 }
             }
+            
             return DiceSum;
         }
 
@@ -164,9 +149,6 @@ namespace DiceTests
             {
                 return 15;
             }
-            
-          
-
             return DiceSum;
         }
 
@@ -184,14 +166,12 @@ namespace DiceTests
 
         public int FullHouse(List<int> dice)
         {
-            
             var ordered = (IEnumerable<int>)dice.OrderBy(die=> die);
-            
-            if ( !ordered.Select((number1,number2) => number1-number2).Distinct().Skip(1).Any())
+            var enumerable = ordered.ToArray();
+            if ( !enumerable.Select((number1,number2) => number1-number2).Distinct().Skip(1).Any())
             {
-                DiceSum = ordered.Sum();
+                DiceSum = enumerable.Sum();
             }
-            
             return DiceSum;
         }
     }
