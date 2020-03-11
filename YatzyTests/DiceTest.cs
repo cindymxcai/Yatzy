@@ -11,7 +11,8 @@ namespace DiceTests
         [Fact]
         public void DiceRollShouldChangeValue()
         {
-            var dice = new Dice();
+            var rng = new Rng();
+            var dice = new Dice(rng);
             int firstRoll = dice.RollDice();
             int secondRoll = dice.RollDice();
             Assert.NotSame((object)firstRoll, (object)secondRoll);
@@ -20,12 +21,28 @@ namespace DiceTests
         [Fact]
         public void DiceShouldNotRollIfHeld()
         {
-            var dice = new Dice();
+            //var rng = new Rng();
+            var rng = new TestRng(6);
+            var dice = new Dice(rng);
             int rollDice = dice.RollDice();
-            dice._isHolding = true;
+            dice.IsHolding = true;
             int heldDice = dice.RollDice();
             Assert.Equal((object)rollDice, (object)heldDice);
         }
 
+        
+        public class TestRng : IRng
+        {
+            private readonly int _numberToReturn;
+
+            public TestRng(int numberToReturn)
+            {
+                _numberToReturn = numberToReturn;
+            }
+            public int Next(int minValue, int maxValue)
+            {
+                return _numberToReturn;
+            }
+        }
     }
 }

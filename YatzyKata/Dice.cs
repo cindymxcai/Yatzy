@@ -1,29 +1,54 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace DiceTests
 {
+    public interface IRng
+    {
+        int Next(int minValue, int maxValue);
+    }
+    
+    public class Rng : IRng
+    {
+        private readonly Random _random;
+
+        public Rng()
+        {
+            _random = new Random();
+        }
+        
+        public int Next(int minValue, int maxValue)
+        {
+            return _random.Next(minValue, maxValue);
+        }
+    }
+
     public class Dice : IDice
     {
-        public static int _result;
-        public bool _isHolding = false;
+        public static int Result;
+        public bool IsHolding = false;
+
+        private readonly IRng _rng;
+        
+        public Dice(IRng rng)
+        {
+            this._rng = rng;
+        }
         
         public int RollDice()
         {
-            if (!_isHolding)
+            if (!IsHolding)
             {
-                Random random = new Random();
-                _result = random.Next(1, 7);
+                Result = _rng.Next(1, 7);
             }
-            return _result;
+            return Result;
 
         }
 
         public bool HoldState
         {
-            get { return _isHolding;}
-            set { _isHolding = value; }
+            get { return IsHolding;}
+            set { IsHolding = value; }
         }
 
         public IEnumerator GetEnumerator()
