@@ -172,7 +172,6 @@ namespace DiceTests
             var dice = SetUpDice(a,b,c,d,e);
             
            Assert.Equal(expected, calc.FullHouse(dice));
-        
         }
     }
 }

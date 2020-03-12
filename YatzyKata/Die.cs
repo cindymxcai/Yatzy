@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
+using DiceTests;
 
-namespace DiceTests
+namespace YatzyKata
 {
     public interface IRng
     {
@@ -23,19 +24,20 @@ namespace DiceTests
         }
     }
 
-    public class Dice : IDice
+    public class Die : IDie
     {
-        public static int Result;
-        public bool IsHolding = false;
+        public  int Result;
+        public  bool IsHolding = false;
 
         private readonly IRng _rng;
         
-        public Dice(IRng rng)
+        public Die(IRng rng)
         {
             this._rng = rng;
+            Result = rng.Next(1, 7);
         }
         
-        public int RollDice()
+        public int RollDie()
         {
             if (!IsHolding)
             {
@@ -45,15 +47,6 @@ namespace DiceTests
 
         }
 
-        public bool HoldState
-        {
-            get { return IsHolding;}
-            set { IsHolding = value; }
-        }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -3,30 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
+using YatzyKata;
 
 namespace DiceTests
 {
-    public class DiceTests
+    public class DieTests
     {
         [Fact]
-        public void DiceRollShouldChangeValue()
+        public void DieRollShouldChangeValue()
         {
             var rng = new Rng();
-            var dice = new Dice(rng);
-            int firstRoll = dice.RollDice();
-            int secondRoll = dice.RollDice();
+            var dice = new Die(rng);
+            int firstRoll = dice.RollDie();
+            int secondRoll = dice.RollDie();
             Assert.NotSame((object)firstRoll, (object)secondRoll);
         }
 
         [Fact]
-        public void DiceShouldNotRollIfHeld()
+        public void DieShouldNotRollIfHeld()
         {
             //var rng = new Rng();
             var rng = new TestRng(6);
-            var dice = new Dice(rng);
-            int rollDice = dice.RollDice();
+            var dice = new Die(rng);
+            int rollDice = dice.RollDie();
             dice.IsHolding = true;
-            int heldDice = dice.RollDice();
+            int heldDice = dice.RollDie();
             Assert.Equal((object)rollDice, (object)heldDice);
         }
 

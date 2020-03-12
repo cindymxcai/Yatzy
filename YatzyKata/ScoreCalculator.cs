@@ -114,11 +114,9 @@ namespace DiceTests
             {
                 if (ordered[i + 1] == ordered[i + 2])
                 {
-                    return ordered[i] + ordered[i + 1] + ordered[i+2];
+                    DiceSum = ordered[i] + ordered[i + 1] + ordered[i+2];
                 }
             }
-            
-
             return DiceSum;
         }
         
@@ -133,7 +131,7 @@ namespace DiceTests
                 {
                     if (ordered[i + 2] == ordered[i + 3])
                     {
-                        return ordered[i] + ordered[i + 1] + ordered[i+2] + ordered[i+3]; 
+                        DiceSum =  ordered[i] + ordered[i + 1] + ordered[i+2] + ordered[i+3]; 
                     }
                 }
             }
@@ -167,10 +165,11 @@ namespace DiceTests
         public int FullHouse(List<int> dice)
         {
             var ordered = (IEnumerable<int>)dice.OrderBy(die=> die);
-            var enumerable = ordered.ToArray();
+            var enumerable = ordered.ToList();
+            var fullHouse = enumerable.ToArray();
             if ( !enumerable.Select((number1,number2) => number1-number2).Distinct().Skip(1).Any())
             {
-                DiceSum = enumerable.Sum();
+                return enumerable.Sum();
             }
             return DiceSum;
         }
