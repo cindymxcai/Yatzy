@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace YatzyKata
 {
@@ -6,7 +7,17 @@ namespace YatzyKata
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Welcome to Yatzy!");
+            Rng rng = new Rng();
+            var dice1 = new Die(rng);
+            var dice2 = new Die(rng);
+            var dice3 = new Die(rng);
+            var dice4 = new Die(rng);
+            var dice5 = new Die(rng);
+            var game = new Game(dice1, dice2, dice3,dice4, dice5);   
+            game.Hold(new List<bool>{false,false,false, false,false});
+            game.RollDice();
+
         }
     }
 }
