@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using YatzyKata;
 
 namespace DiceTests
 {
@@ -17,6 +18,7 @@ namespace DiceTests
             return DiceSum;
         }
 
+        
         public int Yatzy(List<int> dices)
         {
             if (dices.All(die => die == dices.First()))
@@ -26,7 +28,7 @@ namespace DiceTests
             return DiceSum;
         }
 
-        private int SumNumbers(List<int> dices, int Number)
+        private int SumNumbers(IEnumerable<int> dices, int Number)
         {
             foreach (var dice in dices)
             {
@@ -38,32 +40,32 @@ namespace DiceTests
             return DiceSum;
         }
 
-        public int Ones(List<int> dices)
+        public int Ones(IEnumerable<int> dices)
         {
             return SumNumbers(dices, 1);
         }
 
-        public int Twos(List<int> dice)
+        public int Twos(IEnumerable<int> dice)
         {
             return SumNumbers(dice, 2);
         }
 
-        public int Threes(List<int> dice)
+        public int Threes(IEnumerable<int> dice)
         {
             return SumNumbers(dice, 3);
         }
 
-        public int Fours(List<int> dices)
+        public int Fours(IEnumerable<int> dices)
         {
             return SumNumbers(dices, 4);
         }
 
-        public int Fives(List<int> dice)
+        public int Fives(IEnumerable<int> dice)
         {
             return SumNumbers(dice, 5);
         }
 
-        public int Sixes(List<int> dice)
+        public int Sixes(IEnumerable<int> dice)
         {
             return SumNumbers(dice, 6);
         }

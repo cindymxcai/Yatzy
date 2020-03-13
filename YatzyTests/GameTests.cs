@@ -75,6 +75,8 @@ namespace DiceTests
             game.RollDice();
             Assert.Equal(0, game.RollsLeft);
         }
+        
+        
     }
 
     public class TestRng : IRng

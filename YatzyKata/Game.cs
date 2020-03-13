@@ -9,15 +9,17 @@ namespace YatzyKata
     {
         public readonly List<Die> DiceCup;
         private List<bool> _currentlyHolding;
+        public int RollsLeft = 3;
+
 
         public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5)
         {
              DiceCup = new List<Die>{dice1, dice2, dice3, dice4, dice5};
         }
         
-        public List<int> GetValues()
+        public IEnumerable<int> GetValues()
         {
-            return (List<int>) DiceCup.Select(die => die.Result);
+            return DiceCup.Select(die => die.Result);
         }
 
         public void DisplayRoll()
@@ -25,32 +27,45 @@ namespace YatzyKata
             Console.WriteLine("Your current roll is:");
             foreach (var die in DiceCup)
             {
+                Console.ForegroundColor 
+                    = ConsoleColor.DarkMagenta;
+                Console.BackgroundColor = ConsoleColor.Blue;
                 Console.Write("[" +die.Result + "]");
+               Console.ResetColor();
             }
-            Console.WriteLine("\n______________");
-           // DisplayCategories();
-            PromptAction();
+            Console.WriteLine("\n______________ You have {0} rolls left.", RollsLeft);
+            DisplayCategories();
+           if (RollsLeft > 0)
+           {
+               PromptAction();
+
+           }
+           
         }
 
         public void RollDice()
         {
-            int RollsLeft = 3;
             var zippedList = DiceCup.Zip(_currentlyHolding, (die, hold) => new
             {
                 hold = hold,
                 die = die
             });
-                
-            foreach (var item in zippedList)
+            if (RollsLeft > 0)
             {
-                if (item.hold == false)
+                foreach (var item in zippedList)
                 {
-                    item.die.RollDie();
+                    if (item.hold == false)
+                    {
+                        item.die.RollDie();
+                    }
                 }
-            }
 
-            RollsLeft--;
+                RollsLeft--;
+            }
             DisplayRoll();
+
+
+            
         }
 
         public void Hold(List<bool> bools)
@@ -66,7 +81,6 @@ namespace YatzyKata
             if (input == "R" || input == "r")
             {
                 RollDice();
-                DisplayRoll();
             }
             else
             {
@@ -93,9 +107,16 @@ namespace YatzyKata
 
         public void DisplayCategories()
         {
-            var values = GetValues();
             ScoreCalculator sc = new ScoreCalculator();
-            Console.WriteLine("Ones {0}", sc.Ones(values));
+            var dice = DiceCup.Select(die => die.Result);
+            IEnumerable<int> enumerable = dice as int[] ?? dice.ToArray();
+            Console.WriteLine("Ones {0}", sc.Ones(enumerable));
+            Console.WriteLine("Twos {0}", sc.Twos(enumerable));
+            Console.WriteLine("Threes {0}", sc.Threes(enumerable));
+            Console.WriteLine("Fours {0}", sc.Fours(enumerable));
+            Console.WriteLine("Fives {0}", sc.Fives(enumerable));
+            Console.WriteLine("Sixes {0}", sc.Sixes(enumerable));
+            
         }
     }
 }
