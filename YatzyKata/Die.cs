@@ -27,7 +27,6 @@ namespace YatzyKata
     public class Die : IDie
     {
         public  int Result;
-        public  bool IsHolding = false;
 
         private readonly IRng _rng;
         
@@ -39,10 +38,9 @@ namespace YatzyKata
         
         public int RollDie()
         {
-            if (!IsHolding)
-            {
+            
                 Result = _rng.Next(1, 7);
-            }
+            
             return Result;
 
         }

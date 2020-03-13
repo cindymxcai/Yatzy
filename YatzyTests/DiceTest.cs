@@ -18,19 +18,7 @@ namespace DiceTests
             int secondRoll = dice.RollDie();
             Assert.NotSame((object)firstRoll, (object)secondRoll);
         }
-
-        [Fact]
-        public void DieShouldNotRollIfHeld()
-        {
-            //var rng = new Rng();
-            var rng = new TestRng(6);
-            var dice = new Die(rng);
-            int rollDice = dice.RollDie();
-            dice.IsHolding = true;
-            int heldDice = dice.RollDie();
-            Assert.Equal((object)rollDice, (object)heldDice);
-        }
-
+        
         
         public class TestRng : IRng
         {

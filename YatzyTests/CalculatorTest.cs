@@ -112,10 +112,10 @@ namespace DiceTests
         }
 
         [Theory]
-        [InlineData(9, 3, 3, 3, 5, 6)]
-        [InlineData(12, 4, 5 ,1 ,4 ,4 )]
-        [InlineData(0, 3, 3,4,5,6)]
-        [InlineData(9, 3,3,3,3,1)]
+        [InlineData(9, 3, 3, 3, 3, 6)]
+        [InlineData(0, 4, 5 ,1 ,4 ,4 )]
+        [InlineData(6,2,2,2,2,2)]
+        [InlineData(0,2,2,1,5,5)]
         public void ThreeOfAKind(int expected, int a, int b, int c, int d, int e)
         {
             var calc = new ScoreCalculator();

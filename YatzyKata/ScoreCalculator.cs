@@ -109,14 +109,17 @@ namespace DiceTests
         {
             List<int> ordered = new List<int>(dice.OrderBy(die => die));
 
-            int i = 0;
+            int  i = 0;
             if (ordered[i] == ordered[i + 1])
             {
                 if (ordered[i + 1] == ordered[i + 2])
                 {
-                    DiceSum = ordered[i] + ordered[i + 1] + ordered[i+2];
+                    
+                        DiceSum =  ordered[i] + ordered[i + 1] + ordered[i+2]; 
+                    
                 }
             }
+            
             return DiceSum;
         }
         
@@ -166,8 +169,7 @@ namespace DiceTests
         {
             var ordered = (IEnumerable<int>)dice.OrderBy(die=> die);
             var enumerable = ordered.ToList();
-            var fullHouse = enumerable.ToArray();
-            if ( !enumerable.Select((number1,number2) => number1-number2).Distinct().Skip(1).Any())
+            if (enumerable.Select((number1,number2) => number1-number2).Distinct().Skip(1).Any())
             {
                 return enumerable.Sum();
             }
