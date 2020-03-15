@@ -94,13 +94,6 @@ namespace YatzyKata
                         RollDice();
                     }
 
-                    if (i == 2)
-                    {
-                        _currentlyHolding = new List<bool>{false, true};
-                        Hold(_currentlyHolding);
-                        RollDice();
-                    }
-
                 }
             }
         }
@@ -109,7 +102,7 @@ namespace YatzyKata
         {
             ScoreCalculator sc = new ScoreCalculator();
             var dice = DiceCup.Select(die => die.Result);
-            IEnumerable<int> enumerable = dice as int[] ?? dice.ToArray();
+            var enumerable = dice.ToList();
             Console.WriteLine("Ones {0}", sc.Ones(enumerable));
             Console.WriteLine("Twos {0}", sc.Twos(enumerable));
             Console.WriteLine("Threes {0}", sc.Threes(enumerable));
