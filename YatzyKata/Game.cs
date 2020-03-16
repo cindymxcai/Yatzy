@@ -8,7 +8,7 @@ namespace YatzyKata
     {
         private readonly IUserInput _userInput;
         public readonly List<Die> DiceCup;
-        private List<bool> _currentlyHolding;
+        public static bool[]CurrentlyHolding ;
         public int RollsLeft = 3;
         
         public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput)
@@ -46,7 +46,7 @@ namespace YatzyKata
 
         public void RollDice()
         {
-            var zippedList = DiceCup.Zip(_currentlyHolding, (die, hold) => new
+            var zippedList = DiceCup.Zip(CurrentlyHolding, (die, hold) => new
             {
                 hold, die
             });
@@ -66,29 +66,24 @@ namespace YatzyKata
             DisplayRoll();
         }
 
-        public void Hold(List<bool> bools)
+        public void Hold(bool[] bools)
         {
-            _currentlyHolding = bools;
+            CurrentlyHolding = bools;
         }
 
         public void PromptAction()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
-            Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold \n R to reroll");
+            Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold (eg A, C, D) \n R to reroll");
             Console.ResetColor();
 
+            _userInput.GetHoldResponse();
             if (_userInput.GetRerollResponse())
             {
                 RollDice();
             }
-            else
-            {
-                if (_userInput.getHoldResponse())
-                {
-                    
-                }
-            }
+           
         }
 
         public void DisplayCategories()

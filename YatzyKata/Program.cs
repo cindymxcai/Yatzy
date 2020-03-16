@@ -15,7 +15,7 @@ namespace YatzyKata
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
             var game = new Game(dice1, dice2, dice3,dice4, dice5,new UserInput());   
-            game.Hold(new List<bool>{false,false,false, false,false});
+            game.Hold(new bool[]{false,false,false, false,false});
             game.RollDice();
         }
     }
