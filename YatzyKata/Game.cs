@@ -50,6 +50,7 @@ namespace YatzyKata
             {
                 hold, die
             });
+            
             if (RollsLeft > 0)
             {
                 foreach (var item in zippedList)
@@ -75,15 +76,16 @@ namespace YatzyKata
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
-            Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold (eg A, C, D) \n R to reroll");
+            Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
+            _userInput.GetHoldResponse();
+            Console.WriteLine("Enter R to reroll");
             Console.ResetColor();
 
-            _userInput.GetHoldResponse();
             if (_userInput.GetRerollResponse())
             {
                 RollDice();
             }
-           
+
         }
 
         public void DisplayCategories()
