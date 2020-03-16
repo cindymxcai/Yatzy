@@ -17,6 +17,7 @@
         <e p="Game.cs" t="Include" />
         <e p="IDie.cs" t="Include" />
         <e p="IScoreCalculator.cs" t="Include" />
+        <e p="IUserInput.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -26,6 +27,7 @@
         </e>
         <e p="Program.cs" t="Include" />
         <e p="ScoreCalculator.cs" t="Include" />
+        <e p="UserInput.cs" t="Include" />
         <e p="YatzyKata.csproj" t="IncludeRecursive" />
       </e>
       <e p="YatzyKata.sln" t="IncludeFlat" />

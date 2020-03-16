@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using YatzyKata;
-
-namespace DiceTests
+namespace YatzyKata
 {
     public interface IDie
     {
-        int RollDie();
     }
 }
