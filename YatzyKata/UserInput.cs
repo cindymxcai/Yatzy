@@ -4,7 +4,7 @@ namespace YatzyKata
 {
     public class UserInput : IUserInput
     {
-        
+
         public bool GetRerollResponse()
         {
             var input = Console.ReadLine();
@@ -19,7 +19,7 @@ namespace YatzyKata
 
         public void GetHoldResponse()
         {
-            var input = Console.ReadLine();
+           var input = Console.ReadLine();
 
             string[] holdDice = input?.Split(',');
 
@@ -50,7 +50,23 @@ namespace YatzyKata
                     {
                         Game.CurrentlyHolding[4] = true;
                     }
+                    else
+                    {
+                        GetCategoryResponse();
+                    }
                 }
         }
+
+        public void GetCategoryResponse()
+        {
+            var input = Console.ReadLine();
+
+            if (int.Parse(input) == 1)
+            {
+                //set value of score calculator 1.Ones to score
+            }
+
+        }
+        
     }
 }

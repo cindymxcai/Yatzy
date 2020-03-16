@@ -77,7 +77,10 @@ namespace YatzyKata
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
-            _userInput.GetHoldResponse();
+            
+                _userInput.GetHoldResponse();
+
+         
             Console.WriteLine("Enter R to reroll");
             Console.ResetColor();
 
@@ -88,7 +91,7 @@ namespace YatzyKata
 
         }
 
-        public void DisplayCategories()
+        public  void DisplayCategories()
         {
             ScoreCalculator sc = new ScoreCalculator();
             var dice = DiceCup.Select(die => die.Result);

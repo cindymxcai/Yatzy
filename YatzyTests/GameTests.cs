@@ -32,7 +32,7 @@ namespace DiceTests
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true));
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
-            game.Hold(new bool[] {true, false, false, false, false});
+            game.Hold(new[] {true, false, false, false, false});
             game.RollDice();
             Assert.Equal(new List<int> {6, 1, 1, 1, 1}, game.GetValues());
         }
@@ -49,7 +49,7 @@ namespace DiceTests
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(false));
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
-            game.Hold(new bool[] {true, false, false, false, false});
+            game.Hold(new[] {true, false, false, false, false});
             game.PromptAction();
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());   
         }
@@ -66,7 +66,7 @@ namespace DiceTests
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true));
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
-            game.Hold(new bool[]{true, false, false, false, false});
+            game.Hold(new[]{true, false, false, false, false});
             game.PromptAction();
             Assert.Equal(new List<int> {6, 1, 1, 1, 1}, game.GetValues());
         }
@@ -81,7 +81,7 @@ namespace DiceTests
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true));
-            game.Hold(new bool[]{false, false, false, false, false});
+            game.Hold(new[]{false, false, false, false, false});
             Assert.Equal(3, game.RollsLeft);
             game.PromptAction();
             game.PromptAction();
@@ -93,7 +93,7 @@ namespace DiceTests
 
     public class TestUserInput : IUserInput
     {
-        private bool _value;
+        private readonly bool _value;
 
         public TestUserInput(bool value)
         {
@@ -108,7 +108,10 @@ namespace DiceTests
         public void GetHoldResponse()
         {
         }
-        
+
+        public void GetCategoryResponse()
+        {
+        }
     }
 
     public class TestRng : IRng

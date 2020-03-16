@@ -1,5 +1,4 @@
 using System;
-using DiceTests;
 
 namespace YatzyKata
 {

@@ -6,45 +6,45 @@ namespace YatzyKata
 {
     public class ScoreCalculator : IScoreCalculator
     {
-        public int DiceSum;
+        private int _diceSum;
 
         public int getSumOfDice(List<int> dices)
         {
-            DiceSum = 0;
+            _diceSum = 0;
 
             foreach (var dice in dices)
             {
-                DiceSum += dice;
+                _diceSum += dice;
             }
 
-            return DiceSum;
+            return _diceSum;
         }
 
 
         public int Yatzy(List<int> dices)
         {
-            DiceSum = 0;
+            _diceSum = 0;
 
             if (dices.All(die => die == dices.First()))
             {
-                DiceSum = 50;
+                _diceSum = 50;
             }
 
-            return DiceSum;
+            return _diceSum;
         }
 
         private int SumNumbers(IEnumerable<int> dices, int number)
         {
-            DiceSum = 0;
+            _diceSum = 0;
             foreach (var dice in dices)
             {
                 if (dice == number)
                 {
-                    DiceSum += dice;
+                    _diceSum += dice;
                 }
             }
 
-            return DiceSum;
+            return _diceSum;
         }
 
         public int Ones(IEnumerable<int> dices)
@@ -79,7 +79,7 @@ namespace YatzyKata
 
         public int Pairs(List<int> dice)
         {
-            DiceSum = 0;
+            _diceSum = 0;
 
             List<int> ordered = new List<int>(dice.OrderByDescending(die => die));
 
@@ -146,7 +146,7 @@ namespace YatzyKata
 
         public int SmallStraight(List<int> dice)
         {
-            DiceSum = 0;
+            _diceSum = 0;
 
             List<int> ordered = new List<int>(dice.OrderBy(die => die));
             List<int> smallStraight = new List<int> {1, 2, 3, 4, 5};
@@ -155,12 +155,12 @@ namespace YatzyKata
                 return 15;
             }
 
-            return DiceSum;
+            return _diceSum;
         }
 
         public int LargeStraight(List<int> dice)
         {
-            DiceSum = 0;
+            _diceSum = 0;
 
             var ordered = new List<int>(dice.OrderBy(die => die));
             var largeStraight = new List<int> {2, 3, 4, 5, 6};
@@ -170,15 +170,14 @@ namespace YatzyKata
                 return 20;
             }
 
-            return DiceSum;
+            return _diceSum;
         }
 
         public int FullHouse(List<int> dice)
         {
-            var ordered = (IEnumerable<int>) dice.OrderBy(die => die);
             var distinctValues = dice.Distinct().ToList();
             
-            if (distinctValues.Count() == 2)
+            if (distinctValues.Count == 2)
             {
                 if (dice.Count(i => i == distinctValues.First()) == 2 &&
                     dice.Count(i => i == distinctValues.Last()) == 3)
@@ -195,5 +194,6 @@ namespace YatzyKata
 
             return 0;
         }
+        
     }
 }

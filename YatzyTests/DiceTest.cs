@@ -12,7 +12,7 @@ namespace DiceTests
             var dice = new Die(rng);
             int firstRoll = dice.RollDie();
             int secondRoll = dice.RollDie();
-            Assert.NotSame( firstRoll,  secondRoll);
+            Assert.NotEqual( firstRoll,  secondRoll);
         }
         
     }

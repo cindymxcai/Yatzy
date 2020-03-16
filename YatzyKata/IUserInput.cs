@@ -4,5 +4,6 @@ namespace YatzyKata
     {
         bool GetRerollResponse();
         void GetHoldResponse();
+        void GetCategoryResponse();
     }
 }
