@@ -109,8 +109,9 @@ namespace DiceTests
         {
         }
 
-        public void GetCategoryResponse()
+        public Category GetCategoryResponse()
         {
+            throw new System.NotImplementedException();
         }
     }
 

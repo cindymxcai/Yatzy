@@ -8,6 +8,12 @@ namespace YatzyKata
     {
         private int _diceSum;
 
+        public int GetScore(Category category, IEnumerable<int> dice)
+        {
+            int score = 0;
+            return score;
+        }
+
         public int getSumOfDice(List<int> dices)
         {
             _diceSum = 0;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace YatzyKata
 {
@@ -10,6 +11,8 @@ namespace YatzyKata
         public readonly List<Die> DiceCup;
         public static bool[]CurrentlyHolding ;
         public int RollsLeft = 3;
+        ScoreCalculator sc = new ScoreCalculator();
+        public Scorecard scorecard { get; set; }
         
         public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput)
         {
@@ -72,15 +75,24 @@ namespace YatzyKata
             CurrentlyHolding = bools;
         }
 
+        // TWOs & 10
+        // TWOs & 10
+
+        public void StoreScore(Category category, int score)
+        {
+            scorecard.AddScore(category, score);
+        }
         public void PromptAction()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
-            
-                _userInput.GetHoldResponse();
-
-         
+            // if the user input is a number, user has selected a category
+            // numeric: Category, string: Dice hold, enter: , Reroll: _userInput.ProcessResponse();
+            Category category;
+            category = _userInput.GetCategoryResponse();
+            var score = sc.GetScore(category,  DiceCup.Select(die => die.Result));
+            scorecard.AddScore(category, score);
             Console.WriteLine("Enter R to reroll");
             Console.ResetColor();
 
@@ -96,7 +108,7 @@ namespace YatzyKata
             ScoreCalculator sc = new ScoreCalculator();
             var dice = DiceCup.Select(die => die.Result);
             var enumerable = dice.ToList();
-            Console.WriteLine("1.Ones {0}", sc.Ones(enumerable));
+            Console.WriteLine("1.Ones {0}", scorecard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ?? sc.Ones(enumerable));
             Console.WriteLine("2.Twos {0}", sc.Twos(enumerable));
             Console.WriteLine("3.Threes {0}", sc.Threes(enumerable));
             Console.WriteLine("4.Fours {0}", sc.Fours(enumerable));
@@ -111,6 +123,11 @@ namespace YatzyKata
             Console.WriteLine("13.Full House {0}", sc.FullHouse(enumerable));
             Console.WriteLine("14.Chance {0}", sc.getSumOfDice(enumerable));
             Console.WriteLine("15.Yatzy {0}", sc.Yatzy(enumerable));
+        }
+
+        public void Start()
+        {
+            throw new NotImplementedException();
         }
     }
 }

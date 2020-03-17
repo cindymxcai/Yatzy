@@ -50,21 +50,13 @@ namespace YatzyKata
                     {
                         Game.CurrentlyHolding[4] = true;
                     }
-                    else
-                    {
-                        GetCategoryResponse();
-                    }
                 }
         }
-
-        public void GetCategoryResponse()
+        
+        public Category GetCategoryResponse()
         {
-            var input = Console.ReadLine();
-
-            if (int.Parse(input) == 1)
-            {
-                //set value of score calculator 1.Ones to score
-            }
+            Category category = Category.Ones;
+            return category;
 
         }
         
