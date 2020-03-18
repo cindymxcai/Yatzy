@@ -55,9 +55,38 @@ namespace YatzyKata
         
         public Category GetCategoryResponse()
         {
-            Category category = Category.Ones;
-            return category;
 
+            var input = Console.ReadLine();
+
+            Category chosenCategory = Category.None;
+            
+            if (int.Parse(input) == 1)
+            {
+                chosenCategory = Category.Ones;
+            }
+            if (int.Parse(input) == 2)
+            {
+                chosenCategory = Category.Twos;
+            }
+            if (int.Parse(input) == 3)
+            {
+                chosenCategory = Category.Threes;
+            }
+            if (int.Parse(input) == 4)
+            {
+                chosenCategory = Category.Fours;
+            }
+            if (int.Parse(input) == 5)
+            {
+                chosenCategory = Category.Fives;
+            }
+            if (int.Parse(input) == 6)
+            {
+                chosenCategory = Category.Sixes;
+            }
+            
+
+            return chosenCategory;
         }
         
     }

@@ -75,9 +75,6 @@ namespace YatzyKata
             CurrentlyHolding = bools;
         }
 
-        // TWOs & 10
-        // TWOs & 10
-
         public void StoreScore(Category category, int score)
         {
             scorecard.AddScore(category, score);
@@ -87,12 +84,9 @@ namespace YatzyKata
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
-            // if the user input is a number, user has selected a category
-            // numeric: Category, string: Dice hold, enter: , Reroll: _userInput.ProcessResponse();
-            Category category;
-            category = _userInput.GetCategoryResponse();
+            var category = _userInput.GetCategoryResponse();
             var score = sc.GetScore(category,  DiceCup.Select(die => die.Result));
-            scorecard.AddScore(category, score);
+            //scorecard.AddScore(category, score);//not set to instance of object yet
             Console.WriteLine("Enter R to reroll");
             Console.ResetColor();
 
@@ -105,29 +99,25 @@ namespace YatzyKata
 
         public  void DisplayCategories()
         {
-            ScoreCalculator sc = new ScoreCalculator();
+            ScoreCalculator scoreCalculator = new ScoreCalculator();
             var dice = DiceCup.Select(die => die.Result);
             var enumerable = dice.ToList();
-            Console.WriteLine("1.Ones {0}", scorecard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ?? sc.Ones(enumerable));
-            Console.WriteLine("2.Twos {0}", sc.Twos(enumerable));
-            Console.WriteLine("3.Threes {0}", sc.Threes(enumerable));
-            Console.WriteLine("4.Fours {0}", sc.Fours(enumerable));
-            Console.WriteLine("5.Fives {0}", sc.Fives(enumerable));
-            Console.WriteLine("6.Sixes {0}", sc.Sixes(enumerable));
-            Console.WriteLine("7.Pair {0}", sc.Pairs(enumerable));
-            Console.WriteLine("8.Two pair {0}", sc.TwoPairs(enumerable));
-            Console.WriteLine("9.3 of a Kind {0}", sc.ThreeOfAKind(enumerable));
-            Console.WriteLine("10.4 of a Kind {0}", sc.FourOfAKind(enumerable));
-            Console.WriteLine("11.Small Straight {0}", sc.SmallStraight(enumerable));
-            Console.WriteLine("12.Large Straight {0}", sc.LargeStraight(enumerable));
-            Console.WriteLine("13.Full House {0}", sc.FullHouse(enumerable));
-            Console.WriteLine("14.Chance {0}", sc.getSumOfDice(enumerable));
-            Console.WriteLine("15.Yatzy {0}", sc.Yatzy(enumerable));
+            Console.WriteLine("1.Ones {0}", scoreCalculator.Ones(enumerable));// scorecard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ?? scoreCalculator.Ones(enumerable));
+            Console.WriteLine("2.Twos {0}", scoreCalculator.Twos(enumerable));
+            Console.WriteLine("3.Threes {0}", scoreCalculator.Threes(enumerable));
+            Console.WriteLine("4.Fours {0}", scoreCalculator.Fours(enumerable));
+            Console.WriteLine("5.Fives {0}", scoreCalculator.Fives(enumerable));
+            Console.WriteLine("6.Sixes {0}", scoreCalculator.Sixes(enumerable));
+            Console.WriteLine("7.Pair {0}", scoreCalculator.Pairs(enumerable));
+            Console.WriteLine("8.Two pair {0}", scoreCalculator.TwoPairs(enumerable));
+            Console.WriteLine("9.3 of a Kind {0}", scoreCalculator.ThreeOfAKind(enumerable));
+            Console.WriteLine("10.4 of a Kind {0}", scoreCalculator.FourOfAKind(enumerable));
+            Console.WriteLine("11.Small Straight {0}", scoreCalculator.SmallStraight(enumerable));
+            Console.WriteLine("12.Large Straight {0}", scoreCalculator.LargeStraight(enumerable));
+            Console.WriteLine("13.Full House {0}", scoreCalculator.FullHouse(enumerable));
+            Console.WriteLine("14.Chance {0}", scoreCalculator.getSumOfDice(enumerable));
+            Console.WriteLine("15.Yatzy {0}", scoreCalculator.Yatzy(enumerable));
         }
-
-        public void Start()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
