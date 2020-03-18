@@ -3,7 +3,7 @@ namespace YatzyKata
     public class CategoryScore
     {
         public Category Category { get; set; }
-        public int Score { get; set; }
+        public int Score  { get; set; }
 
         public CategoryScore(Category category, int score)
         {

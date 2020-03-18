@@ -11,9 +11,10 @@ namespace YatzyKata
         public readonly List<Die> DiceCup;
         public static bool[]CurrentlyHolding ;
         public int RollsLeft = 3;
-        ScoreCalculator sc = new ScoreCalculator();
-        public Scorecard scorecard { get; set; }
-        
+        ScoreCalculator _sc = new ScoreCalculator();
+        private Scorecard Scorecard = new Scorecard(ListScores);
+        public static List<CategoryScore> ListScores { get; set; }
+
         public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput)
         {
             _userInput = userInput;
@@ -77,7 +78,7 @@ namespace YatzyKata
 
         public void StoreScore(Category category, int score)
         {
-            scorecard.AddScore(category, score);
+            Scorecard.AddScore(category, score);
         }
         public void PromptAction()
         {
@@ -85,7 +86,7 @@ namespace YatzyKata
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
             var category = _userInput.GetCategoryResponse();
-            var score = sc.GetScore(category,  DiceCup.Select(die => die.Result));
+            var score = _sc.GetScore(category,  DiceCup.Select(die => die.Result));
             //scorecard.AddScore(category, score);//not set to instance of object yet
             Console.WriteLine("Enter R to reroll");
             Console.ResetColor();
@@ -102,7 +103,7 @@ namespace YatzyKata
             ScoreCalculator scoreCalculator = new ScoreCalculator();
             var dice = DiceCup.Select(die => die.Result);
             var enumerable = dice.ToList();
-            Console.WriteLine("1.Ones {0}", scoreCalculator.Ones(enumerable));// scorecard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ?? scoreCalculator.Ones(enumerable));
+            Console.WriteLine("1.Ones {0}", Scorecard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ?? scoreCalculator.Ones(enumerable));
             Console.WriteLine("2.Twos {0}", scoreCalculator.Twos(enumerable));
             Console.WriteLine("3.Threes {0}", scoreCalculator.Threes(enumerable));
             Console.WriteLine("4.Fours {0}", scoreCalculator.Fours(enumerable));

@@ -11,29 +11,30 @@ namespace YatzyKata
         public int GetScore(Category category, IEnumerable<int> dice)
         {
             int score = 0;
+            var enumerable = dice as int[] ?? dice.ToArray();
             if (category == Category.Ones)
             {
-                score = Ones(dice);
+                score = Ones(enumerable);
             }
             if (category == Category.Twos)
             {
-                score = Twos(dice);
+                score = Twos(enumerable);
             }
             if (category == Category.Threes)
             {
-                score = Threes(dice);
+                score = Threes(enumerable);
             }
             if (category == Category.Fours)
             {
-                score = Fours(dice);
+                score = Fours(enumerable);
             }
             if (category == Category.Fives)
             {
-                score = Fives(dice);
+                score = Fives(enumerable);
             }
             if (category == Category.Sixes)
             {
-                score = Sixes(dice);
+                score = Sixes(enumerable);
             }
             return score;
         }

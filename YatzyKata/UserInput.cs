@@ -84,7 +84,6 @@ namespace YatzyKata
             {
                 chosenCategory = Category.Sixes;
             }
-            
 
             return chosenCategory;
         }
