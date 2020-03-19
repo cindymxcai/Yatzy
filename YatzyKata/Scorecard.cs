@@ -11,7 +11,7 @@ namespace YatzyKata
             Scores = scores;
         }
 
-        public List<CategoryScore> Scores { get;  set; }
+        public List<CategoryScore> Scores = new List<CategoryScore>();
         
         public void AddScore(Category category, int score)
         {
@@ -19,7 +19,7 @@ namespace YatzyKata
             {
                 throw new Exception("Category already used");
             }
-
+            
             Scores.Add(new CategoryScore(category, score));
         }
     }
