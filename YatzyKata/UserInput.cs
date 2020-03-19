@@ -4,21 +4,19 @@ namespace YatzyKata
 {
     public class UserInput : IUserInput
     {
-        public static string input = Console.ReadLine();
+        private static readonly string Input = Console.ReadLine();
         public Category ChosenCategory { get; set; }
 
         
         public void GetResponseType()
         {
-
-            int number = 0;
-            if (int.TryParse(input, out number))
+            if (int.TryParse(Input, out _))
             {
-                GetCategoryResponse(input);
+                GetCategoryResponse(Input);
             }
             else
             {
-                GetHoldResponse(input);
+                GetHoldResponse(Input);
             }
         }
         

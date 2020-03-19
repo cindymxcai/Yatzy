@@ -1,6 +1,6 @@
 namespace YatzyKata
 {
-    public class CategoryScore
+    public class CategoryScore : ICategoryScore
     {
         public Category Category { get; set; }
         public int Score  { get; set; }
