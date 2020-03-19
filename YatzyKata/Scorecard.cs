@@ -15,9 +15,13 @@ namespace YatzyKata
         
         public void AddScore(Category category, int score)
         {
-            if (Scores.Any(newScore => newScore.Category == category))
+          
+            if ( Scores.Any(newScore => newScore.Category == category))
             {
-                throw new Exception("Category already used");
+                if (Scores.Any(newScore => newScore.Category != Category.None))
+                {
+                    throw new Exception("Category already used");
+                }
             }
             
             Scores.Add(new CategoryScore(category, score));
