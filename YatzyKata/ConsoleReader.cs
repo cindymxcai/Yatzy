@@ -4,7 +4,7 @@ namespace YatzyKata
 {
     public class ConsoleReader : IConsoleReader
     {
-        public string getInput()
+        public string GetInput()
         {
             return Console.ReadLine();
         }

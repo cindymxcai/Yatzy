@@ -68,7 +68,7 @@ namespace YatzyKata
 
         public Response GetResponse()
         {
-            var input = _consoleReader.getInput();
+            var input = _consoleReader.GetInput();
 
             return int.TryParse(input, out _) ? GetCategoryResponse(input) : GetHoldResponse(input);
         }

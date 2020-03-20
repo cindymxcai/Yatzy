@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Xunit;
 using YatzyKata;
 
@@ -8,7 +6,7 @@ namespace DiceTests
     public class UserInputTests
     {
         [Fact]
-        public void GetResponseTypeTest( )
+        public void GetResponseTypeTest(  )
         {
             var reader = new TestConsoleReader("1");
             var userInput = new UserInput(reader);
@@ -16,17 +14,18 @@ namespace DiceTests
             var actual = userInput.GetResponse();
             Assert.Equal(expected, actual);
         }
+        
 
-        public class TestConsoleReader : IConsoleReader
+        private class TestConsoleReader : IConsoleReader
         {
-            private string _inputToReturn;
+            private readonly string _inputToReturn;
 
             public TestConsoleReader(string inputToReturn)
             {
                 _inputToReturn = inputToReturn;
 
             }
-            public string getInput()
+            public string GetInput()
             {
                 return _inputToReturn;
             }

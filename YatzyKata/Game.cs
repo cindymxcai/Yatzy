@@ -9,7 +9,7 @@ namespace YatzyKata
         private readonly IUserInput _userInput;
         //private readonly Response _response;
         private readonly List<Die> _diceCup;
-        private bool[]CurrentlyHolding ;
+        private bool[]_currentlyHolding ;
         public int RollsLeft = 3;
         private readonly ScoreCalculator _sc = new ScoreCalculator();
         private readonly Scorecard _scorecard = new Scorecard(new List<CategoryScore>());
@@ -49,7 +49,7 @@ namespace YatzyKata
 
         public void RollDice()
         {
-            var zippedList = _diceCup.Zip(CurrentlyHolding, (die, hold) => new
+            var zippedList = _diceCup.Zip(_currentlyHolding, (die, hold) => new
             {
                 hold, die
             });
@@ -72,7 +72,7 @@ namespace YatzyKata
 
         public void Hold(bool[] bools)
         {
-            CurrentlyHolding = bools;
+            _currentlyHolding = bools;
         }
 
         public void StoreScore(Category category, int score)
@@ -85,12 +85,6 @@ namespace YatzyKata
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
             var response = _userInput.GetResponse();
-            // user action was to select a category and the category was ScoreAll
-            // var userAction = _userInput.GetResponseType();
-            // userAction : { actionType: SelectCategory, actionValue: ScoreAll }
-            // Calculate the score via score calculator for the action value
-            // Call scorecard and store score against the category 
-
             var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result));
             _scorecard.AddScore(response.ChosenCategory, score);
             

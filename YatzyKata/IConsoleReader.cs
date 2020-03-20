@@ -2,6 +2,6 @@ namespace YatzyKata
 {
     public interface IConsoleReader
     {
-        string getInput();
+        string GetInput();
     }
 }

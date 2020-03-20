@@ -11,36 +11,31 @@ namespace YatzyKata
 
         public int GetScore(Category category, IEnumerable<int> dice)
         {
-            int score = 0;
-            var enumerable = dice as int[] ?? dice.ToArray();
-            switch (category)
+            
+            var score = category switch
             {
-                case Category.Ones:
-                    score = Ones(enumerable);
-                    break;
-                case Category.Twos:
-                    score = Twos(enumerable);
-                    break;
-                case Category.Threes:
-                    score = Threes(enumerable);
-                    break;
-                case Category.Fours:
-                    score = Fours(enumerable);
-                    break;
-                case Category.Fives:
-                    score = Fives(enumerable);
-                    break;
-                case Category.Sixes:
-                    score = Sixes(enumerable);
-                    break;
-                default:
-                    throw new Exception($"Invalid Category in ScoreCalculator.GetScore {category}");
-            }
+                Category.Ones => Ones(dice),
+                Category.Twos => Twos(dice),
+                Category.Threes => Threes(dice),
+                Category.Fours => Fours(dice),
+                Category.Fives => Fives(dice),
+                Category.Sixes => Sixes(dice),
+                Category.Pairs => Pairs(dice),
+                Category.TwoPairs => TwoPairs(dice) ,
+                Category.ThreeOfAKind => ThreeOfAKind(dice),
+                Category.FourOfAKind => FourOfAKind(dice),
+                Category.SmallStraight => SmallStraight(dice),
+                Category.LargeStraight => LargeStraight(dice),
+                Category.FullHouse => FullHouse(dice),
+                Category.Chance => getSumOfDice(dice),
+                Category.Yatzy => Yatzy(dice),
+                _ => throw new Exception($"Invalid Category in ScoreCalculator.GetScore {category}")
+            };
 
             return score;
         }
 
-        public int getSumOfDice(List<int> dices)
+        public int getSumOfDice(IEnumerable<int> dices)
         {
             _diceSum = 0;
 
@@ -53,11 +48,12 @@ namespace YatzyKata
         }
 
 
-        public int Yatzy(List<int> dices)
+        public int Yatzy(IEnumerable<int> dices)
         {
             _diceSum = 0;
 
-            if (dices.All(die => die == dices.First()))
+            var enumerable = dices.ToList();
+            if (enumerable.All(die => die == enumerable.First()))
             {
                 _diceSum = 50;
             }
@@ -108,8 +104,8 @@ namespace YatzyKata
         {
             return SumNumbers(dice, 6);
         }
-
-        public int Pairs(List<int> dice)
+        
+        public int Pairs(IEnumerable<int> dice)
         {
             _diceSum = 0;
 
@@ -126,14 +122,15 @@ namespace YatzyKata
             return 0;
         }
 
-        public int TwoPairs(List<int> dice)
+        public int TwoPairs(IEnumerable<int> dice)
         {
             int numPairs = 0;
             int pairSum = 0;
 
-            List<int> ordered = new List<int>(dice.OrderBy(die => die));
+            var enumerable = dice as int[] ?? dice.ToArray();
+            List<int> ordered = new List<int>(enumerable.OrderBy(die => die));
 
-            for (int i = 0; i < dice.Count - 1; i++)
+            for (int i = 0; i < enumerable.Length - 1; i++)
             {
                 if (ordered[i] == ordered[i + 1])
                 {
@@ -150,25 +147,18 @@ namespace YatzyKata
             return pairSum;
         }
 
-        public int ThreeOfAKind(List<int> dice)
+        public int ThreeOfAKind(IEnumerable<int> dice)
         {
-            foreach (var die in dice)
-            {
-                if (dice.Count(d => d == die) >= 3)
-                {
-                    return die * 3;
-                }
-            }
-            
-
-            return 0;
+            var enumerable = dice as int[] ?? dice.ToArray();
+            return (from die in enumerable where enumerable.Count(d => d == die) >= 3 select die * 3).FirstOrDefault();
         }
 
-        public int FourOfAKind(List<int> dice)
+        public int FourOfAKind(IEnumerable<int> dice)
         {
-            foreach (var die in dice)
+            var enumerable = dice as int[] ?? dice.ToArray();
+            foreach (var die in enumerable)
             {
-                if (dice.Count(d => d == die) >= 4)
+                if (enumerable.Count(d => d == die) >= 4)
                 {
                     return die * 4;
                 }
@@ -176,7 +166,7 @@ namespace YatzyKata
             return 0;
         }
 
-        public int SmallStraight(List<int> dice)
+        public int SmallStraight(IEnumerable<int> dice)
         {
             _diceSum = 0;
 
@@ -190,7 +180,7 @@ namespace YatzyKata
             return _diceSum;
         }
 
-        public int LargeStraight(List<int> dice)
+        public int LargeStraight(IEnumerable<int> dice)
         {
             _diceSum = 0;
 
@@ -205,21 +195,22 @@ namespace YatzyKata
             return _diceSum;
         }
 
-        public int FullHouse(List<int> dice)
+        public int FullHouse(IEnumerable<int> dice)
         {
-            var distinctValues = dice.Distinct().ToList();
+            var enumerable = dice as int[] ?? dice.ToArray();
+            var distinctValues = enumerable.Distinct().ToList();
             
             if (distinctValues.Count == 2)
             {
-                if (dice.Count(i => i == distinctValues.First()) == 2 &&
-                    dice.Count(i => i == distinctValues.Last()) == 3)
+                if (enumerable.Count(i => i == distinctValues.First()) == 2 &&
+                    enumerable.Count(i => i == distinctValues.Last()) == 3)
                 {
-                    return getSumOfDice(dice);
+                    return getSumOfDice(enumerable);
                 }
-                if (dice.Count(i => i == distinctValues.First()) == 3 &&
-                    dice.Count(i => i == distinctValues.Last()) == 2)
+                if (enumerable.Count(i => i == distinctValues.First()) == 3 &&
+                    enumerable.Count(i => i == distinctValues.Last()) == 2)
                 {
-                    return getSumOfDice(dice);
+                    return getSumOfDice(enumerable);
                 }
                 
             }
