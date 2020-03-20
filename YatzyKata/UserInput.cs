@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace YatzyKata
 {
@@ -8,160 +7,138 @@ namespace YatzyKata
         PlayerChoseCategory,
         PlayerChoseDiceToHold
     }
+
     public class Response
     {
-        public ResponseType ResponseType;
-        public  HeldDice HeldDice;
-        public Category ChosenCategory;
+        private readonly ResponseType _responseType;
+        private readonly Dice _heldDice;
+        public readonly Category ChosenCategory;
+
+        public Response(Category category)
+        {
+            _responseType = ResponseType.PlayerChoseCategory;
+            ChosenCategory = category;
+        }
+
+        public Response(Dice heldDice)
+        {
+            _responseType = ResponseType.PlayerChoseDiceToHold;
+            _heldDice = heldDice;
+        }
+
+        private bool Equals(Response other)
+        {
+            return _responseType == other._responseType && _heldDice == other._heldDice &&
+                   ChosenCategory == other.ChosenCategory;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Response) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine((int) _responseType, (int) _heldDice, (int) ChosenCategory);
+        }
     }
 
-    public enum HeldDice
+    public enum Dice
     {
         None,
-        diceA,
-        diceB,
-        diceC, 
-        diceD,
-        diceE
+        DiceA,
+        DiceB,
+        DiceC,
+        DiceD,
+        DiceE
     }
 
     public class UserInput : IUserInput
     {
+        private readonly IConsoleReader _consoleReader;
+
+        public UserInput(IConsoleReader consoleReader)
+        {
+            _consoleReader = consoleReader;
+        }
+
+
         public Response GetResponse()
         {
-            var Input = Console.ReadLine();
+            var input = _consoleReader.getInput();
 
-            if (int.TryParse(Input, out _))
-            {
-                return GetCategoryResponse(Input);
-            }
-            else
-            {
-                return GetHoldResponse(Input);
-            }
+            return int.TryParse(input, out _) ? GetCategoryResponse(input) : GetHoldResponse(input);
         }
-        
+
 
         public bool GetRerollResponse()
         {
             var input = Console.ReadLine();
 
-            if (input == "R" || input == "r") // ignore case compare
-            {
-                return true;
-            }
-
-            return false;
+            return input == "R" || input == "r";
         }
-        
+
 
         public Response GetHoldResponse(String input)
         {
-
             string[] holdDice = input?.Split(',');
 
-            if (holdDice != null)
-                foreach (var letter in holdDice)
+            if (holdDice == null) return new Response(Dice.None);
+            foreach (var letter in holdDice)
+            {
+                if (letter.Equals("a", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    if (letter == "a" || letter == "A")
-                    {
-                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceA};
-                    }
-
-                    if (letter == "b" || letter == "B")
-                    {
-                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceB};
-                    }
-
-                    if (letter == "c" || letter == "C")
-                    {
-                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceC};
-                    }
-
-                    if (letter == "d" || letter == "D")
-                    {
-                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceD};
-                    }
-
-                    if (letter == "e" || letter == "E")
-                    {
-                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceE};
-                    }
+                    return new Response(Dice.DiceA);
                 }
-            return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.None};
 
+                if (letter.Equals("b", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return new Response(Dice.DiceB);
+                }
+
+                if (letter.Equals("c", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return new Response(Dice.DiceC);
+                }
+
+                if (letter.Equals("d", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return new Response(Dice.DiceD);
+                }
+
+                if (letter.Equals("e", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return new Response(Dice.DiceE);
+                }
+            }
+
+            return new Response(Dice.None);
         }
-        
+
         public Response GetCategoryResponse(String input)
         {
-
-            if (int.Parse(input) == 1)
+            return int.Parse(input) switch
             {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Ones};
-            }
-
-            if (int.Parse(input) == 2)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Twos};
-            }
-            if (int.Parse(input) == 3)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Threes};
-            }
-            if (int.Parse(input) == 4)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Fours};
-            }
-            if (int.Parse(input) == 5)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Fives};
-            }
-            if (int.Parse(input) == 6)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Sixes};
-            }
-            if (int.Parse(input) == 7)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Pairs};
-            }
-            if (int.Parse(input) == 8)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.TwoPairs};
-            }
-            if (int.Parse(input) == 9)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.ThreeOfAKind};
-            }
-            if (int.Parse(input) == 10)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.FourOfAKind};
-            }
-            if (int.Parse(input) == 11)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.SmallStraight};
-            }
-            if (int.Parse(input) == 12)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.LargeStraight};
-            }
-            if (int.Parse(input) == 13)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.FullHouse};
-            }
-            if (int.Parse(input) == 14)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Chance};
-            }
-            if (int.Parse(input) == 15)
-            {
-                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Yatzy};
-            }
-           
-
-
-            return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.None};
-
+                1 => new Response(Category.Ones),
+                2 => new Response(Category.Twos),
+                3 => new Response(Category.Threes),
+                4 => new Response(Category.Fours),
+                5 => new Response(Category.Fives),
+                6 => new Response(Category.Sixes),
+                7 => new Response(Category.Pairs),
+                8 => new Response(Category.TwoPairs),
+                9 => new Response(Category.ThreeOfAKind),
+                10 => new Response(Category.FourOfAKind),
+                11 => new Response(Category.SmallStraight),
+                12 => new Response(Category.LargeStraight),
+                13 => new Response(Category.FullHouse),
+                14 => new Response(Category.Chance),
+                15 => new Response(Category.Yatzy),
+                _ => new Response(Category.None)
+            };
         }
-
     }
 }

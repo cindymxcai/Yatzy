@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Xunit;
 using YatzyKata;
@@ -9,9 +10,26 @@ namespace DiceTests
         [Fact]
         public void GetResponseTypeTest( )
         {
-            UserInput userInput = new UserInput();
-            userInput.GetResponse();
-            //Assert.Equal();
+            var reader = new TestConsoleReader("1");
+            var userInput = new UserInput(reader);
+            var expected = new Response(Category.Ones);
+            var actual = userInput.GetResponse();
+            Assert.Equal(expected, actual);
+        }
+
+        public class TestConsoleReader : IConsoleReader
+        {
+            private string _inputToReturn;
+
+            public TestConsoleReader(string inputToReturn)
+            {
+                _inputToReturn = inputToReturn;
+
+            }
+            public string getInput()
+            {
+                return _inputToReturn;
+            }
         }
 
     }

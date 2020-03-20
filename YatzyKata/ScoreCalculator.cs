@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DiceTests;
@@ -12,30 +13,30 @@ namespace YatzyKata
         {
             int score = 0;
             var enumerable = dice as int[] ?? dice.ToArray();
-            if (category == Category.Ones)
+            switch (category)
             {
-                score = Ones(enumerable);
+                case Category.Ones:
+                    score = Ones(enumerable);
+                    break;
+                case Category.Twos:
+                    score = Twos(enumerable);
+                    break;
+                case Category.Threes:
+                    score = Threes(enumerable);
+                    break;
+                case Category.Fours:
+                    score = Fours(enumerable);
+                    break;
+                case Category.Fives:
+                    score = Fives(enumerable);
+                    break;
+                case Category.Sixes:
+                    score = Sixes(enumerable);
+                    break;
+                default:
+                    throw new Exception($"Invalid Category in ScoreCalculator.GetScore {category}");
             }
-            if (category == Category.Twos)
-            {
-                score = Twos(enumerable);
-            }
-            if (category == Category.Threes)
-            {
-                score = Threes(enumerable);
-            }
-            if (category == Category.Fours)
-            {
-                score = Fours(enumerable);
-            }
-            if (category == Category.Fives)
-            {
-                score = Fives(enumerable);
-            }
-            if (category == Category.Sixes)
-            {
-                score = Sixes(enumerable);
-            }
+
             return score;
         }
 

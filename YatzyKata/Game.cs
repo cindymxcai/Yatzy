@@ -7,15 +7,16 @@ namespace YatzyKata
     public class Game : IGame
     {
         private readonly IUserInput _userInput;
-        private readonly Response _response;
+        //private readonly Response _response;
         private readonly List<Die> _diceCup;
-        public bool[]CurrentlyHolding ;
+        private bool[]CurrentlyHolding ;
         public int RollsLeft = 3;
         private readonly ScoreCalculator _sc = new ScoreCalculator();
         private readonly Scorecard _scorecard = new Scorecard(new List<CategoryScore>());
         public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput)
         {
             _userInput = userInput;
+            //_response = response;
             _diceCup = new List<Die> {dice1, dice2, dice3, dice4, dice5};
         }
 
@@ -83,15 +84,15 @@ namespace YatzyKata
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
-            _userInput.GetResponse();
+            var response = _userInput.GetResponse();
             // user action was to select a category and the category was ScoreAll
             // var userAction = _userInput.GetResponseType();
             // userAction : { actionType: SelectCategory, actionValue: ScoreAll }
             // Calculate the score via score calculator for the action value
             // Call scorecard and store score against the category 
 
-            var score = _sc.GetScore(_response.ChosenCategory,  _diceCup.Select(die => die.Result));
-            _scorecard.AddScore(_response.ChosenCategory, score);
+            var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result));
+            _scorecard.AddScore(response.ChosenCategory, score);
             
             Console.WriteLine("Enter R to reroll");
             Console.ResetColor();

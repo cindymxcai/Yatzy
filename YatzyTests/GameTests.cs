@@ -15,7 +15,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, Category.Chance));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, new Response(Category.Ones)));
             var actual = game.GetValues();
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, actual);
         }
@@ -29,7 +29,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, Category.Chance));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, new Response(Category.Ones)));
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
             game.Hold(new[] {true, false, false, false, false});
@@ -46,7 +46,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(false, Category.Chance));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(false, new Response(Category.Ones)));
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
             game.Hold(new[] {true, false, false, false, false});
@@ -63,7 +63,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, Category.Chance));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, new Response(Category.Ones)));
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
             game.Hold(new[]{true, false, false, false, false});
@@ -80,7 +80,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, Category.Chance));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, new Response(Category.Chance)));
             game.Hold(new[]{false, false, false, false, false});
             Assert.Equal(3, game.RollsLeft);
             game.PromptAction();
@@ -94,13 +94,12 @@ namespace DiceTests
     public class TestUserInput : IUserInput
     {
         private readonly bool _value;
-        private readonly Response _response;
-        private readonly Category _category;
+       private readonly Response _response;
 
-        public TestUserInput(bool value, Category category)
+       public TestUserInput(bool value, Response response)
         {
             _value = value;
-            _category = category;
+            _response = response;
         }
         
         public Response GetResponse()
@@ -122,8 +121,6 @@ namespace DiceTests
         {
             return _response;
         }
-
-        public Category ChosenCategory { get; set; }
     }
 
     public class TestRng : IRng
