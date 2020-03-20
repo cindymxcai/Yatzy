@@ -17,8 +17,11 @@
         <e p="CategoryScore.cs" t="Include" />
         <e p="Die.cs" t="Include" />
         <e p="Game.cs" t="Include" />
+        <e p="ICategoryScore.cs" t="Include" />
         <e p="IDie.cs" t="Include" />
+        <e p="IGame.cs" t="Include" />
         <e p="IScoreCalculator.cs" t="Include" />
+        <e p="IScorecard.cs" t="Include" />
         <e p="IUserInput.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -37,6 +40,7 @@
       <e p="YatzyTests" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="CalculatorTest.cs" t="Include" />
+        <e p="CategoryScoreTests.cs" t="Include" />
         <e p="DiceTest.cs" t="Include" />
         <e p="GameTests.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
@@ -46,6 +50,8 @@
             </e>
           </e>
         </e>
+        <e p="ScoreCardTests.cs" t="Include" />
+        <e p="UserInputTests.cs" t="Include" />
         <e p="YatzyTests.csproj" t="IncludeRecursive" />
       </e>
     </e>

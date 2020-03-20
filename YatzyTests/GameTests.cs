@@ -94,6 +94,7 @@ namespace DiceTests
     public class TestUserInput : IUserInput
     {
         private readonly bool _value;
+        private readonly Response _response;
         private readonly Category _category;
 
         public TestUserInput(bool value, Category category)
@@ -101,10 +102,10 @@ namespace DiceTests
             _value = value;
             _category = category;
         }
-
-        public void GetResponseType()
+        
+        public Response GetResponse()
         {
-            
+            return _response;
         }
 
         public bool GetRerollResponse()
@@ -112,14 +113,14 @@ namespace DiceTests
             return _value;
         }
 
-        public void GetHoldResponse(string input)
+        public Response GetHoldResponse(string input)
         {
-            throw new System.NotImplementedException();
+            return _response;
         }
 
-        public Category GetCategoryResponse(string input)
+        public Response GetCategoryResponse(string input)
         {
-            return _category;
+            return _response;
         }
 
         public Category ChosenCategory { get; set; }

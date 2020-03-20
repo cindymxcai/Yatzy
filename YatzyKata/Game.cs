@@ -7,8 +7,9 @@ namespace YatzyKata
     public class Game : IGame
     {
         private readonly IUserInput _userInput;
+        private readonly Response _response;
         private readonly List<Die> _diceCup;
-        public static bool[]CurrentlyHolding ;
+        public bool[]CurrentlyHolding ;
         public int RollsLeft = 3;
         private readonly ScoreCalculator _sc = new ScoreCalculator();
         private readonly Scorecard _scorecard = new Scorecard(new List<CategoryScore>());
@@ -82,10 +83,15 @@ namespace YatzyKata
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
-            _userInput.GetResponseType();
+            _userInput.GetResponse();
+            // user action was to select a category and the category was ScoreAll
+            // var userAction = _userInput.GetResponseType();
+            // userAction : { actionType: SelectCategory, actionValue: ScoreAll }
+            // Calculate the score via score calculator for the action value
+            // Call scorecard and store score against the category 
 
-            var score = _sc.GetScore(_userInput.ChosenCategory,  _diceCup.Select(die => die.Result));
-            _scorecard.AddScore(_userInput.ChosenCategory, score);
+            var score = _sc.GetScore(_response.ChosenCategory,  _diceCup.Select(die => die.Result));
+            _scorecard.AddScore(_response.ChosenCategory, score);
             
             Console.WriteLine("Enter R to reroll");
             Console.ResetColor();

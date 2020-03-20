@@ -4,10 +4,9 @@ namespace YatzyKata
 {
     public interface IUserInput
     {
-        void GetResponseType();
+        Response GetResponse();
         bool GetRerollResponse();
-        void GetHoldResponse(String input);
-        Category GetCategoryResponse(String input);
-        Category ChosenCategory { get; set; }
+        Response GetHoldResponse(String input);
+        Response GetCategoryResponse(String input);
     }
 }

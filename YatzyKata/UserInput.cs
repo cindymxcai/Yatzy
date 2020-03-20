@@ -1,22 +1,43 @@
 using System;
+using System.Collections.Generic;
 
 namespace YatzyKata
 {
+    public enum ResponseType
+    {
+        PlayerChoseCategory,
+        PlayerChoseDiceToHold
+    }
+    public class Response
+    {
+        public ResponseType ResponseType;
+        public  HeldDice HeldDice;
+        public Category ChosenCategory;
+    }
+
+    public enum HeldDice
+    {
+        None,
+        diceA,
+        diceB,
+        diceC, 
+        diceD,
+        diceE
+    }
+
     public class UserInput : IUserInput
     {
-        private static readonly string Input = Console.ReadLine();
-        public Category ChosenCategory { get; set; }
-
-        
-        public void GetResponseType()
+        public Response GetResponse()
         {
+            var Input = Console.ReadLine();
+
             if (int.TryParse(Input, out _))
             {
-                GetCategoryResponse(Input);
+                return GetCategoryResponse(Input);
             }
             else
             {
-                GetHoldResponse(Input);
+                return GetHoldResponse(Input);
             }
         }
         
@@ -25,7 +46,7 @@ namespace YatzyKata
         {
             var input = Console.ReadLine();
 
-            if (input == "R" || input == "r")
+            if (input == "R" || input == "r") // ignore case compare
             {
                 return true;
             }
@@ -34,7 +55,7 @@ namespace YatzyKata
         }
         
 
-        public void GetHoldResponse(String input)
+        public Response GetHoldResponse(String input)
         {
 
             string[] holdDice = input?.Split(',');
@@ -44,103 +65,102 @@ namespace YatzyKata
                 {
                     if (letter == "a" || letter == "A")
                     {
-                        Game.CurrentlyHolding[0] = true;
+                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceA};
                     }
 
                     if (letter == "b" || letter == "B")
                     {
-                        Game.CurrentlyHolding[1] = true;
+                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceB};
                     }
 
                     if (letter == "c" || letter == "C")
                     {
-                        Game.CurrentlyHolding[2] = true;
+                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceC};
                     }
 
                     if (letter == "d" || letter == "D")
                     {
-                        Game.CurrentlyHolding[3] = true;
+                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceD};
                     }
 
                     if (letter == "e" || letter == "E")
                     {
-                        Game.CurrentlyHolding[4] = true;
+                        return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.diceE};
                     }
                 }
+            return new Response {ResponseType = ResponseType.PlayerChoseDiceToHold, HeldDice = HeldDice.None};
+
         }
         
-        public Category GetCategoryResponse(String input)
+        public Response GetCategoryResponse(String input)
         {
 
-
-            
             if (int.Parse(input) == 1)
             {
-                ChosenCategory = Category.Ones;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Ones};
             }
+
             if (int.Parse(input) == 2)
             {
-                ChosenCategory = Category.Twos;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Twos};
             }
             if (int.Parse(input) == 3)
             {
-                ChosenCategory = Category.Threes;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Threes};
             }
             if (int.Parse(input) == 4)
             {
-                ChosenCategory = Category.Fours;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Fours};
             }
             if (int.Parse(input) == 5)
             {
-                ChosenCategory = Category.Fives;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Fives};
             }
             if (int.Parse(input) == 6)
             {
-                ChosenCategory = Category.Sixes;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Sixes};
             }
             if (int.Parse(input) == 7)
             {
-                ChosenCategory = Category.Pairs;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Pairs};
             }
             if (int.Parse(input) == 8)
             {
-                ChosenCategory = Category.TwoPairs;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.TwoPairs};
             }
             if (int.Parse(input) == 9)
             {
-                ChosenCategory = Category.ThreeOfAKind;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.ThreeOfAKind};
             }
             if (int.Parse(input) == 10)
             {
-                ChosenCategory = Category.FourOfAKind;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.FourOfAKind};
             }
             if (int.Parse(input) == 11)
             {
-                ChosenCategory = Category.SmallStraight;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.SmallStraight};
             }
             if (int.Parse(input) == 12)
             {
-                ChosenCategory = Category.LargeStraight;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.LargeStraight};
             }
             if (int.Parse(input) == 13)
             {
-                ChosenCategory = Category.FullHouse;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.FullHouse};
             }
             if (int.Parse(input) == 14)
             {
-                ChosenCategory = Category.Chance;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Chance};
             }
             if (int.Parse(input) == 15)
             {
-                ChosenCategory = Category.Yatzy;
+                return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.Yatzy};
             }
-            if (int.Parse(input) == 6)
-            {
-                ChosenCategory = Category.Sixes;
-            }
+           
 
 
-            return ChosenCategory;
+            return new Response {ResponseType = ResponseType.PlayerChoseCategory, ChosenCategory = Category.None};
+
         }
 
     }
