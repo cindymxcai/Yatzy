@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace YatzyKata
 {
@@ -11,7 +12,7 @@ namespace YatzyKata
     public class Response
     {
         private readonly ResponseType _responseType;
-        private readonly Dice _heldDice;
+        public readonly bool[] HeldDice;
         public readonly Category ChosenCategory;
 
         public Response(Category category)
@@ -20,16 +21,17 @@ namespace YatzyKata
             ChosenCategory = category;
         }
 
-        public Response(Dice heldDice)
+        public Response(bool[] heldDice)
         {
             _responseType = ResponseType.PlayerChoseDiceToHold;
-            _heldDice = heldDice;
+            HeldDice = heldDice;
         }
 
         private bool Equals(Response other)
         {
-            return _responseType == other._responseType && _heldDice == other._heldDice &&
-                   ChosenCategory == other.ChosenCategory;
+            return _responseType == other._responseType ||
+                   ChosenCategory == other.ChosenCategory || 
+                   HeldDice.SequenceEqual( other.HeldDice);
         }
 
         public override bool Equals(object obj)
@@ -42,7 +44,7 @@ namespace YatzyKata
 
         public override int GetHashCode()
         {
-            return HashCode.Combine((int) _responseType, (int) _heldDice, (int) ChosenCategory);
+            return HashCode.Combine((int) _responseType,  HeldDice, (int) ChosenCategory);
         }
     }
 
@@ -76,46 +78,49 @@ namespace YatzyKata
 
         public bool GetRerollResponse()
         {
-            var input = Console.ReadLine();
+            var input = _consoleReader.GetInput();
 
             return input == "R" || input == "r";
         }
 
 
-        public Response GetHoldResponse(String input)
+        public Response GetHoldResponse(string input)
         {
             string[] holdDice = input?.Split(',');
 
-            if (holdDice == null) return new Response(Dice.None);
+            if (holdDice == null) return new Response(new []{false, false, false, false, false});
+
+            var response = new Response(new [] {false, false, false, false, false});
+            
             foreach (var letter in holdDice)
             {
                 if (letter.Equals("a", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    return new Response(Dice.DiceA);
+                    response.HeldDice[0] = true;
                 }
 
                 if (letter.Equals("b", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    return new Response(Dice.DiceB);
+                    response.HeldDice[1] = true;
                 }
 
                 if (letter.Equals("c", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    return new Response(Dice.DiceC);
+                    response.HeldDice[2] = true;
                 }
 
                 if (letter.Equals("d", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    return new Response(Dice.DiceD);
+                    response.HeldDice[3] = true;
                 }
 
                 if (letter.Equals("e", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    return new Response(Dice.DiceE);
+                    response.HeldDice[4] = true;
                 }
             }
 
-            return new Response(Dice.None);
+            return response;
         }
 
         public Response GetCategoryResponse(String input)

@@ -7,16 +7,15 @@ namespace YatzyKata
     public class Game : IGame
     {
         private readonly IUserInput _userInput;
-        //private readonly Response _response;
         private readonly List<Die> _diceCup;
-        private bool[]_currentlyHolding ;
+        private bool[]_currentlyHolding;
         public int RollsLeft = 3;
         private readonly ScoreCalculator _sc = new ScoreCalculator();
         private readonly Scorecard _scorecard = new Scorecard(new List<CategoryScore>());
+        
         public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput)
         {
             _userInput = userInput;
-            //_response = response;
             _diceCup = new List<Die> {dice1, dice2, dice3, dice4, dice5};
         }
 
