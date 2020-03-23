@@ -1,3 +1,5 @@
+using System;
+
 namespace YatzyKata
 {
     public class CategoryScore : ICategoryScore
@@ -9,6 +11,24 @@ namespace YatzyKata
         {
             Category = category;
             Score = score;
+        }
+
+        protected bool Equals(CategoryScore other)
+        {
+            return Category == other.Category && Score == other.Score;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((CategoryScore) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine((int) Category, Score);
         }
     }
 }
