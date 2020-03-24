@@ -29,7 +29,7 @@ namespace YatzyKata
                 Category.FullHouse => FullHouse(dice),
                 Category.Chance => getSumOfDice(dice),
                 Category.Yatzy => Yatzy(dice),
-                _ => throw new Exception($"Invalid Category in ScoreCalculator.GetScore {category}")
+               _ => throw new Exception($"Invalid Category in ScoreCalculator.GetScore {category}")
             };
 
             return score;

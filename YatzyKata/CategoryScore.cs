@@ -5,7 +5,7 @@ namespace YatzyKata
     public class CategoryScore : ICategoryScore
     {
         public Category Category { get; set; }
-        public int Score  { get; set; }
+        public int Score { get; set; }
 
         public CategoryScore(Category category, int score)
         {
@@ -13,7 +13,7 @@ namespace YatzyKata
             Score = score;
         }
 
-        protected bool Equals(CategoryScore other)
+        private bool Equals(ICategoryScore other)
         {
             return Category == other.Category && Score == other.Score;
         }

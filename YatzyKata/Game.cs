@@ -42,7 +42,7 @@ namespace YatzyKata
 
             if (RollsLeft > 0)
             {
-                PromptAction();
+                PlayUntilNoRollsLeft();
             }
         }
 
@@ -57,7 +57,7 @@ namespace YatzyKata
             {
                 foreach (var item in zippedList)
                 {
-                    if (item.hold == false)
+                    if (!item.hold)
                     {
                         item.die.RollDie();
                     }
@@ -78,22 +78,37 @@ namespace YatzyKata
         {
             _scoreCard.AddScore(category, score);
         }
-        public void PromptAction()
+        public void PlayUntilNoRollsLeft()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
             Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
             var response = _userInput.GetResponse();
-            var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result));
-            _scoreCard.AddScore(response.ChosenCategory, score);
-            
-            Console.WriteLine("Enter R to reroll");
-            Console.ResetColor();
+            //check the type of input given by the user in response
+            //if responseType is reroll, roll dice, but do not score or hold dice
+            //if responseType is category, score to scorecard, reset diceRolls to 3 and "start a new round"
+            //if responseType is holdDice, hold the chosen dice and then reroll but do not score 
 
-            if (_userInput.GetRerollResponse())
+            if (response.ResponseType == ResponseType.PlayerChoseCategory)
+            {
+                var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result)); 
+                _scoreCard.AddScore(response.ChosenCategory, score);
+            }
+
+            if (response.ResponseType == ResponseType.PlayerChoseReroll)
             {
                 RollDice();
             }
+
+            if (response.ResponseType == ResponseType.PlayerChoseDiceToHold)
+            {
+                Hold(response.HeldDice);
+                RollDice();
+            }
+            
+          
+            Console.ResetColor();
+
 
         }
 
@@ -105,10 +120,10 @@ namespace YatzyKata
             Console.WriteLine("1.Ones {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ?? scoreCalculator.Ones(enumerable)));
             Console.WriteLine("2.Twos {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Twos)?.Score ?? scoreCalculator.Twos(enumerable)));
             Console.WriteLine("3.Threes {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Threes)?.Score ?? scoreCalculator.Threes(enumerable)));
-            Console.WriteLine("4.Threes {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Fours)?.Score ?? scoreCalculator.Fours(enumerable)));
+            Console.WriteLine("4.Fours {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Fours)?.Score ?? scoreCalculator.Fours(enumerable)));
             Console.WriteLine("5.Fives {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Fives)?.Score ?? scoreCalculator.Fours(enumerable)));
-            Console.WriteLine("6.Sixes {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Sixes)?.Score ?? scoreCalculator.Fives(enumerable)));
-            Console.WriteLine("7.Pair {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Pairs)?.Score ?? scoreCalculator.Sixes(enumerable)));
+            Console.WriteLine("6.Sixes {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Sixes)?.Score ?? scoreCalculator.Sixes(enumerable)));
+            Console.WriteLine("7.Pair {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.Pairs)?.Score ?? scoreCalculator.Pairs(enumerable)));
             Console.WriteLine("8.Two pair {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.TwoPairs)?.Score ?? scoreCalculator.TwoPairs(enumerable)));
             Console.WriteLine("9.3 of a Kind {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.ThreeOfAKind)?.Score ?? scoreCalculator.ThreeOfAKind(enumerable)));
             Console.WriteLine("10.4 of a Kind {0}", (_scoreCard.Scores.FirstOrDefault(score => score.Category == Category.FourOfAKind)?.Score ?? scoreCalculator.FourOfAKind(enumerable)));

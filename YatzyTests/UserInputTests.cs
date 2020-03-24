@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Xunit;
 using YatzyKata;
 
@@ -40,26 +42,36 @@ namespace DiceTests
         [InlineData(true, "r")]
         [InlineData(true, "R")]
         [InlineData(false, "b")]
-        public void GetRerollResponseTest(bool expected, string userInputString)
+        public void GetRerollResponseTest(bool expectedBool, string userInputString)
         {
             var reader = new TestConsoleReader(userInputString);
             var userInput = new UserInput(reader);
-            Assert.Equal(expected, userInput.GetRerollResponse());
+            var expected = new Response(expectedBool);
+            var actual = userInput.GetResponse();
+            Assert.Equal(expected, actual);
+        }
+        
+    }
+    
+    public class TestConsoleReader : IConsoleReader
+    {
+        private readonly List<string> _userInputStrings;
+        private readonly string _inputToReturn;
+        private int _index = 0;
+
+        public TestConsoleReader(string inputToReturn)
+        {
+            _userInputStrings = new List<string>(){inputToReturn};
         }
 
-        private class TestConsoleReader : IConsoleReader
+        public TestConsoleReader(List<string> userInputStrings)
         {
-            private readonly string _inputToReturn;
+            _userInputStrings = userInputStrings;
+        }
 
-            public TestConsoleReader(string inputToReturn)
-            {
-                _inputToReturn = inputToReturn;
-            }
-
-            public string GetInput()
-            {
-                return _inputToReturn;
-            }
+        public string GetInput()
+        {
+            return _userInputStrings[_index++];
         }
     }
 }

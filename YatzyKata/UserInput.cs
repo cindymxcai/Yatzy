@@ -6,30 +6,39 @@ namespace YatzyKata
     public enum ResponseType
     {
         PlayerChoseCategory,
-        PlayerChoseDiceToHold
+        PlayerChoseDiceToHold,
+        PlayerChoseReroll
     }
 
     public class Response
     {
-        private readonly ResponseType _responseType;
+        public readonly ResponseType ResponseType;
         public readonly bool[] HeldDice;
         public readonly Category ChosenCategory;
+        public readonly bool IsReroll;
 
         public Response(Category category)
         {
-            _responseType = ResponseType.PlayerChoseCategory;
+            ResponseType = ResponseType.PlayerChoseCategory;
             ChosenCategory = category;
         }
 
         public Response(bool[] heldDice)
         {
-            _responseType = ResponseType.PlayerChoseDiceToHold;
+            ResponseType = ResponseType.PlayerChoseDiceToHold;
             HeldDice = heldDice;
+        }
+
+        public Response(bool isReroll)
+        {
+            ResponseType = ResponseType.PlayerChoseReroll;
+            IsReroll = isReroll;
+
         }
 
         private bool Equals(Response other)
         {
-            return _responseType == other._responseType ||
+            return ResponseType == other.ResponseType ||
                    ChosenCategory == other.ChosenCategory || 
                    HeldDice.SequenceEqual( other.HeldDice);
         }
@@ -44,42 +53,34 @@ namespace YatzyKata
 
         public override int GetHashCode()
         {
-            return HashCode.Combine((int) _responseType,  HeldDice, (int) ChosenCategory);
+            return HashCode.Combine((int) ResponseType,  HeldDice, (int) ChosenCategory);
         }
-    }
-
-    public enum Dice
-    {
-        None,
-        DiceA,
-        DiceB,
-        DiceC,
-        DiceD,
-        DiceE
     }
 
     public class UserInput : IUserInput
     {
-        private readonly IConsoleReader _consoleReader;
+        public readonly IConsoleReader ConsoleReader;
+
 
         public UserInput(IConsoleReader consoleReader)
         {
-            _consoleReader = consoleReader;
+            ConsoleReader = consoleReader;
         }
 
 
         public Response GetResponse()
         {
-            var input = _consoleReader.GetInput();
-
+            var input = ConsoleReader.GetInput();
+            if (IsReroll(input))
+            {
+                return new Response(true);
+            }
             return int.TryParse(input, out _) ? GetCategoryResponse(input) : GetHoldResponse(input);
         }
 
 
-        public bool GetRerollResponse()
+        public bool IsReroll(string input)
         {
-            var input = _consoleReader.GetInput();
-
             return input == "R" || input == "r";
         }
 
@@ -144,6 +145,7 @@ namespace YatzyKata
                 15 => new Response(Category.Yatzy),
                 _ => new Response(Category.None)
             };
+            
         }
     }
 }

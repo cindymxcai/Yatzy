@@ -5,7 +5,7 @@ namespace YatzyKata
     public interface IUserInput
     {
         Response GetResponse();
-        bool GetRerollResponse();
+        bool IsReroll(String input);
         Response GetHoldResponse(String input);
         Response GetCategoryResponse(String input);
     }
