@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 using YatzyKata;
 
@@ -50,12 +51,12 @@ namespace DiceTests
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
             game.Hold(new[]{true, false, false, false, false});
-            game.PlayUntilNoRollsLeft();
+            game.PlayRoundUntilNoRollsLeft();
             Assert.Equal(new List<int> {6, 1, 1, 1, 1}, game.GetValues());
         }
 
         [Fact]
-        internal void RollThreeTimes()
+        public void RollThreeTimes()
         {
             var rng = new TestRng(6);
             var dice1 = new Die(rng);
@@ -72,7 +73,7 @@ namespace DiceTests
         }
 
         [Fact]
-        internal void GameTest()
+        public void PlayGameTestRollsLeft()
         {
             var reader = new TestConsoleReader(new List<string>(){"a,b", "R", "r", "r"});
             var rng = new TestRng(6);
@@ -82,10 +83,60 @@ namespace DiceTests
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
-            game.PlayUntilNoRollsLeft();
+            game.PlayRoundUntilNoRollsLeft();
             Assert.Equal(0 ,game.RollsLeft);
         }
+
+        [Fact]
+        public void PlayGameAndTestGameStoresScoreInCategory()
+        {
+            var reader = new TestConsoleReader(new List<string>(){"1"});
+            var rng = new TestRng(1);
+            var dice1 = new Die(rng);
+            var dice2 = new Die(rng);
+            var dice3 = new Die(rng);
+            var dice4 = new Die(rng);
+            var dice5 = new Die(rng);
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
+            game.Hold(new[]{false, false, false, false, false});
+            game.PlayRoundUntilNoRollsLeft();
+            Assert.Equal(5, game.ScoreCard.Scores.Where(cat => cat.Category == Category.Ones).Select(cat => cat.Score).First());
+        }
+
+        [Fact]
+        public void PlayGameTestScoreCardTotal()
+        {
+            var reader = new TestConsoleReader(new List<string>(){"5", "r", "1", "R"});
+            var rng1 = new TestRng(1);
+            var rng5 = new TestRng(5);
+            var dice1 = new Die(rng1);
+            var dice2 = new Die(rng1);
+            var dice3 = new Die(rng5);
+            var dice4 = new Die(rng5);
+            var dice5 = new Die(rng5);
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
+            game.Hold(new[]{false, false, false, false, false});
+            game.PlayRoundUntilNoRollsLeft();
+            Assert.Equal(17, game.ScoreCard.Total());
+            
+        }
+
+        /*[Fact]
+        internal void ChooseCategoryIfNoRollsLeft()
+        {
+            var reader = new TestConsoleReader(new List<string>(){"a,b", "R", "r", "r"});
+            var rng = new TestRng(6);
+            var dice1 = new Die(rng);
+            var dice2 = new Die(rng);
+            var dice3 = new Die(rng);
+            var dice4 = new Die(rng);
+            var dice5 = new Die(rng);
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
+            game.PlayRoundUntilNoRollsLeft();
+        }*/
     }
+    
+    
 
     public class TestUserInput : IUserInput
     {

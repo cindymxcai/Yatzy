@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace YatzyKata
 {
@@ -16,6 +17,11 @@ namespace YatzyKata
         {
             Scores.Add(new CategoryScore(category, score));
         }
-        
+
+        public int Total()
+        {
+            var total = Scores.Select(score => score.Score).Sum();
+            return total;
+        }
     }
 }

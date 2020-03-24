@@ -9,7 +9,7 @@ namespace YatzyKata
         void RollDice();
         void Hold(bool[] bools);
         void StoreScore(Category category, int score);
-        void PlayUntilNoRollsLeft();
+        void PlayRoundUntilNoRollsLeft();
         void DisplayCategories();
     }
 }
