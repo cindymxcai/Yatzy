@@ -38,17 +38,29 @@ namespace DiceTests
         }
 
         [Theory]
-        [InlineData(true, "r")]
-        [InlineData(true, "R")]
-        [InlineData(false, "b")]
-        public void GetRerollResponseTest(bool expectedBool, string userInputString)
+        [InlineData(ResponseType.PlayerChoseReroll, "r")]
+        [InlineData(ResponseType.PlayerChoseReroll, "R")]
+        [InlineData(ResponseType.PlayerChoseDiceToHold, "b")]
+        public void GetRerollResponseTest(ResponseType expectedType, string userInputString)
         {
             var reader = new TestConsoleReader(userInputString);
             var userInput = new UserInput(reader);
-            var expected = new Response(expectedBool);
+            var expected = new Response(expectedType);
             var actual = userInput.GetResponse();
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void GetQuitResponseTest()
+        {
+            var reader = new TestConsoleReader("Q");
+            var userInput = new UserInput(reader);
+            var expected = new Response(ResponseType.PlayerChoseQuit);
+            var actual = userInput.GetResponse();
+            Assert.Equal(expected, actual);
+        }
+        
+        
         
     }
     

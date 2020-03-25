@@ -12,6 +12,8 @@ namespace YatzyKata
         public int RollsLeft = 3;
         private readonly ScoreCalculator _sc = new ScoreCalculator();
         public readonly ScoreCard ScoreCard = new ScoreCard(new List<CategoryScore>());
+        public bool PlayingGame = true;
+        public bool PlayingRound = true;
         
         public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput)
         {
@@ -22,6 +24,35 @@ namespace YatzyKata
         public IEnumerable<int> GetValues()
         {
             return _diceCup.Select(die => die.Result);
+        }
+
+        void IGame.PlayRoundUntilNoRollsLeft()
+        {
+            PlayRound();
+        }
+
+        public void Play()
+        {
+            while (PlayingGame)
+            {
+                PlayingRound = true;
+                RollsLeft = 3;
+
+                while (PlayingRound)
+                {
+                    RollDice();
+                    DisplayRoll();
+                    if (RollsLeft > 0)
+                    {
+                        PlayRound();
+                    }
+                    else
+                    {
+                        PlayingRound = false;
+                    }
+                }
+
+            }
         }
 
         public void DisplayRoll()
@@ -39,11 +70,6 @@ namespace YatzyKata
             Console.WriteLine("\n___ You have {0} rolls left________", RollsLeft);
             Console.ResetColor();
             DisplayCategories();
-
-            if (RollsLeft > 0)
-            {
-                PlayRoundUntilNoRollsLeft();
-            }
         }
 
         public void RollDice()
@@ -69,7 +95,6 @@ namespace YatzyKata
             {
                 ChooseCategoryIfNoRollsInRound();
             }
-            DisplayRoll();
         }
 
         public void Hold(bool[] bools)
@@ -81,7 +106,8 @@ namespace YatzyKata
         {
             ScoreCard.AddScore(category, score);
         }
-        public void PlayRoundUntilNoRollsLeft()
+        
+        public void PlayRound()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
@@ -96,20 +122,27 @@ namespace YatzyKata
             {
                 var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result)); 
                 ScoreCard.AddScore(response.ChosenCategory, score);
-                RollsLeft = 3; 
-                RollDice();
+                RollsLeft = 3;
+                PlayingRound = false;
             }
 
             if (response.ResponseType == ResponseType.PlayerChoseReroll)
             {
-                RollDice();
+                PlayingRound = true;
             }
 
             if (response.ResponseType == ResponseType.PlayerChoseDiceToHold)
             {
                 Hold(response.HeldDice);
-                RollDice();
+                PlayingRound = true;
             }
+
+            if (response.ResponseType == ResponseType.PlayerChoseQuit)
+            {
+                PlayingGame = false;
+                PlayingRound = false;
+            }
+            
             Console.ResetColor();
         }
 
@@ -122,7 +155,6 @@ namespace YatzyKata
                 var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result)); 
                 ScoreCard.AddScore(response.ChosenCategory, score);
                 RollsLeft = 3; 
-                RollDice();
             }
             else
             {

@@ -7,7 +7,8 @@ namespace YatzyKata
     {
         PlayerChoseCategory,
         PlayerChoseDiceToHold,
-        PlayerChoseReroll
+        PlayerChoseReroll,
+        PlayerChoseQuit
     }
 
     public class Response
@@ -16,6 +17,7 @@ namespace YatzyKata
         public readonly bool[] HeldDice;
         public readonly Category ChosenCategory;
         public readonly bool IsReroll;
+        public readonly string Quit;
 
         public Response(Category category)
         {
@@ -29,11 +31,9 @@ namespace YatzyKata
             HeldDice = heldDice;
         }
 
-        public Response(bool isReroll)
+        public Response(ResponseType chosenResponseType)
         {
-            ResponseType = ResponseType.PlayerChoseReroll;
-            IsReroll = isReroll;
-
+            ResponseType = chosenResponseType;
         }
 
         private bool Equals(Response other)
@@ -73,8 +73,14 @@ namespace YatzyKata
             var input = ConsoleReader.GetInput();
             if (IsReroll(input))
             {
-                return new Response(true);
+                return new Response(ResponseType.PlayerChoseReroll);
             }
+
+            if (IsQuit(input))
+            {
+                return new Response(ResponseType.PlayerChoseQuit);
+            }
+            
             return int.TryParse(input, out _) ? GetCategoryResponse(input) : GetHoldResponse(input);
         }
 
@@ -82,6 +88,11 @@ namespace YatzyKata
         public bool IsReroll(string input)
         {
             return input == "R" || input == "r";
+        }
+
+        public bool IsQuit(string input)
+        {
+            return input == "Q" || input == "q";
         }
 
 
