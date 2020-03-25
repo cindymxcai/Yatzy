@@ -54,6 +54,7 @@
           </e>
         </e>
         <e p="ScoreCardTests.cs" t="Include" />
+        <e p="TestRng.cs" t="Include" />
         <e p="UserInputTests.cs" t="Include" />
         <e p="YatzyTests.csproj" t="IncludeRecursive" />
       </e>

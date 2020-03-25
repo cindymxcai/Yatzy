@@ -34,7 +34,7 @@ namespace DiceTests
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
             game.Hold(new[] {true, false, false, false, false});
-            game.RollDice();
+            game.PlayRoundUntilNoRollsLeft();
             Assert.Equal(new List<int> {6, 1, 1, 1, 1}, game.GetValues());
         }
 
@@ -67,7 +67,7 @@ namespace DiceTests
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(false, new Response(Category.Chance)));
             game.Hold(new[]{false, false, false, false, false});
             Assert.Equal(3, game.RollsLeft);
-            game.RollDice();
+            game.PlayRoundUntilNoRollsLeft();
             Assert.Equal(2, game.RollsLeft);
 
         }
@@ -90,7 +90,7 @@ namespace DiceTests
         [Fact]
         public void PlayGameAndTestGameStoresScoreInCategory()
         {
-            var reader = new TestConsoleReader(new List<string>(){"1"});
+            var reader = new TestConsoleReader(new List<string>(){"1", "R", "R", "R"});
             var rng = new TestRng(1);
             var dice1 = new Die(rng);
             var dice2 = new Die(rng);
@@ -106,7 +106,7 @@ namespace DiceTests
         [Fact]
         public void PlayGameTestScoreCardTotal()
         {
-            var reader = new TestConsoleReader(new List<string>(){"5", "r", "1", "R"});
+            var reader = new TestConsoleReader(new List<string>(){"1", "r", "5", "R", "R"});
             var rng1 = new TestRng(1);
             var rng5 = new TestRng(5);
             var dice1 = new Die(rng1);
@@ -121,7 +121,7 @@ namespace DiceTests
             
         }
 
-        /*[Fact]
+        [Fact]
         internal void ChooseCategoryIfNoRollsLeft()
         {
             var reader = new TestConsoleReader(new List<string>(){"a,b", "R", "r", "r"});
@@ -133,7 +133,8 @@ namespace DiceTests
             var dice5 = new Die(rng);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
             game.PlayRoundUntilNoRollsLeft();
-        }*/
+            //Assert.Equal(game.ChooseCategoryIfNoRollsInRound(), game.);
+        }
     }
     
     
@@ -168,26 +169,6 @@ namespace DiceTests
         public Response GetCategoryResponse(string input)
         {
             return _response;
-        }
-    }
-
-    public class TestRng : IRng
-    {
-        private int _numberToReturn;
-
-        public TestRng(int numberToReturn)
-        {
-            _numberToReturn = numberToReturn;
-        }
-
-        public int Next(int minValue, int maxValue)
-        {
-            return _numberToReturn;
-        }
-
-        public void ChangeReturnValue(int n)
-        {
-            _numberToReturn = n;
         }
     }
 }

@@ -65,7 +65,10 @@ namespace YatzyKata
 
                 RollsLeft--;
             }
-
+            else if (RollsLeft == 0) 
+            {
+                ChooseCategoryIfNoRollsInRound();
+            }
             DisplayRoll();
         }
 
@@ -110,9 +113,22 @@ namespace YatzyKata
             Console.ResetColor();
         }
 
-        public void ChooseCategoryIfNoRollsInRound()
+        private void ChooseCategoryIfNoRollsInRound()
         {
-            
+            Console.WriteLine("No Rolls left in this round! Please choose a category to score.");
+            var response = _userInput.GetResponse();
+            if (response.ResponseType == ResponseType.PlayerChoseCategory)
+            {
+                var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result)); 
+                ScoreCard.AddScore(response.ChosenCategory, score);
+                RollsLeft = 3; 
+                RollDice();
+            }
+            else
+            {
+                Console.WriteLine("No more rolls in this round!");
+            }
+
         }
 
         public  void DisplayCategories()

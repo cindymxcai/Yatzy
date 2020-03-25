@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Xunit;
 using YatzyKata;
@@ -56,8 +55,7 @@ namespace DiceTests
     public class TestConsoleReader : IConsoleReader
     {
         private readonly List<string> _userInputStrings;
-        private readonly string _inputToReturn;
-        private int _index = 0;
+        private int _index;
 
         public TestConsoleReader(string inputToReturn)
         {
