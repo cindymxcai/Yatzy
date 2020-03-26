@@ -14,9 +14,9 @@ namespace YatzyKata
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
             var consoleReader = new ConsoleReader();
-            var game = new Game(dice1, dice2, dice3,dice4, dice5,new UserInput(consoleReader));   
-            game.Hold(new[]{false,false,false, false,false});
-            game.RollDice();
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(consoleReader));
+            game.Hold(new[] {false, false, false, false, false});
+            game.Play();
         }
     }
 }

@@ -58,6 +58,21 @@ namespace DiceTests
         }
 
         //keep track of rounds in game. (should be 15) 
+        [Fact]
+        public void GameShouldQuitWhenAllCategoriesScored()
+        {
+            var reader = new TestConsoleReader(new List<string>(){ "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"});
+            var rng = new TestRng(6);
+            var dice1 = new Die(rng);
+            var dice2 = new Die(rng);
+            var dice3 = new Die(rng);
+            var dice4 = new Die(rng);
+            var dice5 = new Die(rng);
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
+            game.Hold(new[]{true, false, false, false, false});
+            game.Play();
+            Assert.False(game.PlayingGame);
+        }
         
         [Fact]
         public void PlayGameTestRollsLeft()
