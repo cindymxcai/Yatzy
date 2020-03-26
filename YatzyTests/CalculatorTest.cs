@@ -46,7 +46,7 @@ namespace DiceTests
             var calc = new ScoreCalculator();
             var dice = SetUpDice(2, 4, 3, 3, 5);
 
-            Assert.Equal(0, calc.Ones(dice));
+            Assert.Equal(0, calc.NumberScores(dice, 1));
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace DiceTests
             var calc = new ScoreCalculator();
             var dice = SetUpDice(2, 4, 5, 3, 4);
 
-            Assert.Equal(2, calc.Twos(dice));
+            Assert.Equal(2, calc.NumberScores(dice, 2));
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace DiceTests
             var calc = new ScoreCalculator();
             var dice = SetUpDice(2, 4, 5, 3, 4);
 
-            Assert.Equal(3, calc.Threes(dice));
+            Assert.Equal(3, calc.NumberScores(dice, 3));
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace DiceTests
             var calc = new ScoreCalculator();
             var dice = SetUpDice(1, 4, 3, 3, 4);
 
-            Assert.Equal(8, calc.Fours(dice));
+            Assert.Equal(8, calc.NumberScores(dice, 4));
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace DiceTests
             var calc = new ScoreCalculator();
             var dice = SetUpDice(5, 4, 5, 5, 4);
 
-            Assert.Equal(15, calc.Fives(dice));
+            Assert.Equal(15, calc.NumberScores(dice, 5));
         }
 
         [Fact]
@@ -91,7 +91,7 @@ namespace DiceTests
             var calc = new ScoreCalculator();
             var dice = SetUpDice(6, 6, 6, 6, 4);
 
-            Assert.Equal(24, calc.Sixes(dice));
+            Assert.Equal(24, calc.NumberScores(dice, 6));
         }
 
         [Theory]
@@ -169,6 +169,7 @@ namespace DiceTests
         [Theory]
         [InlineData(13, 2, 2, 3, 3, 3)]
         [InlineData(0, 2, 2, 3, 3, 4)]
+        [InlineData(12,2,2,2,3,3)]
         [InlineData(0, 4, 4, 4, 4, 4)]
         public void FullHouse(int expected, int a, int b, int c, int d, int e)
         {

@@ -18,7 +18,7 @@ namespace YatzyKata
             Scores.Add(new CategoryScore(category, score));
         }
 
-        public int Total()
+        public int GetTotal()
         {
             var total = Scores.Select(score => score.Score).Sum();
             return total;

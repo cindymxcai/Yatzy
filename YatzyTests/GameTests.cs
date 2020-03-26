@@ -16,7 +16,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, new Response(Category.Ones)));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new TestUserInput(true, new Response(Category.Ones)), new bool[5]);
             var actual = game.GetValues();
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, actual);
         }
@@ -31,7 +31,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
             game.Hold(new[] {true, false, false, false, false});
@@ -42,14 +42,14 @@ namespace DiceTests
         [Fact]
         public void HoldMethodShouldNotChangeHeldDiceValue()
         {
-            var reader = new TestConsoleReader(new List<string>(){ "a","r","q"});
+            var reader = new TestConsoleReader(new List<string>(){ "a","q"});
             var rng = new TestRng(6);
             var dice1 = new Die(rng);
             var dice2 = new Die(rng);
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
             Assert.Equal(new List<int> {6, 6, 6, 6, 6}, game.GetValues());
             rng.ChangeReturnValue(1);
             game.Hold(new[]{true, false, false, false, false});
@@ -57,7 +57,6 @@ namespace DiceTests
             Assert.Equal(new List<int> {6, 1, 1, 1, 1}, game.GetValues());
         }
 
-        //keep track of rounds in game. (should be 15) 
         [Fact]
         public void GameShouldQuitWhenAllCategoriesScored()
         {
@@ -68,8 +67,8 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
-            game.Hold(new[]{true, false, false, false, false});
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
+            //game.Hold(new[]{true, false, false, false, false});
             game.Play();
             Assert.False(game.PlayingGame);
         }
@@ -84,8 +83,8 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
-            game.Hold(new[]{false, false, false, false, false});
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader),  new bool[5]);
+            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
             Assert.Equal(1 ,game.RollsLeft);
         }
@@ -100,8 +99,8 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
-            game.Hold(new[]{false, false, false, false, false});
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
+            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
             Assert.Equal(5, game.ScoreCard.Scores.Where(cat => cat.Category == Category.Ones).Select(cat => cat.Score).First());
         }
@@ -109,7 +108,7 @@ namespace DiceTests
         [Fact]
         public void PlayGameTestScoreCardTotal()
         {
-            var reader = new TestConsoleReader(new List<string>(){"1", "r", "5", "r", "R","Q"});
+            var reader = new TestConsoleReader(new List<string>(){"1", "r", "5", "R","Q"});
             var rng1 = new TestRng(1);
             var rng5 = new TestRng(5);
             var dice1 = new Die(rng1);
@@ -117,10 +116,10 @@ namespace DiceTests
             var dice3 = new Die(rng5);
             var dice4 = new Die(rng5);
             var dice5 = new Die(rng5);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
-            game.Hold(new[]{false, false, false, false, false});
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
+            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
-            Assert.Equal(17, game.ScoreCard.Total());
+            Assert.Equal(17, game.ScoreCard.GetTotal());
         }
         
         [Fact]
@@ -134,10 +133,10 @@ namespace DiceTests
             var dice3 = new Die(rng5);
             var dice4 = new Die(rng5);
             var dice5 = new Die(rng5);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
-            game.Hold(new[]{false, false, false, false, false});
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
+            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
-            Assert.Equal(0, game.ScoreCard.Total());
+            Assert.Equal(0, game.ScoreCard.GetTotal());
         }
 
         [Fact]
@@ -150,7 +149,7 @@ namespace DiceTests
             var dice3 = new Die(rng);
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader));
+            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
             game.PlayRound();
             //Assert.Equal(game.ChooseCategoryIfNoRollsInRound(), game.);
         }

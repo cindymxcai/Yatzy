@@ -16,8 +16,6 @@ namespace YatzyKata
         public readonly ResponseType ResponseType;
         public readonly bool[] HeldDice;
         public readonly Category ChosenCategory;
-        public readonly bool IsReroll;
-        public readonly string Quit;
 
         public Response(Category category)
         {
@@ -59,18 +57,18 @@ namespace YatzyKata
 
     public class UserInput : IUserInput
     {
-        public readonly IConsoleReader ConsoleReader;
+        private readonly IConsoleReader _consoleReader;
 
 
         public UserInput(IConsoleReader consoleReader)
         {
-            ConsoleReader = consoleReader;
+            _consoleReader = consoleReader;
         }
 
 
         public Response GetResponse()
         {
-            var input = ConsoleReader.GetInput();
+            var input = _consoleReader.GetInput();
             if (IsReroll(input))
             {
                 return new Response(ResponseType.PlayerChoseReroll);

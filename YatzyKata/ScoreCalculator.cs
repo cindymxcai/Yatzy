@@ -14,12 +14,12 @@ namespace YatzyKata
             
             var score = category switch
             {
-                Category.Ones => Ones(dice),
-                Category.Twos => Twos(dice),
-                Category.Threes => Threes(dice),
-                Category.Fours => Fours(dice),
-                Category.Fives => Fives(dice),
-                Category.Sixes => Sixes(dice),
+                Category.Ones => NumberScores(dice, 1),
+                Category.Twos => NumberScores(dice, 2),
+                Category.Threes => NumberScores(dice, 3),
+                Category.Fours => NumberScores(dice, 4),
+                Category.Fives => NumberScores(dice, 5),
+                Category.Sixes => NumberScores(dice, 6),
                 Category.Pairs => Pairs(dice),
                 Category.TwoPairs => TwoPairs(dice) ,
                 Category.ThreeOfAKind => ThreeOfAKind(dice),
@@ -75,7 +75,14 @@ namespace YatzyKata
             return _diceSum;
         }
 
-        public int Ones(IEnumerable<int> dices)
+        //One method to take in userInput and pass into sum numbers (rather than 5) 
+
+        public int NumberScores(IEnumerable<int> dices, int number)
+        {
+            return SumNumbers(dices, number);
+        }
+            
+        /*public int Ones(IEnumerable<int> dices)
         {
             return SumNumbers(dices, 1);
         }
@@ -103,7 +110,7 @@ namespace YatzyKata
         public int Sixes(IEnumerable<int> dice)
         {
             return SumNumbers(dice, 6);
-        }
+        }*/
         
         public int Pairs(IEnumerable<int> dice)
         {
@@ -119,7 +126,7 @@ namespace YatzyKata
                 }
             }
 
-            return 0;
+            return _diceSum;
         }
 
         public int TwoPairs(IEnumerable<int> dice)
@@ -202,17 +209,12 @@ namespace YatzyKata
             
             if (distinctValues.Count == 2)
             {
-                if (enumerable.Count(i => i == distinctValues.First()) == 2 &&
-                    enumerable.Count(i => i == distinctValues.Last()) == 3)
+                if (enumerable.Count(i => i == distinctValues.First()) == 2 || enumerable.Count(i => i ==distinctValues.First()) == 3 &&
+                    enumerable.Count(i => i == distinctValues.Last()) == 3 || enumerable.Count(i => i == distinctValues.Last()) == 2)
                 {
                     return getSumOfDice(enumerable);
                 }
-                if (enumerable.Count(i => i == distinctValues.First()) == 3 &&
-                    enumerable.Count(i => i == distinctValues.Last()) == 2)
-                {
-                    return getSumOfDice(enumerable);
-                }
-                
+
             }
 
             return 0;

@@ -8,17 +8,26 @@ namespace YatzyKata
     {
         private readonly IUserInput _userInput;
         private readonly List<Die> _diceCup;
-        private bool[]_currentlyHolding;
+        private bool[] _currentlyHolding;
         public int RollsLeft = 3;
         private readonly ScoreCalculator _sc = new ScoreCalculator();
         public readonly ScoreCard ScoreCard = new ScoreCard(new List<CategoryScore>());
         public bool PlayingGame = true;
-        public bool PlayingRound = true;
-        
-        public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput)
+        private bool _playingRound = true;
+
+        public Game(Die dice1, Die dice2, Die dice3, Die dice4, Die dice5, IUserInput userInput,
+            bool[] currentlyHolding)
         {
             _userInput = userInput;
-            _diceCup = new List<Die> {dice1, dice2, dice3, dice4, dice5};
+            _diceCup = new List<Die>
+            {
+                dice1,
+                dice2,
+                dice3,
+                dice4,
+                dice5
+            };
+            _currentlyHolding = currentlyHolding;
         }
 
         public IEnumerable<int> GetValues()
@@ -35,10 +44,9 @@ namespace YatzyKata
         {
             while (PlayingGame)
             {
-                PlayingRound = true;
+                _playingRound = true;
                 RollsLeft = 3;
-
-                while (PlayingRound)
+                while (_playingRound)
                 {
                     RollDice();
                     DisplayRoll();
@@ -48,19 +56,20 @@ namespace YatzyKata
                     }
                     else
                     {
-                        PlayingRound = false;
+                        _playingRound = false;
+                        ChooseCategoryIfNoRollsInRound();
                     }
 
-                    if (ScoreCard.Scores.Count == 15)
-                    {
+                    
 
+                    if (ScoreCard.Scores.Count == Enum.GetNames(typeof(Category)).Length-1)
+                    {
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("Game over! Your Total was {0}", ScoreCard.Total());
-                        PlayingRound = false;
+                        Console.WriteLine("Game over! Your GetTotal was {0}", ScoreCard.GetTotal());
+                        _playingRound = false;
                         PlayingGame = false;
                     }
                 }
-
             }
         }
 
@@ -74,6 +83,7 @@ namespace YatzyKata
             {
                 Console.Write("[" + die.Result + "]");
             }
+
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n___ You have {0} rolls left________", RollsLeft);
@@ -83,11 +93,7 @@ namespace YatzyKata
 
         public void RollDice()
         {
-            var zippedList = _diceCup.Zip(_currentlyHolding, (die, hold) => new
-            {
-                hold, die
-            });
-            
+            var zippedList = _diceCup.Zip(_currentlyHolding, (die, hold) => new {hold, die});
             if (RollsLeft > 0)
             {
                 foreach (var item in zippedList)
@@ -100,10 +106,6 @@ namespace YatzyKata
 
                 RollsLeft--;
             }
-            else if (RollsLeft == 0) 
-            {
-                ChooseCategoryIfNoRollsInRound();
-            }
         }
 
         public void Hold(bool[] bools)
@@ -115,21 +117,20 @@ namespace YatzyKata
         {
             ScoreCard.AddScore(category, score);
         }
-        
+
         public void PlayRound()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
-            Console.WriteLine("Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
+            Console.WriteLine(
+                "Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
             var response = _userInput.GetResponse();
             //check the type of input given by the user in response
             //if responseType is reroll, roll dice, but do not score or hold dice
             //if responseType is category, score to scorecard, reset diceRolls to 3 and "start a new round"
             //if responseType is holdDice, hold the chosen dice and then reroll but do not score 
-
             if (response.ResponseType == ResponseType.PlayerChoseCategory)
             {
-
                 if (ScoreCard.Scores.Any(categoryScore => categoryScore.Category == response.ChosenCategory))
                 {
                     Console.WriteLine("Category has already been scored! Try again");
@@ -137,34 +138,30 @@ namespace YatzyKata
                 }
                 else
                 {
-                    var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result)); 
+                    var score = _sc.GetScore(response.ChosenCategory, _diceCup.Select(die => die.Result));
                     ScoreCard.AddScore(response.ChosenCategory, score);
                     RollsLeft = 3;
-                    PlayingRound = false;
+                    _playingRound = false;
                 }
-                
             }
 
             if (response.ResponseType == ResponseType.PlayerChoseReroll)
             {
-                PlayingRound = true;
+                _playingRound = true;
             }
-
-            if (response.ResponseType == ResponseType.PlayerChoseDiceToHold)
+            else if (response.ResponseType == ResponseType.PlayerChoseDiceToHold)
             {
                 Hold(response.HeldDice);
-                PlayingRound = true;
+                _playingRound = true;
             }
-
-            if (response.ResponseType == ResponseType.PlayerChoseQuit)
+            else if (response.ResponseType == ResponseType.PlayerChoseQuit)
             {
                 PlayingGame = false;
-                PlayingRound = false;
+                _playingRound = false;
             }
-            
+
             Console.ResetColor();
         }
-
 
         private void ChooseCategoryIfNoRollsInRound()
         {
@@ -172,23 +169,17 @@ namespace YatzyKata
             var response = _userInput.GetResponse();
             if (response.ResponseType == ResponseType.PlayerChoseCategory)
             {
-                var score = _sc.GetScore(response.ChosenCategory,  _diceCup.Select(die => die.Result)); 
+                var score = _sc.GetScore(response.ChosenCategory, _diceCup.Select(die => die.Result));
                 ScoreCard.AddScore(response.ChosenCategory, score);
-                RollsLeft = 3; 
+                RollsLeft = 3;
             }
-            else
-            {
-                ChooseCategoryIfNoRollsInRound();
-            }
-
         }
 
-        public  void DisplayCategories()
+        public void DisplayCategories()
         {
-
             foreach (var score in ScoreCard.Scores)
             {
-                foreach (Category category in Category.GetValues(typeof(Category)))
+                foreach (Category category in Enum.GetValues(typeof(Category)))
                 {
                     if (score.Category == category)
                     {
@@ -200,37 +191,63 @@ namespace YatzyKata
                     }
                 }
             }
-            
 
-            ScoreCalculator scoreCalculator = new ScoreCalculator();
+            var scoreCalculator = new ScoreCalculator();
             var dice = _diceCup.Select(die => die.Result);
             var enumerable = dice.ToList();
-            Console.WriteLine("1.Ones {0}", ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ?? scoreCalculator.Ones(enumerable));
-            Console.WriteLine("2.Twos {0}", ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Twos)?.Score ?? scoreCalculator.Twos(enumerable));
-            Console.WriteLine("3.Threes {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Threes)?.Score ?? scoreCalculator.Threes(enumerable)));
-            Console.WriteLine("4.Fours {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Fours)?.Score ?? scoreCalculator.Fours(enumerable)));
-            Console.WriteLine("5.Fives {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Fives)?.Score ?? scoreCalculator.Fives(enumerable)));
-            Console.WriteLine("6.Sixes {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Sixes)?.Score ?? scoreCalculator.Sixes(enumerable)));
-            Console.WriteLine("7.Pair {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Pairs)?.Score ?? scoreCalculator.Pairs(enumerable)));
-            Console.WriteLine("8.Two pair {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.TwoPairs)?.Score ?? scoreCalculator.TwoPairs(enumerable)));
-            Console.WriteLine("9.Three of a Kind {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.ThreeOfAKind)?.Score ?? scoreCalculator.ThreeOfAKind(enumerable)));
-            Console.WriteLine("10.Four of a Kind {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.FourOfAKind)?.Score ?? scoreCalculator.FourOfAKind(enumerable)));
-            Console.WriteLine("11.Small Straight {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.SmallStraight)?.Score ?? scoreCalculator.SmallStraight(enumerable)));
-            Console.WriteLine("12.Large Straight {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.LargeStraight)?.Score ?? scoreCalculator.LargeStraight(enumerable)));
-            Console.WriteLine("13.Full House {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.FullHouse)?.Score ?? scoreCalculator.FullHouse(enumerable)));
-            Console.WriteLine("14.Chance {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Chance)?.Score ?? scoreCalculator.getSumOfDice(enumerable)));
-            Console.WriteLine("15.Yatzy {0}", (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Yatzy)?.Score ?? scoreCalculator.Yatzy(enumerable)));
+            Console.WriteLine("1.Ones {0}",
+                ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Ones)?.Score ??
+                scoreCalculator.NumberScores(enumerable, 1));
+            Console.WriteLine("2.Twos {0}",
+                ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Twos)?.Score ??
+                scoreCalculator.NumberScores(enumerable, 2));
+            Console.WriteLine("3.Threes {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Threes)?.Score ??
+                 scoreCalculator.NumberScores(enumerable, 3)));
+            Console.WriteLine("4.Fours {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Fours)?.Score ??
+                 scoreCalculator.NumberScores(enumerable, 4)));
+            Console.WriteLine("5.Fives {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Fives)?.Score ??
+                 scoreCalculator.NumberScores(enumerable, 5)));
+            Console.WriteLine("6.Sixes {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Sixes)?.Score ??
+                 scoreCalculator.NumberScores(enumerable, 6)));
+            Console.WriteLine("7.Pair {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Pairs)?.Score ??
+                 scoreCalculator.Pairs(enumerable)));
+            Console.WriteLine("8.Two pair {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.TwoPairs)?.Score ??
+                 scoreCalculator.TwoPairs(enumerable)));
+            Console.WriteLine("9.Three of a Kind {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.ThreeOfAKind)?.Score ??
+                 scoreCalculator.ThreeOfAKind(enumerable)));
+            Console.WriteLine("10.Four of a Kind {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.FourOfAKind)?.Score ??
+                 scoreCalculator.FourOfAKind(enumerable)));
+            Console.WriteLine("11.Small Straight {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.SmallStraight)?.Score ??
+                 scoreCalculator.SmallStraight(enumerable)));
+            Console.WriteLine("12.Large Straight {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.LargeStraight)?.Score ??
+                 scoreCalculator.LargeStraight(enumerable)));
+            Console.WriteLine("13.Full House {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.FullHouse)?.Score ??
+                 scoreCalculator.FullHouse(enumerable)));
+            Console.WriteLine("14.Chance {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Chance)?.Score ??
+                 scoreCalculator.getSumOfDice(enumerable)));
+            Console.WriteLine("15.Yatzy {0}",
+                (ScoreCard.Scores.FirstOrDefault(score => score.Category == Category.Yatzy)?.Score ??
+                 scoreCalculator.Yatzy(enumerable)));
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(("Your Total Score is: " + ScoreCard.Total()));
+            Console.WriteLine(("Your GetTotal Score is: " + ScoreCard.GetTotal()));
             Console.ResetColor();
-            
-            
             Console.WriteLine("Categories already scored: ");
             foreach (var score in ScoreCard.Scores)
             {
                 Console.WriteLine(score.Category + ":" + score.Score);
             }
         }
-        
     }
 }

@@ -27,7 +27,8 @@ namespace DiceTests
         [InlineData(new[] {false, true, false, false, false}, "B")]
         [InlineData(new[] {true, true, false, false, false}, "a,b")]
         [InlineData(new[] {true, true, false, false, true}, "a,b,e")]
-        [InlineData(new[] {true, true, false, false, true}, "e,b,a")]
+        [InlineData(new[] {true, true, false, false, true}, "e,b,a")][
+        InlineData(new [] {false, false, false, true, false}, "D")]
         public void GetResponseShouldReturnHoldResponse(bool[] expectedDice, string userInputString)
         {
             var reader = new TestConsoleReader(userInputString);
@@ -79,9 +80,6 @@ namespace DiceTests
             _userInputStrings = userInputStrings;
         }
 
-        public string GetInput()
-        {
-            return _userInputStrings[_index++];
-        }
+        public string GetInput() => _userInputStrings[_index++];
     }
 }
