@@ -119,7 +119,7 @@ namespace DiceTests
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
             //game.Hold(new[]{false, false, false, false, false});
             game.Play();
-            Assert.Equal(17, game.ScoreCard.GetTotal());
+            Assert.Equal(17, game.ScoreCard.Total);
         }
         
         [Fact]
@@ -136,7 +136,7 @@ namespace DiceTests
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
             //game.Hold(new[]{false, false, false, false, false});
             game.Play();
-            Assert.Equal(0, game.ScoreCard.GetTotal());
+            Assert.Equal(0, game.ScoreCard.Total);
         }
 
         [Fact]

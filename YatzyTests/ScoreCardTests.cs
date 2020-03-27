@@ -23,7 +23,7 @@ namespace DiceTests
             var scoreCard =  new ScoreCard( new List<CategoryScore>());
             scoreCard.AddScore(Category.Ones, 1);
             scoreCard.AddScore(Category.Chance, 14);
-            Assert.Equal(15, scoreCard.GetTotal());
+            Assert.Equal(15, scoreCard.Total);
         }
     }
 }

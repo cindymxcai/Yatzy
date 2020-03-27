@@ -62,7 +62,7 @@ namespace YatzyKata
                     if (ScoreCard.Scores.Count == Enum.GetNames(typeof(Category)).Length-1)
                     {
                         Console.ForegroundColor = ConsoleColor.DarkMagenta;
-                        Console.WriteLine("Game over! Your GetTotal was {0}", ScoreCard.GetTotal());
+                        Console.WriteLine("Game over! Your Total was {0}", ScoreCard.Total);
                         _playingRound = false;
                         PlayingGame = false;
                     }
@@ -214,7 +214,7 @@ namespace YatzyKata
             Console.WriteLine("14.Chance {0}", ScoreCard.GetScore(Category.Chance) ?? scoreCalculator.GetSumOfDice(enumerable));
             Console.WriteLine("15.Yatzy {0}", ScoreCard.GetScore(Category.Yatzy) ?? scoreCalculator.Yatzy(enumerable));
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(("Your Total Score is: " + ScoreCard.GetTotal()));
+            Console.WriteLine(("Your Total Score is: " + ScoreCard.Total));
             Console.ResetColor();
             Console.WriteLine("Categories already scored: ");
             foreach (var score in ScoreCard.Scores)

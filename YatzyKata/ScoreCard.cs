@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,11 @@ namespace YatzyKata
     {
         
         public readonly List<CategoryScore> Scores;
-        public int Total { get; }
+
+        public int Total
+        {
+            get{ return Scores.Select(score => score.Score).Sum(); }
+        }
 
         public ScoreCard(List<CategoryScore> scores)
         {
@@ -22,13 +27,7 @@ namespace YatzyKata
         public int? GetScore(Category category)
         {
             return Scores.FirstOrDefault(score => score.Category == category)?.Score;
-
         }
-
-        public int GetTotal()
-        {
-            var total = Scores.Select(score => score.Score).Sum();
-            return total;
-        }
+        
     }
 }
