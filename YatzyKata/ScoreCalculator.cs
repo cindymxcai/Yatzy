@@ -27,7 +27,7 @@ namespace YatzyKata
                 Category.SmallStraight => SmallStraight(dice),
                 Category.LargeStraight => LargeStraight(dice),
                 Category.FullHouse => FullHouse(dice),
-                Category.Chance => getSumOfDice(dice),
+                Category.Chance => GetSumOfDice(dice),
                 Category.Yatzy => Yatzy(dice),
                _ => throw new Exception($"Invalid Category in ScoreCalculator.GetScore {category}")
             };
@@ -35,7 +35,7 @@ namespace YatzyKata
             return score;
         }
 
-        public int getSumOfDice(IEnumerable<int> dices)
+        public int GetSumOfDice(IEnumerable<int> dices)
         {
             _diceSum = 0;
 
@@ -74,51 +74,19 @@ namespace YatzyKata
 
             return _diceSum;
         }
-
-        //One method to take in userInput and pass into sum numbers (rather than 5) 
-
+        
         public int NumberScores(IEnumerable<int> dices, int number)
         {
             return SumNumbers(dices, number);
         }
-            
-        /*public int Ones(IEnumerable<int> dices)
-        {
-            return SumNumbers(dices, 1);
-        }
-
-        public int Twos(IEnumerable<int> dice)
-        {
-            return SumNumbers(dice, 2);
-        }
-
-        public int Threes(IEnumerable<int> dice)
-        {
-            return SumNumbers(dice, 3);
-        }
-
-        public int Fours(IEnumerable<int> dices)
-        {
-            return SumNumbers(dices, 4);
-        }
-
-        public int Fives(IEnumerable<int> dice)
-        {
-            return SumNumbers(dice, 5);
-        }
-
-        public int Sixes(IEnumerable<int> dice)
-        {
-            return SumNumbers(dice, 6);
-        }*/
         
         public int Pairs(IEnumerable<int> dice)
         {
             _diceSum = 0;
 
-            List<int> ordered = new List<int>(dice.OrderByDescending(die => die));
+            var ordered = new List<int>(dice.OrderByDescending(die => die));
 
-            for (int i = 0; i < ordered.Count - 1; i++)
+            for (var i = 0; i < ordered.Count - 1; i++)
             {
                 if (ordered[i] == ordered[i + 1])
                 {
@@ -205,20 +173,38 @@ namespace YatzyKata
         public int FullHouse(IEnumerable<int> dice)
         {
             var enumerable = dice as int[] ?? dice.ToArray();
-            var distinctValues = enumerable.Distinct().ToList();
-            
-            if (distinctValues.Count == 2)
-            {
-                if (enumerable.Count(i => i == distinctValues.First()) == 2 || enumerable.Count(i => i ==distinctValues.First()) == 3 &&
-                    enumerable.Count(i => i == distinctValues.Last()) == 3 || enumerable.Count(i => i == distinctValues.Last()) == 2)
-                {
-                    return getSumOfDice(enumerable);
-                }
 
+            if (!HasTwoGroups(enumerable)) return 0;
+            var sumOfThreeOfAKind = ThreeOfAKind(enumerable);
+            var sumOfPerfectPairs = PerfectPairs(enumerable);
+            return sumOfThreeOfAKind + sumOfPerfectPairs;
+        }
+
+        private static bool HasTwoGroups(IEnumerable<int> dice)
+        {
+            var enumerable = dice as int[] ?? dice.ToArray();
+            var distinctValues = enumerable.Distinct().ToList();
+
+            return distinctValues.Count == 2;
+        }
+
+        private static int PerfectPairs(IEnumerable<int> dice)
+        {
+            var enumerable = dice as int[] ?? dice.ToArray();
+            var groups = enumerable.GroupBy(diceValues => diceValues);
+
+            foreach (var group in groups)
+            {
+                if (group.Count() == 2)
+                {
+                    return group.Sum();
+                }
             }
 
             return 0;
         }
+
         
+
     }
 }

@@ -7,6 +7,7 @@ namespace YatzyKata
     {
         
         public readonly List<CategoryScore> Scores;
+        public int Total { get; }
 
         public ScoreCard(List<CategoryScore> scores)
         {
@@ -16,6 +17,12 @@ namespace YatzyKata
         public void AddScore(Category category, int score)
         {
             Scores.Add(new CategoryScore(category, score));
+        }
+
+        public int? GetScore(Category category)
+        {
+            return Scores.FirstOrDefault(score => score.Category == category)?.Score;
+
         }
 
         public int GetTotal()

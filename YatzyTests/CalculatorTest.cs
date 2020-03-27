@@ -24,7 +24,7 @@ namespace DiceTests
         {
             var calc = new ScoreCalculator();
             var dice = SetUpDice(5, 3, 6, 1, 1);
-            Assert.Equal(16, calc.getSumOfDice(dice));
+            Assert.Equal(16, calc.GetSumOfDice(dice));
         }
 
         [Theory]
