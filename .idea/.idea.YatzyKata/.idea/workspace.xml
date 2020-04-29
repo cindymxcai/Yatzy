@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b40dca-8d0b-470f-9ed2-724df01e894a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Yatzy/ScoreCalculator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/YatzyTest/ScoreCalculatorTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Yatzy/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Yatzy/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Yatzy/ScoreCalculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Yatzy/ScoreCalculator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Yatzy/Yatzy.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Yatzy/Yatzy.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YatzyTest/DieTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YatzyTest/DieTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YatzyTest/GameTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YatzyTest/RoundTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/YatzyTest/YatzyTest.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/YatzyTest/YatzyTest.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YatzyTest/ScoreCalculatorTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/YatzyTest/ScoreCalculatorTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,8 +120,8 @@
         <option value="$PROJECT_DIR$/Yatzy/Program.cs" />
         <option value="$PROJECT_DIR$/YatzyTest/DieTest.cs" />
         <option value="$PROJECT_DIR$/YatzyTest/RoundTest.cs" />
-        <option value="$PROJECT_DIR$/Yatzy/ScoreCalculator.cs" />
         <option value="$PROJECT_DIR$/YatzyTest/ScoreCalculatorTest.cs" />
+        <option value="$PROJECT_DIR$/Yatzy/ScoreCalculator.cs" />
       </list>
     </option>
   </component>
@@ -155,7 +143,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="RiderDotCoverPageId" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
   </component>
   <component name="RunManager" selected=".NET Project.YatzyKata">
     <configuration name="YatzyKata" type="DotNetProject" factoryName=".NET Project">
@@ -203,7 +191,7 @@
       <workItem from="1586227786599" duration="3283000" />
       <workItem from="1586309053134" duration="102000" />
       <workItem from="1587007798909" duration="951000" />
-      <workItem from="1588121979634" duration="4963000" />
+      <workItem from="1588121979634" duration="9901000" />
     </task>
     <servers />
   </component>
@@ -211,10 +199,10 @@
     <option name="version" value="1" />
   </component>
   <component name="UnitTestsCoverage.Settings">
-    <option name="coveragePercentColumnWidth" value="142" />
+    <option name="coveragePercentColumnWidth" value="136" />
     <option name="sortOrder" value="DESCENDING" />
-    <option name="sortedColumn" value="1" />
-    <option name="symbolColumnWidth" value="266" />
+    <option name="sortedColumn" value="2" />
+    <option name="symbolColumnWidth" value="254" />
     <coverage-tree-state>
       <expand>
         <path>
@@ -224,13 +212,36 @@
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="173" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="2" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
         <path>
           <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
           <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="173" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
-          <item name="4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="2" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="6" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="2" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="6" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="27" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="2" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="6" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="27" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="73" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="2" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="6" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="27" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="33" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
         </path>
       </expand>
       <select />
@@ -395,10 +406,10 @@
       <screen x="0" y="23" width="1680" height="947" />
     </state>
     <state x="658" y="204" key="RiderGenerateDialog/0.23.1680.947@0.23.1680.947" timestamp="1584948445537" />
-    <state x="349" y="164" key="SettingsEditor" timestamp="1586231961215">
+    <state x="349" y="164" key="SettingsEditor" timestamp="1588131822892">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="349" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1586231961215" />
+    <state x="349" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1588131822892" />
     <state x="349" y="171" key="SettingsEditor/0.23.1680.947@0.23.1680.947" timestamp="1585095785289" />
     <state x="1112" y="419" key="VCS.ChangelistChooser" timestamp="1584306387300">
       <screen x="0" y="23" width="1680" height="947" />
