@@ -68,7 +68,6 @@ namespace DiceTests
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
-            //game.Hold(new[]{true, false, false, false, false});
             game.Play();
             Assert.False(game.PlayingGame);
         }
@@ -84,7 +83,6 @@ namespace DiceTests
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader),  new bool[5]);
-            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
             Assert.Equal(1 ,game.RollsLeft);
         }
@@ -100,7 +98,6 @@ namespace DiceTests
             var dice4 = new Die(rng);
             var dice5 = new Die(rng);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
-            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
             Assert.Equal(5, game.ScoreCard.Scores.Where(cat => cat.Category == Category.Ones).Select(cat => cat.Score).First());
         }
@@ -117,7 +114,6 @@ namespace DiceTests
             var dice4 = new Die(rng5);
             var dice5 = new Die(rng5);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
-            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
             Assert.Equal(17, game.ScoreCard.Total);
         }
@@ -134,25 +130,10 @@ namespace DiceTests
             var dice4 = new Die(rng5);
             var dice5 = new Die(rng5);
             var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
-            //game.Hold(new[]{false, false, false, false, false});
             game.Play();
             Assert.Equal(0, game.ScoreCard.Total);
         }
-
-        [Fact]
-        internal void ChooseCategoryIfNoRollsLeft()
-        {
-            var reader = new TestConsoleReader(new List<string>(){"a,b", "R", "r", "r"});
-            var rng = new TestRng(6);
-            var dice1 = new Die(rng);
-            var dice2 = new Die(rng);
-            var dice3 = new Die(rng);
-            var dice4 = new Die(rng);
-            var dice5 = new Die(rng);
-            var game = new Game(dice1, dice2, dice3, dice4, dice5, new UserInput(reader), new bool[5]);
-            game.PlayRound();
-            //Assert.Equal(game.ChooseCategoryIfNoRollsInRound(), game.);
-        }
+        
     }
     
     

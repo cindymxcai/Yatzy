@@ -120,7 +120,7 @@ namespace YatzyKata
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("_________________________________________");
             Console.WriteLine(
-                "Enter: \n Category number to score \n Dice letter to hold\n or Enter to skip holding and scoring");
+                "Enter: \n Category number to score \n Dice letter to hold\n or R to reroll all dice");
             var response = _userInput.GetResponse();
             //check the type of input given by the user in response
             //if responseType is reroll, roll dice, but do not score or hold dice
@@ -176,6 +176,7 @@ namespace YatzyKata
         {
            return ScoreCard.Scores.FirstOrDefault(score => score.Category == category)?.Score ?? _sc.NumberScores(enumerable, number);
         }
+        
         
         public void DisplayCategories()
         {
