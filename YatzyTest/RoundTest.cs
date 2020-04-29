@@ -1,12 +1,11 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using Xunit;
 using Yatzy;
 
 namespace YatzyTest
 {
-    public class GameTest
+    public class RoundTest
     {
         [Fact]
         public void RoundShouldReturn5ValuesWhenRolled()
