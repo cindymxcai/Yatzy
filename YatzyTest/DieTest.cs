@@ -4,7 +4,7 @@ using Yatzy;
 
 namespace YatzyTest
 {
-    public class Tests
+    public class DieTest
     {
         [Fact]
         public void DiceShouldReturnValueWhenRolled()
