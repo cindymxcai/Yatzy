@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="39b40dca-8d0b-470f-9ed2-724df01e894a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Yatzy/Die.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Yatzy/IRng.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Yatzy/Rng.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YatzyKata/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.YatzyKata/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.YatzyKata/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/YatzyKata.sln" beforeDir="false" afterPath="$PROJECT_DIR$/YatzyKata.sln" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/7b/7a865299/TestMethodRunner`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/869E6C21-96FE-460F-9B92-1C6D00DF784B/ed/fe8a71da/IEqualityComparer`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Yatzy/Die.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9D995D4A-0EBE-4A93-85A6-BE06CB7C70EE/57/293fb349/RunSummary.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/IDie.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Yatzy/Rng.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/869E6C21-96FE-460F-9B92-1C6D00DF784B/9a/1868198e/IEnumerable`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/IGame.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTest/Tests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/IUserInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/IScoreCalculator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/ICategoryScore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/IScorecard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Yatzy/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/CategoryScore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/Category.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/ScoreCalculator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/IConsoleReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/11/302bf22f/TestInvoker`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/b3/41691e78/TestCaseRunner`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/ConsoleReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/Die.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/Rng.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/92882F58-11D9-44E2-9819-BF62BA26EB87/3A4/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/UserInput.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/IRng.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/ScoreCard.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyKata/Game.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AB2A9D39-B6F0-4D0C-A9A1-DBC8DE06E56E/26/Select.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/83/a676ab1f/TestRunner`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AB2A9D39-B6F0-4D0C-A9A1-DBC8DE06E56E/31/Zip.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/95D243C5-2044-4A19-8315-833738F9B02C/b1/dd10bb9f/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTests/DiceTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTests/TestRng.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTests/ScoreCardTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/9b/fdd78218/XunitTestRunner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTests/GameTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9152434B-0FAC-463B-87F2-DD9AF798817F/53/fb2fac48/Assert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTests/UserInputTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTests/CalculatorTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9D995D4A-0EBE-4A93-85A6-BE06CB7C70EE/f6/0d5a9fb3/ExceptionAggregator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/YatzyTests/TestConsoleReader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/82/b2a2cfcd/TestCollectionRunner`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/231CAC4C-D307-4AEA-83F1-76589F64BFB3/B5/Random.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/64/966d2352/ExecutionTimer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/18D5A60D-361A-4AFD-A431-F772FA87FCC3/64/1c132714/TestClassRunner`1.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/DiceTest/UnitTest1.cs" />
+        <option value="$PROJECT_DIR$/DiceTests/UnitTest1.cs" />
+        <option value="$PROJECT_DIR$/DiceTests/Dice.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Categories.cs" />
+        <option value="$PROJECT_DIR$/DiceTests/DiceTest.cs" />
+        <option value="$PROJECT_DIR$/YatzyTest/UnitTest1.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/IDice.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Dice.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/IDie.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Category.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/IGame.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Scorecard.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Die.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/ConsoleReader.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/IConsoleReader.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/CategoryScore.cs" />
+        <option value="$PROJECT_DIR$/YatzyTests/CategoryScoreTests.cs" />
+        <option value="$PROJECT_DIR$/YatzyTests/DiceTest.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/IUserInput.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Rng.cs" />
+        <option value="$PROJECT_DIR$/YatzyTests/TestRng.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/UserInput.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Program.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/IScoreCalculator.cs" />
+        <option value="$PROJECT_DIR$/YatzyTests/CalculatorTest.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/ScoreCalculator.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/ScoreCard.cs" />
+        <option value="$PROJECT_DIR$/YatzyTests/ScoreCardTests.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/Game.cs" />
+        <option value="$PROJECT_DIR$/YatzyTests/UserInputTests.cs" />
+        <option value="$PROJECT_DIR$/YatzyKata/IRng.cs" />
+        <option value="$PROJECT_DIR$/YatzyTests/GameTests.cs" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Yatzy/Program.cs" />
+        <option value="$PROJECT_DIR$/Yatzy/RNG.cs" />
+        <option value="$PROJECT_DIR$/Yatzy/Rng.cs" />
+        <option value="$PROJECT_DIR$/YatzyTest/Tests.cs" />
+        <option value="$PROJECT_DIR$/.idea/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YjZXzqabiAI1M2W79ToV0k2RTX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.SolutionExplorerActivator" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TWShift.3" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="RiderDotCoverPageId" />
+  </component>
+  <component name="RunManager" selected=".NET Project.YatzyKata">
+    <configuration name="YatzyKata" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/YatzyKata/YatzyKata.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="DotNetCore" />
+      <option name="PROJECT_TFM" value="" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="39b40dca-8d0b-470f-9ed2-724df01e894a" name="Default Changelist" comment="" />
+      <created>1583458008463</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1583458008463</updated>
+      <workItem from="1583458011246" duration="5798000" />
+      <workItem from="1583704672985" duration="54328000" />
+      <workItem from="1584307391011" duration="18595000" />
+      <workItem from="1584562633406" duration="565000" />
+      <workItem from="1584564272973" duration="13041000" />
+      <workItem from="1584650032066" duration="11411000" />
+      <workItem from="1584673027304" duration="976000" />
+      <workItem from="1584674109216" duration="10403000" />
+      <workItem from="1585001896911" duration="415000" />
+      <workItem from="1585002332163" duration="44513000" />
+      <workItem from="1585518991712" duration="2001000" />
+      <workItem from="1585533426553" duration="3353000" />
+      <workItem from="1585705039836" duration="614000" />
+      <workItem from="1586227786599" duration="3283000" />
+      <workItem from="1586309053134" duration="102000" />
+      <workItem from="1587007798909" duration="951000" />
+      <workItem from="1588121979634" duration="1039000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnitTestsCoverage.Settings">
+    <option name="coveragePercentColumnWidth" value="142" />
+    <option name="sortOrder" value="DESCENDING" />
+    <option name="sortedColumn" value="1" />
+    <option name="symbolColumnWidth" value="266" />
+    <coverage-tree-state>
+      <expand>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="173" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+        <path>
+          <item name="rootNode" type="c53c71d1:RiderDotCoverCoverageTreeModel$RootNode" />
+          <item name="1" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="173" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+          <item name="4" type="8b8fad3a:RiderDotCoverCoverageTreeNode" />
+        </path>
+      </expand>
+      <select />
+    </coverage-tree-state>
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="603" y="207" key="#xdebugger.evaluate" timestamp="1585020508572">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="603" y="207" key="#xdebugger.evaluate/0.23.1680.947@0.23.1680.947" timestamp="1585020508572" />
+    <state width="445" height="466" key="DebuggerActiveHint" timestamp="1585018713560">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state width="445" height="466" key="DebuggerActiveHint/0.23.1680.947@0.23.1680.947" timestamp="1585018713560" />
+    <state width="1638" height="309" key="GridCell.Tab.0.bottom" timestamp="1586235964785">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="309" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1586235964785" />
+    <state width="1878" height="433" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1584580702845" />
+    <state width="1638" height="448" key="GridCell.Tab.0.bottom/0.23.1680.947/1680.23.1920.1057@0.23.1680.947" timestamp="1585099525328" />
+    <state width="1638" height="291" key="GridCell.Tab.0.bottom/0.23.1680.947@0.23.1680.947" timestamp="1585522334737" />
+    <state width="1638" height="309" key="GridCell.Tab.0.center" timestamp="1586235964784">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="309" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1586235964784" />
+    <state width="1878" height="433" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1584580702844" />
+    <state width="1638" height="448" key="GridCell.Tab.0.center/0.23.1680.947/1680.23.1920.1057@0.23.1680.947" timestamp="1585099525326" />
+    <state width="1638" height="291" key="GridCell.Tab.0.center/0.23.1680.947@0.23.1680.947" timestamp="1585522334736" />
+    <state width="1638" height="309" key="GridCell.Tab.0.left" timestamp="1586235964771">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="309" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1586235964771" />
+    <state width="1878" height="433" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1584580702843" />
+    <state width="1638" height="448" key="GridCell.Tab.0.left/0.23.1680.947/1680.23.1920.1057@0.23.1680.947" timestamp="1585099525321" />
+    <state width="1638" height="291" key="GridCell.Tab.0.left/0.23.1680.947@0.23.1680.947" timestamp="1585522334735" />
+    <state width="1638" height="309" key="GridCell.Tab.0.right" timestamp="1586235964785">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="309" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1586235964785" />
+    <state width="1878" height="433" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1584580702845" />
+    <state width="1638" height="448" key="GridCell.Tab.0.right/0.23.1680.947/1680.23.1920.1057@0.23.1680.947" timestamp="1585099525327" />
+    <state width="1638" height="291" key="GridCell.Tab.0.right/0.23.1680.947@0.23.1680.947" timestamp="1585522334736" />
+    <state width="1638" height="382" key="GridCell.Tab.1.bottom" timestamp="1585276994569">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994569" />
+    <state width="908" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575687" />
+    <state width="1638" height="330" key="GridCell.Tab.1.bottom/0.23.1680.947@0.23.1680.947" timestamp="1585178926874" />
+    <state width="1638" height="382" key="GridCell.Tab.1.center" timestamp="1585276994568">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994568" />
+    <state width="908" height="375" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575686" />
+    <state width="1638" height="330" key="GridCell.Tab.1.center/0.23.1680.947@0.23.1680.947" timestamp="1585178926874" />
+    <state width="1638" height="382" key="GridCell.Tab.1.left" timestamp="1585276994567">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994567" />
+    <state width="908" height="375" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575685" />
+    <state width="1638" height="330" key="GridCell.Tab.1.left/0.23.1680.947@0.23.1680.947" timestamp="1585178926874" />
+    <state width="1638" height="382" key="GridCell.Tab.1.right" timestamp="1585276994568">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994568" />
+    <state width="908" height="375" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575686" />
+    <state width="1638" height="330" key="GridCell.Tab.1.right/0.23.1680.947@0.23.1680.947" timestamp="1585178926874" />
+    <state width="1638" height="382" key="GridCell.Tab.2.bottom" timestamp="1585276994574">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.2.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994574" />
+    <state width="908" height="375" key="GridCell.Tab.2.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575689" />
+    <state width="1638" height="330" key="GridCell.Tab.2.bottom/0.23.1680.947@0.23.1680.947" timestamp="1585178926875" />
+    <state width="1638" height="382" key="GridCell.Tab.2.center" timestamp="1585276994570">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.2.center/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994570" />
+    <state width="908" height="375" key="GridCell.Tab.2.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575688" />
+    <state width="1638" height="330" key="GridCell.Tab.2.center/0.23.1680.947@0.23.1680.947" timestamp="1585178926875" />
+    <state width="1638" height="382" key="GridCell.Tab.2.left" timestamp="1585276994570">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.2.left/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994570" />
+    <state width="908" height="375" key="GridCell.Tab.2.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575687" />
+    <state width="1638" height="330" key="GridCell.Tab.2.left/0.23.1680.947@0.23.1680.947" timestamp="1585178926875" />
+    <state width="1638" height="382" key="GridCell.Tab.2.right" timestamp="1585276994572">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.2.right/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994572" />
+    <state width="908" height="375" key="GridCell.Tab.2.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575688" />
+    <state width="1638" height="330" key="GridCell.Tab.2.right/0.23.1680.947@0.23.1680.947" timestamp="1585178926875" />
+    <state width="1638" height="382" key="GridCell.Tab.3.bottom" timestamp="1585276994578">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.3.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994578" />
+    <state width="908" height="375" key="GridCell.Tab.3.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575690" />
+    <state width="1638" height="330" key="GridCell.Tab.3.bottom/0.23.1680.947@0.23.1680.947" timestamp="1585178926876" />
+    <state width="1638" height="382" key="GridCell.Tab.3.center" timestamp="1585276994577">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.3.center/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994577" />
+    <state width="908" height="375" key="GridCell.Tab.3.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575690" />
+    <state width="1638" height="330" key="GridCell.Tab.3.center/0.23.1680.947@0.23.1680.947" timestamp="1585178926876" />
+    <state width="1638" height="382" key="GridCell.Tab.3.left" timestamp="1585276994576">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.3.left/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994576" />
+    <state width="908" height="375" key="GridCell.Tab.3.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575689" />
+    <state width="1638" height="330" key="GridCell.Tab.3.left/0.23.1680.947@0.23.1680.947" timestamp="1585178926876" />
+    <state width="1638" height="382" key="GridCell.Tab.3.right" timestamp="1585276994578">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.3.right/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994578" />
+    <state width="908" height="375" key="GridCell.Tab.3.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575690" />
+    <state width="1638" height="330" key="GridCell.Tab.3.right/0.23.1680.947@0.23.1680.947" timestamp="1585178926876" />
+    <state width="1638" height="382" key="GridCell.Tab.4.bottom" timestamp="1585276994581">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.4.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994581" />
+    <state width="908" height="375" key="GridCell.Tab.4.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575693" />
+    <state width="1638" height="330" key="GridCell.Tab.4.bottom/0.23.1680.947@0.23.1680.947" timestamp="1585178926877" />
+    <state width="1638" height="382" key="GridCell.Tab.4.center" timestamp="1585276994580">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.4.center/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994580" />
+    <state width="908" height="375" key="GridCell.Tab.4.center/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575692" />
+    <state width="1638" height="330" key="GridCell.Tab.4.center/0.23.1680.947@0.23.1680.947" timestamp="1585178926877" />
+    <state width="1638" height="382" key="GridCell.Tab.4.left" timestamp="1585276994579">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.4.left/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994579" />
+    <state width="908" height="375" key="GridCell.Tab.4.left/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575691" />
+    <state width="1638" height="330" key="GridCell.Tab.4.left/0.23.1680.947@0.23.1680.947" timestamp="1585178926876" />
+    <state width="1638" height="382" key="GridCell.Tab.4.right" timestamp="1585276994580">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1638" height="382" key="GridCell.Tab.4.right/0.0.1680.1050@0.0.1680.1050" timestamp="1585276994580" />
+    <state width="908" height="375" key="GridCell.Tab.4.right/0.0.1920.1080@0.0.1920.1080" timestamp="1583717575692" />
+    <state width="1638" height="330" key="GridCell.Tab.4.right/0.23.1680.947@0.23.1680.947" timestamp="1585178926877" />
+    <state x="440" y="281" key="Rider.ProjectTemplateDialog.Size" timestamp="1588122552316">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="440" y="264" key="Rider.ProjectTemplateDialog.Size/0.0.1680.1050@0.0.1680.1050" timestamp="1583718479227" />
+    <state x="503" y="272" key="Rider.ProjectTemplateDialog.Size/0.0.1920.1080@0.0.1920.1080" timestamp="1583462611195" />
+    <state x="440" y="281" key="Rider.ProjectTemplateDialog.Size/0.23.1680.1027@0.23.1680.1027" timestamp="1588122552316" />
+    <state x="440" y="261" key="Rider.ProjectTemplateDialog.Size/0.23.1680.947@0.23.1680.947" timestamp="1585521776799" />
+    <state x="658" y="204" key="RiderGenerateDialog" timestamp="1584948445537">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="658" y="204" key="RiderGenerateDialog/0.23.1680.947@0.23.1680.947" timestamp="1584948445537" />
+    <state x="349" y="164" key="SettingsEditor" timestamp="1586231961215">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="349" y="164" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1586231961215" />
+    <state x="349" y="171" key="SettingsEditor/0.23.1680.947@0.23.1680.947" timestamp="1585095785289" />
+    <state x="1112" y="419" key="VCS.ChangelistChooser" timestamp="1584306387300">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="1112" y="419" key="VCS.ChangelistChooser/0.23.1680.947@0.23.1680.947" timestamp="1584306387300" />
+    <state x="545" y="232" width="672" height="596" key="search.everywhere.popup" timestamp="1585004476183">
+      <screen x="0" y="23" width="1680" height="947" />
+    </state>
+    <state x="545" y="232" width="672" height="660" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1584390601292" />
+    <state x="623" y="239" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1583880436811" />
+    <state x="545" y="232" width="672" height="596" key="search.everywhere.popup/0.23.1680.947@0.23.1680.947" timestamp="1585004476183" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="RiderUnitTests">
+        <watch expression="this._userInputStrings.Items[0]" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>
