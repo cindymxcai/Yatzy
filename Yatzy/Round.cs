@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Yatzy;
 
-namespace YatzyTest
+namespace Yatzy
 {
     public class Round
     {
