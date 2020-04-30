@@ -15,13 +15,26 @@ namespace Yatzy
         }
         public void PlayRound()
         {
+            var responseType = Response.RerollDice;
             var round = new Round();
-            round.RollDice(DiceCup);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("_________________________________________");
-            Console.WriteLine(
-                "Enter: \n Category number to score \n Dice letter to hold\n or R to reroll all dice");
-             _player.GetResponse();
+
+            while (responseType == Response.RerollDice)
+            {
+                round.RollDice(DiceCup);
+                Display.DisplayDice(DiceCup);
+                responseType =_player.Response();
+            }
+            
+            HandleResponse();
         }
+        
+        private void HandleResponse()
+        {
+            if (_player.Response() == Response.ScoreInCategory)
+            {
+                
+            }
+        }
+        
     }
 }

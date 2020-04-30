@@ -5,9 +5,10 @@ namespace Yatzy
 {
     public class Round
     {
-        private int  MaxRolls { get; } = 3;
-        private int RollsTaken { get; set; }
+        private int MaxRolls { get; } = 3;
+        public int RollsTaken { get; set; }
         private readonly IRng _rng = new Rng();
+
         public void RollDice(IEnumerable<Die> diceCup)
         {
             if (RollsTaken < MaxRolls)
@@ -22,14 +23,14 @@ namespace Yatzy
                 throw new RoundOverException("You have run out of Rolls! Please choose a category");
             }
 
-            RollsTaken++; 
+            RollsTaken++;
         }
     }
 
     public class RoundOverException : Exception
-    {
-        public RoundOverException(string message) : base(message)
         {
+            public RoundOverException(string message) : base(message)
+            {
+            }
         }
     }
-}

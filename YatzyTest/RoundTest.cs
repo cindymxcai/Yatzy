@@ -31,5 +31,14 @@ namespace YatzyTest
 
             Assert.Throws<RoundOverException>(() => round.RollDice(diceCup) );
         }
+
+        //TODO [Fact]
+        public void GivenDiceRolledPossibleCategoryScoresShouldBeDisplayed()
+        {
+            var diceCup = new List<Die> { new Die(), new Die(), new Die(), new Die(), new Die()};
+            var round = new Round();
+            round.RollDice(diceCup);
+        }
+        
     }
 }

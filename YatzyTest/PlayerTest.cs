@@ -20,7 +20,7 @@ namespace YatzyTest
         {
             var consoleReader = new TestConsoleReader(input);
             var player = new Player(consoleReader);
-            Assert.Equal(responseType,player.GetResponse() );
+            Assert.Equal(responseType,player.Response() );
         }
 
         [Theory]
@@ -33,7 +33,7 @@ namespace YatzyTest
         {
             var consoleReader = new TestConsoleReader(input);
             var player = new Player(consoleReader);
-            Assert.Throws<InvalidResponseException>(() => player.GetResponse());
+            Assert.Throws<InvalidResponseException>(() => player.Response());
         }
     }
 }

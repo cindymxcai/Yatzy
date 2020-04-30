@@ -7,6 +7,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ConsoleReader.cs" t="Include" />
         <e p="Die.cs" t="Include" />
+        <e p="Display.cs" t="Include" />
         <e p="IConsoleReader.cs" t="Include" />
         <e p="IRng.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />

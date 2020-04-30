@@ -14,7 +14,7 @@ namespace Yatzy
             _consoleReader = consoleReader;
         }
 
-        public Response GetResponse()
+        public Response Response()
         {
             var input = _consoleReader.GetInput();
 
@@ -25,24 +25,24 @@ namespace Yatzy
                 {
                     throw new InvalidResponseException("Please enter valid dice to hold");
                 }
-                return Response.HoldDice;
+                return Yatzy.Response.HoldDice;
             }
             
             if(input == "r" || input == "R")
             {
-                return Response.RerollDice;
+                return Yatzy.Response.RerollDice;
             }
             
             const string regex = "[a-oA-O]";
             var match = Regex.Match(input, regex);
             if (match.Success && input.Count() == 1)
             {
-                return Response.ScoreInCategory;
+                return Yatzy.Response.ScoreInCategory;
             }
             
             if (input == "q" || input == "Q")
             {
-                return Response.QuitGame;
+                return Yatzy.Response.QuitGame;
             }
             throw new InvalidResponseException("Please enter a valid input!");
         }

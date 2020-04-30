@@ -41,6 +41,7 @@
     <ItemGroup>
         <Compile Include="ConsoleReader.cs" />
         <Compile Include="Die.cs" />
+        <Compile Include="Display.cs" />
         <Compile Include="IConsoleReader.cs" />
         <Compile Include="IRng.cs" />
         <Compile Include="Player.cs" />

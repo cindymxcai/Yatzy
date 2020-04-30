@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Xunit;
 using Yatzy;
 
@@ -14,6 +15,16 @@ namespace YatzyTest
             yatzy.PlayRound();
             Assert.NotEqual(0, yatzy.DiceCup[0].Value);
         }
+
+        [Fact]
+        public void GameShouldKeepPlayingCurrentRoundIfResponseTypeIsReroll()
+        {
+            var consoleReader = new TestConsoleReader("r");
+            var player = new Player(consoleReader);
+            var yatzy = new YatzyGame(player);
+            Assert.Throws<RoundOverException>(() => yatzy.PlayRound());
+        }
+        
     }
 
 
