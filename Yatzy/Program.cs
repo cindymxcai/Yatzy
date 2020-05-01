@@ -6,7 +6,8 @@
         {
             var consoleReader = new ConsoleReader();
             var player = new Player(consoleReader);
-            var yatzy = new YatzyGame(player);
+            var scoreCard = new ScoreCard();
+            var yatzy = new YatzyGame(player, scoreCard);
             yatzy.PlayRound();
         }
     }

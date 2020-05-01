@@ -115,6 +115,6 @@ namespace Yatzy
             }
             return 0;
         }
-            
+
     }
 }

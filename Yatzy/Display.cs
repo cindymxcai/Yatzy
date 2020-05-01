@@ -14,5 +14,15 @@ namespace Yatzy
             }
             Console.Write("\n");
         }
+
+        public static void DisplayCategories(ScoreCard scoreCard)
+        {
+            Console.Write("Categories:\n");
+
+            foreach (var category in scoreCard.CategoryScoreCard)
+            {
+                Console.WriteLine($"{category.CategoryName}: {category.CategoryScore}");
+            }
+        }
     }
 }

@@ -87,6 +87,7 @@ namespace YatzyTest
         [InlineData(4, 5, 1, 4, 4, 0)]
         [InlineData(2, 2, 2, 2, 2, 8)]
         [InlineData(2, 2, 2, 5, 5, 0)]
+        [InlineData(4, 4, 4, 4, 4, 16)]
         public void FourOfAKindTest(int dieA, int dieB, int dieC, int dieD, int dieE, int expected)
         {
             var dice = SetUpDice(dieA, dieB, dieC, dieD, dieE);
