@@ -25,7 +25,7 @@ namespace Yatzy
                 {
                     throw new InvalidResponseException("Please enter valid dice to hold");
                 }
-                return new Response(ResponseType.HoldDice);
+                return new Response(ResponseType.HoldDice, input);
             }
             
             if(input == "r" || input == "R")
@@ -37,14 +37,15 @@ namespace Yatzy
             var match = Regex.Match(input, regex);
             if (match.Success && input.Count() == 1)
             {
-                return new Response(ResponseType.ScoreInCategory);
+                return new Response(ResponseType.ScoreInCategory, input);
             }
             
             if (input == "q" || input == "Q")
             {
                 return new Response(ResponseType.QuitGame);
             }
-            throw new InvalidResponseException("Please enter a valid input!");
+            
+            return new Response(ResponseType.InvalidResponse);
         }
     }
 

@@ -8,25 +8,7 @@ namespace Yatzy
         QuitGame,
         HoldDice,
         RerollDice,
-        ScoreInCategory
-        
+        ScoreInCategory,
+        InvalidResponse
     }
-
-    public class Response
-    {
-        public readonly ResponseType ResponseType;
-
-        public Response()
-        {
-            
-        }
-        public Response(ResponseType chosenResponseType)
-        {
-            ResponseType = chosenResponseType;
-        }
-        
-        
-
-    }
-
 }

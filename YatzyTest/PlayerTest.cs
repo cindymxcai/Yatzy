@@ -28,12 +28,20 @@ namespace YatzyTest
         [Theory]
         [InlineData("a,a")]
         [InlineData("z,1")]
-        [InlineData("8")]
         [InlineData("y")]
         
-        public void ThrowExceptionIfPlayerGivesInvalidInput(string input)
+        public void ReturnInvalidResponseIfPlayerGivesInvalidInput(string input)
         {
             var consoleReader = new TestConsoleReader(input);
+            var player = new Player(consoleReader);
+            Assert.Equal(ResponseType.InvalidResponse, player.Respond().ResponseType);
+        }
+
+        [Fact]
+
+        public void ThrowExceptionWhenDiceValueOutOfRange()
+        {
+            var consoleReader = new TestConsoleReader("8");
             var player = new Player(consoleReader);
             Assert.Throws<InvalidResponseException>(() => player.Respond());
         }

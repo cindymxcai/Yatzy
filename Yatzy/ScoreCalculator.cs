@@ -1,10 +1,37 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Yatzy
 {
     public static class ScoreCalculator
     {
+
+        public static int CalculateScore(IEnumerable<int> diceCup, string input)
+        {
+            var score = input switch
+            {
+                "a" => NumberScore(diceCup, 1),
+                "b" => NumberScore(diceCup, 2),
+                "c" => NumberScore(diceCup, 3),
+                "d" => NumberScore(diceCup, 4),
+                "e" => NumberScore(diceCup, 5),
+                "f" => NumberScore(diceCup, 6),
+                "g" => Pairs(diceCup.ToList()),
+                "h" => TwoPairs(diceCup.ToList()),
+                "i" => ThreeOfAKind(diceCup.ToList()),
+                "j" => FourOfAKind(diceCup.ToList()),
+                "k" => SmallStraight(diceCup),
+                "l" => LargeStraight(diceCup),
+                "m" => FullHouse(diceCup.ToList()),
+                "n" => GetSumOfDice(diceCup),
+                "o" => Yatzy(diceCup),
+                _ => 0
+            };
+
+            return score;
+        }
         public static int GetSumOfDice(IEnumerable<int> diceCup)
         {
             return diceCup.Sum();

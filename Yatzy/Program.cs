@@ -1,4 +1,6 @@
-﻿namespace Yatzy
+﻿using System;
+
+namespace Yatzy
 {
     internal static class Program
     {
@@ -8,7 +10,8 @@
             var player = new Player(consoleReader);
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
-            yatzy.PlayRound();
+            Display.WelcomeMessage();
+            yatzy.PlayGame();
         }
     }
 }

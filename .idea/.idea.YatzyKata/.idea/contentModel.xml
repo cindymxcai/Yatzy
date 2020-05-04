@@ -18,6 +18,7 @@
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
+        <e p="Response.cs" t="Include" />
         <e p="ResponseType.cs" t="Include" />
         <e p="Rng.cs" t="Include" />
         <e p="Round.cs" t="Include" />
