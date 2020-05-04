@@ -18,7 +18,7 @@ namespace Yatzy
             InputString = inputString;
         }
         
-            public string GetInput() => InputString[_index++];
+        public string GetInput() => InputString[_index++];
         
     }
 }

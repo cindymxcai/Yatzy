@@ -43,6 +43,7 @@
         <e p="RoundTest.cs" t="Include" />
         <e p="ScoreCalculatorTest.cs" t="Include" />
         <e p="ScoreCardTest.cs" t="Include" />
+        <e p="TestRng.cs" t="Include" />
         <e p="YatzyTest.csproj" t="IncludeRecursive" />
       </e>
     </e>

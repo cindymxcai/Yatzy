@@ -9,7 +9,7 @@ namespace Yatzy
         private readonly ScoreCard _scoreCard;
         public bool IsPlayingGame { get; private set; } = true;
 
-        public List<Die> DiceCup { get; } = new List<Die>{new Die(), new Die(), new Die(), new Die(), new Die()};
+        public List<Die> DiceCup { get; set; } = new List<Die>{new Die(), new Die(), new Die(), new Die(), new Die()};
 
         public YatzyGame(Player player, ScoreCard scoreCard)
         {
@@ -39,9 +39,9 @@ namespace Yatzy
                     {
                         round.RollDice(DiceCup, rng);
                     }
-                    //TODO: HOW DO YOU TEST THIS?
                     catch (RoundOverException exceptionMessage)
                     {
+                        //try not to rethrow an exception that was just caught
                         throw exceptionMessage;
                     }
 
@@ -54,26 +54,27 @@ namespace Yatzy
                     {
                         response = _player.Respond();
 
-                    } while (response.ResponseType1 == ResponseType.InvalidResponse);
+                    } while (response.ResponseType == ResponseType.InvalidResponse);
 
-                } while (response.ResponseType1 == ResponseType.RerollDice);
+                    HandleResponse(response, round);
 
-                HandleResponse(response, round);
+                } while (response.ResponseType == ResponseType.RerollDice || response.ResponseType == ResponseType.HoldDice);
+
         }
 
         private void HandleResponse(Response response, Round round)
         {
-            if (response.ResponseType1 == ResponseType.QuitGame)
+            if (response.ResponseType == ResponseType.QuitGame)
             {
                 IsPlayingGame = false;
             }
             
-            else if(response.ResponseType1 == ResponseType.HoldDice)
+            else if(response.ResponseType == ResponseType.HoldDice)
             {
                 round.HoldDice(response.Input, DiceCup);
             } 
             
-            else if (response.ResponseType1 == ResponseType.ScoreInCategory)
+            else if (response.ResponseType == ResponseType.ScoreInCategory)
             {
                 var chosenCategory = _scoreCard.CategoryScoreCard.FirstOrDefault(category => category.CategoryKey == response.Input.ToLower());
 

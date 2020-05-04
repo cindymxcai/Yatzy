@@ -36,19 +36,26 @@ namespace YatzyTest
         [Fact]
         public void HeldDiceShouldNotGetRolled()
         {
-            var consoleReader = new TestConsoleReader("3,3,3");
+            
+            var die = new Die();
+            var testRng = new TestRng(1);
+            var consoleReader = new TestConsoleReader(new List<string>{"1,1,1","r","q"});
             var player = new Player(consoleReader);
             var scorecard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scorecard);
-            var round = new Round();
-            round.HoldDice("3,3,3", yatzy.DiceCup);
-            var rng = new TestRng(3);
-            yatzy.PlayRound(rng);
-            Assert.Equal(3, yatzy.DiceCup.Count(die => die.IsHeld));
-            var newRng = new TestRng(1);
-            round.RollDice(yatzy.DiceCup, newRng);
-            Assert.Equal(2, yatzy.DiceCup.Count(die => die.Value == 1));
-            Assert.Equal(3, yatzy.DiceCup.Count(die => die.Value == 3));
+            var yatzy = new YatzyGame(player, scorecard)
+            {
+                DiceCup = new List<Die>
+                {
+                    die,
+                    die,
+                    die,
+                    die,
+                    die
+                }
+            };
+            testRng.ChangeReturnValue(2);
+            yatzy.PlayGame(testRng);
+            Assert.Equal(3, yatzy.DiceCup.Count(dice => dice.IsHeld));
         }
     }
 }

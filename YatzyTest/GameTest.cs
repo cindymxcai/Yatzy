@@ -24,7 +24,7 @@ namespace YatzyTest
         [Fact]
         public void GameShouldStartARoundByRolling5Dice()
         {
-            var consoleReader = new TestConsoleReader("1");
+            var consoleReader = new TestConsoleReader(new List<string>{"r", "q"});
             var player = new Player(consoleReader);
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
@@ -48,7 +48,7 @@ namespace YatzyTest
         [InlineData("l", 0)]
         [InlineData("k", 0)]
 
-        //TODO: IS THIS TEST VALID?
+        //TODO: IS THIS TEST VALID? PASS IN LIST OF STRINGS
         public void GameShouldScoreIfResponseIsScoreInCategory(string input, int expected)
         {
             var consoleReader = new TestConsoleReader(input);

@@ -13,10 +13,13 @@ namespace Yatzy
             
             if (RollsLeft > 0)
             {
-                foreach (var die in enumerableDiceCup.Where(die => die.IsHeld == false))
-                {
-                    die.Roll(rng);
-                }
+                foreach (var die in enumerableDiceCup)
+                
+                    if(die.IsHeld == false)
+                    {
+                        
+                        die.Roll(rng);
+                    }
                 
                 RollsLeft--;
             }
@@ -30,17 +33,20 @@ namespace Yatzy
             }
         }
 
+        //TODO: RETHINK THIS LOGIC
         public void HoldDice(string input, List<Die> diceCup)
         {
             var splitInput = input.Split(',');
-            var zippedDiceCup = splitInput.Zip(diceCup.ToArray(), (hold, die) => (hold, die.Value));
-            
-            foreach (var (hold, value) in zippedDiceCup)
+
+            foreach (var dieNumber in splitInput)
             {
-                if (int.Parse(hold) == value)
+                foreach (var die in diceCup)
                 {
-                    diceCup.First(die => die.Value == value && die.IsHeld == false).IsHeld = true;
-                }
+                    if (die.Value == int.Parse(dieNumber))
+                    {
+                        die.IsHeld = true;
+                    }
+                }                
             }
         }
     }
