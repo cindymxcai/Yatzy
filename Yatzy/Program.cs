@@ -11,7 +11,8 @@ namespace Yatzy
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
             Display.WelcomeMessage();
-            yatzy.PlayGame();
+            var rng = new Rng();
+            yatzy.PlayGame(rng);
         }
     }
 }

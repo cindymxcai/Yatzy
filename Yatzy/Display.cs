@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Yatzy
 {
@@ -14,7 +15,7 @@ namespace Yatzy
                 Console.Write("[" + die.Value + "]");
                 Console.ResetColor();
             }
-            Console.Write("\n\n");
+            Console.WriteLine();
         }
 
         public static void DisplayCategories(ScoreCard scoreCard, List<int> diceCup)
@@ -57,10 +58,20 @@ namespace Yatzy
 
         public static void WelcomeMessage()
         {
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Welcome to Yatzy");
             Console.ResetColor();
+        }
+
+        public static void RollsLeft(int rollsLeft)
+        {
+            Console.WriteLine($"You have {rollsLeft} rolls left!\n");
+        }
+
+        public static void FinishedGame(ScoreCard scoreCard)
+        {
+            Console.WriteLine($"You Finished Yatzy! Your total score was {scoreCard.CategoryScoreCard.Sum(category => category.CategoryScore)}");
         }
     }
 }

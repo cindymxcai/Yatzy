@@ -10,8 +10,8 @@
         <e p="Die.cs" t="Include" />
         <e p="Display.cs" t="Include" />
         <e p="IConsoleReader.cs" t="Include" />
+        <e p="InvalidResponseException.cs" t="Include" />
         <e p="IRng.cs" t="Include" />
-        <e p="IYatzyGame.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
         <e p="Player.cs" t="Include" />
         <e p="Program.cs" t="Include" />
@@ -22,14 +22,17 @@
         <e p="ResponseType.cs" t="Include" />
         <e p="Rng.cs" t="Include" />
         <e p="Round.cs" t="Include" />
+        <e p="RoundOverException.cs" t="Include" />
         <e p="ScoreCalculator.cs" t="Include" />
         <e p="ScoreCard.cs" t="Include" />
+        <e p="TestConsoleReader.cs" t="Include" />
         <e p="Yatzy.csproj" t="IncludeRecursive" />
         <e p="YatzyGame.cs" t="Include" />
       </e>
       <e p="YatzyKata.sln" t="IncludeFlat" />
       <e p="YatzyTest" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="CategoryTest.cs" t="Include" />
         <e p="DieTest.cs" t="Include" />
         <e p="GameTest.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />

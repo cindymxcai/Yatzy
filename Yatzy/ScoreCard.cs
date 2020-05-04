@@ -17,7 +17,7 @@ namespace Yatzy
                 new Category("e", "Fives"),
                 new Category("f", "Sixes"),
                 new Category("g", "Pairs"),
-                new Category("h", "Two Pars"),
+                new Category("h", "Two Pairs"),
                 new Category("i", "Three Of A Kind"),
                 new Category("j", "Four Of A Kind"),
                 new Category("k", "Small Straight"),

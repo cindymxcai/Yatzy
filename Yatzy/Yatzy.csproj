@@ -45,8 +45,8 @@
         <Compile Include="Die.cs" />
         <Compile Include="Display.cs" />
         <Compile Include="IConsoleReader.cs" />
+        <Compile Include="InvalidResponseException.cs" />
         <Compile Include="IRng.cs" />
-        <Compile Include="IYatzyGame.cs" />
         <Compile Include="Player.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,8 +54,10 @@
         <Compile Include="ResponseType.cs" />
         <Compile Include="Rng.cs" />
         <Compile Include="Round.cs" />
+        <Compile Include="RoundOverException.cs" />
         <Compile Include="ScoreCalculator.cs" />
         <Compile Include="ScoreCard.cs" />
+        <Compile Include="TestConsoleReader.cs" />
         <Compile Include="YatzyGame.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

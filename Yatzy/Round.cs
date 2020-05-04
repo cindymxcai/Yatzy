@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,19 +5,17 @@ namespace Yatzy
 {
     public class Round
     {
-        private int RollsLeft { get; set; } = 3;
-        private readonly IRng _rng = new Rng();
+        public int RollsLeft { get; private set; } = 3;
 
-        public void RollDice(IEnumerable<Die> diceCup)
+        public void RollDice(IEnumerable<Die> diceCup, IRng rng)
         {
             var enumerableDiceCup = diceCup as Die[] ?? diceCup.ToArray();
             
-            // roll the dice if there is a roll left, or else throw an exception
             if (RollsLeft > 0)
             {
-                foreach (var die in enumerableDiceCup)
+                foreach (var die in enumerableDiceCup.Where(die => die.IsHeld == false))
                 {
-                    die.Roll(_rng);
+                    die.Roll(rng);
                 }
                 
                 RollsLeft--;
@@ -27,13 +24,24 @@ namespace Yatzy
             {
                 throw new RoundOverException("You have run out of Rolls! Please choose a category");
             }
-        }
-    }
-
-    public class RoundOverException : Exception
-        {
-            public RoundOverException(string message) : base(message)
+            foreach (var die in enumerableDiceCup)
             {
+                die.IsHeld = false;
+            }
+        }
+
+        public void HoldDice(string input, List<Die> diceCup)
+        {
+            var splitInput = input.Split(',');
+            var zippedDiceCup = splitInput.Zip(diceCup.ToArray(), (hold, die) => (hold, die.Value));
+            
+            foreach (var (hold, value) in zippedDiceCup)
+            {
+                if (int.Parse(hold) == value)
+                {
+                    diceCup.First(die => die.Value == value && die.IsHeld == false).IsHeld = true;
+                }
             }
         }
     }
+}

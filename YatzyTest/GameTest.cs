@@ -16,7 +16,8 @@ namespace YatzyTest
             var player = new Player(consoleReader);
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
-            yatzy.PlayGame();
+            var rng = new TestRng(1);
+            yatzy.PlayGame(rng);
             Assert.False(yatzy.IsPlayingGame);
         }
         
@@ -27,7 +28,9 @@ namespace YatzyTest
             var player = new Player(consoleReader);
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
-            yatzy.PlayRound();
+            var rng = new TestRng(1);
+
+            yatzy.PlayRound(rng);
             Assert.NotEqual(0, yatzy.DiceCup[0].Value);
         }
         
@@ -62,35 +65,39 @@ namespace YatzyTest
             var scoreCard = new ScoreCard(); 
             var yatzy = new YatzyGame(player, scoreCard);
             Assert.False(scoreCard.CategoryScoreCard[0].IsUsed); 
-            
-            yatzy.PlayRound();
+            var rng = new TestRng(1);
+
+            yatzy.PlayRound(rng);
             Assert.True( scoreCard.CategoryScoreCard[0].IsUsed);
         }
 
         [Fact]
         public void GameShouldThrowRoundOverExceptionWhenRollsExceeded()
         {
-            var consoleReader = new TestConsoleReader("r");
+            var consoleReader = new TestConsoleReader(new List<string>{"r", "r", "r"});
             var player = new Player(consoleReader);
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
-            Assert.Throws<RoundOverException>(() => yatzy.PlayRound());
+            var rng = new TestRng(1);
+
+            Assert.Throws<RoundOverException>(() => yatzy.PlayRound(rng));
         }
-    }
-    
 
-
-    public class TestConsoleReader : IConsoleReader
-    {
-        private readonly string _inputString;
-
-        public TestConsoleReader(string inputString)
+        
+        //TODO: 
+        [Fact]
+        public void GameShouldEndWhenAllCategoriesScored()
         {
-            _inputString = inputString;
-        }
-        public string GetInput()
-        {
-            return _inputString;
+            var consoleReader = new TestConsoleReader(new List<string>{"a", "b", "c", "d","e", "f", "g", "h", "i", "j", "k", "l","m", "n", "o"});
+            var player = new Player(consoleReader);
+            var scoreCard = new ScoreCard();
+            
+            var yatzy = new YatzyGame(player, scoreCard);
+            
+            var rng = new TestRng(1);
+            yatzy.PlayGame(rng);
+            Assert.False(yatzy.IsPlayingGame);
+
         }
     }
 }

@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-
 namespace Yatzy
 {
     public enum ResponseType

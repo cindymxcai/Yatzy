@@ -22,7 +22,7 @@ namespace YatzyTest
         {
             var consoleReader = new TestConsoleReader(input);
             var player = new Player(consoleReader);
-            Assert.Equal(responseType, player.Respond().ResponseType);
+            Assert.Equal(responseType, player.Respond().ResponseType1);
         }
 
         [Theory]
@@ -34,7 +34,7 @@ namespace YatzyTest
         {
             var consoleReader = new TestConsoleReader(input);
             var player = new Player(consoleReader);
-            Assert.Equal(ResponseType.InvalidResponse, player.Respond().ResponseType);
+            Assert.Equal(ResponseType.InvalidResponse, player.Respond().ResponseType1);
         }
 
         [Fact]

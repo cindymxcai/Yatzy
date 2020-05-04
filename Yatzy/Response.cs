@@ -1,25 +1,18 @@
-using System;
-
 namespace Yatzy
 {
     public class Response
     {
-        public ResponseType ResponseType;
-        public string Input;
+        public ResponseType ResponseType1 { get; }
+        public string Input { get; }
 
-        public Response()
-        {
-            
-        }
-        
         public Response(ResponseType chosenResponseType) 
         {
-            ResponseType = chosenResponseType;
+            ResponseType1 = chosenResponseType;
         }
         
         public Response(ResponseType chosenResponseType, string input)
         {
-            ResponseType = chosenResponseType;
+            ResponseType1 = chosenResponseType;
             Input = input;
         }
         

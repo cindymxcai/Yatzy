@@ -68,6 +68,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="CategoryTest.cs" />
         <Compile Include="DieTest.cs" />
         <Compile Include="GameTest.cs" />
         <Compile Include="PlayerTest.cs" />

@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -46,13 +45,6 @@ namespace Yatzy
             }
             
             return new Response(ResponseType.InvalidResponse);
-        }
-    }
-
-    public class InvalidResponseException : Exception
-    {
-        public InvalidResponseException(string message): base(message)
-        {
         }
     }
 }
