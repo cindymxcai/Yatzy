@@ -17,6 +17,7 @@ namespace YatzyTest
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
             var rng = new TestRng(1);
+
             yatzy.PlayGame(rng);
             Assert.False(yatzy.IsPlayingGame);
         }
@@ -48,7 +49,6 @@ namespace YatzyTest
         [InlineData("l", 0)]
         [InlineData("k", 0)]
 
-        //TODO: IS THIS TEST VALID? PASS IN LIST OF STRINGS
         public void GameShouldScoreIfResponseIsScoreInCategory(string input, int expected)
         {
             var consoleReader = new TestConsoleReader(input);
@@ -58,13 +58,22 @@ namespace YatzyTest
         }
 
         [Fact]
+        public void GameShouldNotScoreIfUsed()
+        {
+            var consoleReader = new TestConsoleReader(new List<string>(){"a","a", "q"});
+            var player = new Player(consoleReader);
+            var score = ScoreCalculator.CalculateScore(new List<int>{1,2,2,2,4}, player.Respond().Input.ToLower());
+            Assert.Equal(1, score);
+        }
+
+        [Fact]
         public void CategoryShouldBeUsedIfScoredInCategory()
         {
             var consoleReader = new TestConsoleReader("a");
             var player = new Player(consoleReader);
             var scoreCard = new ScoreCard(); 
             var yatzy = new YatzyGame(player, scoreCard);
-            Assert.False(scoreCard.CategoryScoreCard[0].IsUsed); 
+            Assert.False(scoreCard.CategoryScoreCard[0].IsUsed);
             var rng = new TestRng(1);
 
             yatzy.PlayRound(rng);
@@ -74,17 +83,16 @@ namespace YatzyTest
         [Fact]
         public void GameShouldThrowRoundOverExceptionWhenRollsExceeded()
         {
-            var consoleReader = new TestConsoleReader(new List<string>{"r", "r", "r"});
+            var consoleReader = new TestConsoleReader(new List<string>{"r", "r", "r", "q"});
             var player = new Player(consoleReader);
             var scoreCard = new ScoreCard();
             var yatzy = new YatzyGame(player, scoreCard);
             var rng = new TestRng(1);
 
-            Assert.Throws<RoundOverException>(() => yatzy.PlayRound(rng));
+            Assert.Throws<RoundOverException>(() => yatzy.PlayGame(rng));
         }
 
         
-        //TODO: 
         [Fact]
         public void GameShouldEndWhenAllCategoriesScored()
         {
@@ -93,7 +101,6 @@ namespace YatzyTest
             var scoreCard = new ScoreCard();
             
             var yatzy = new YatzyGame(player, scoreCard);
-            
             var rng = new TestRng(1);
             yatzy.PlayGame(rng);
             Assert.False(yatzy.IsPlayingGame);

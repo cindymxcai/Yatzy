@@ -13,7 +13,9 @@ namespace YatzyTest
         {
             var diceCup = new List<Die> { new Die(), new Die(), new Die(), new Die(), new Die()};
             var round = new Round();
-            round.RollDice(diceCup, new Rng());
+            var rng = new TestRng(1);
+
+            round.RollDice(diceCup, rng);
             
             foreach (var die in diceCup)
             {
@@ -25,37 +27,31 @@ namespace YatzyTest
         public void RoundShouldThrowExceptionWhenRollingMoreThan3Times()
         {
             var diceCup = new List<Die> { new Die(), new Die(), new Die(), new Die(), new Die()};
-            var round = new Round();
-            round.RollDice(diceCup, new TestRng(1));
-            round.RollDice(diceCup, new TestRng(1));
-            round.RollDice(diceCup, new TestRng(1));
+            var rng = new TestRng(1);
 
-            Assert.Throws<RoundOverException>(() => round.RollDice(diceCup, new TestRng(1)) );
+            var round = new Round();
+            round.RollDice(diceCup, rng);
+            round.RollDice(diceCup, rng);
+            round.RollDice(diceCup, rng);
+
+            Assert.Throws<RoundOverException>(() => round.RollDice(diceCup, rng) );
         }
+        
 
         [Fact]
-        public void HeldDiceShouldNotGetRolled()
+        public void HeldDiceShouldNotGetRerolled()
         {
-            
-            var die = new Die();
-            var testRng = new TestRng(1);
-            var consoleReader = new TestConsoleReader(new List<string>{"1,1,1","r","q"});
+           
+            var rng = new TestRng(1);
+            var consoleReader = new TestConsoleReader(new List<string>{"1,1,1","q"});
             var player = new Player(consoleReader);
             var scorecard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scorecard)
-            {
-                DiceCup = new List<Die>
-                {
-                    die,
-                    die,
-                    die,
-                    die,
-                    die
-                }
-            };
-            testRng.ChangeReturnValue(2);
-            yatzy.PlayGame(testRng);
-            Assert.Equal(3, yatzy.DiceCup.Count(dice => dice.IsHeld));
+            var yatzy = new YatzyGame(player, scorecard);
+            var round = new Round();
+            round.RollDice(yatzy.DiceCup,rng);
+            yatzy.HandleResponse(player.Respond(), round);
+            Assert.Equal(3, yatzy.DiceCup.Count(die => die.IsHeld));
+
         }
     }
 }

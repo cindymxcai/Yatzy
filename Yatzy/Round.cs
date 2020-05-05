@@ -6,7 +6,6 @@ namespace Yatzy
     public class Round
     {
         public int RollsLeft { get; private set; } = 3;
-
         public void RollDice(IEnumerable<Die> diceCup, IRng rng)
         {
             var enumerableDiceCup = diceCup as Die[] ?? diceCup.ToArray();
@@ -33,20 +32,12 @@ namespace Yatzy
             }
         }
 
-        //TODO: RETHINK THIS LOGIC
         public void HoldDice(string input, List<Die> diceCup)
         {
             var splitInput = input.Split(',');
-
-            foreach (var dieNumber in splitInput)
+            foreach (var holdValue in splitInput)
             {
-                foreach (var die in diceCup)
-                {
-                    if (die.Value == int.Parse(dieNumber))
-                    {
-                        die.IsHeld = true;
-                    }
-                }                
+                diceCup.First(die => !die.IsHeld && die.Value == int.Parse(holdValue)).IsHeld = true;
             }
         }
     }

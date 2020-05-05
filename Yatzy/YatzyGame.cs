@@ -9,7 +9,7 @@ namespace Yatzy
         private readonly ScoreCard _scoreCard;
         public bool IsPlayingGame { get; private set; } = true;
 
-        public List<Die> DiceCup { get; set; } = new List<Die>{new Die(), new Die(), new Die(), new Die(), new Die()};
+        public List<Die> DiceCup { get; } = new List<Die>{new Die(), new Die(), new Die(), new Die(), new Die()};
 
         public YatzyGame(Player player, ScoreCard scoreCard)
         {
@@ -35,15 +35,7 @@ namespace Yatzy
 
                 do
                 {
-                    try
-                    {
-                        round.RollDice(DiceCup, rng);
-                    }
-                    catch (RoundOverException exceptionMessage)
-                    {
-                        //try not to rethrow an exception that was just caught
-                        throw exceptionMessage;
-                    }
+                    round.RollDice(DiceCup, rng);
 
                     Display.DisplayCategories(_scoreCard, DiceCup.Select(die => die.Value).ToList());
                     Display.DisplayDice(DiceCup);
@@ -58,11 +50,11 @@ namespace Yatzy
 
                     HandleResponse(response, round);
 
-                } while (response.ResponseType == ResponseType.RerollDice || response.ResponseType == ResponseType.HoldDice);
+                } while (response.ResponseType == ResponseType.RerollDice || response.ResponseType == ResponseType.HoldDice );
 
         }
 
-        private void HandleResponse(Response response, Round round)
+        public void HandleResponse(Response response, Round round)
         {
             if (response.ResponseType == ResponseType.QuitGame)
             {
@@ -78,14 +70,19 @@ namespace Yatzy
             {
                 var chosenCategory = _scoreCard.CategoryScoreCard.FirstOrDefault(category => category.CategoryKey == response.Input.ToLower());
 
-                //TODO: WHY ISNT THIS GETTING COVERED?
-                if (chosenCategory.IsUsed) return;
-                chosenCategory.CategoryScore = ScoreCalculator.CalculateScore(DiceCup.Select(die => die.Value), response.Input);
-                chosenCategory.IsUsed = true;
+                if (!chosenCategory.IsUsed)
+                {
+                    chosenCategory.CategoryScore =
+                        ScoreCalculator.CalculateScore(DiceCup.Select(die => die.Value), response.Input);
+                    chosenCategory.IsUsed = true;
 
-                if (!_scoreCard.CategoryScoreCard.All(category => category.IsUsed)) return;
-                Display.FinishedGame(_scoreCard);
-                IsPlayingGame = false;
+                    if (!_scoreCard.CategoryScoreCard.All(category => category.IsUsed)) return;
+                    Display.FinishedGame(_scoreCard);
+                    IsPlayingGame = false;
+                }
+                
+                //choose new category 
+                // do not reroll or start new round until category has been scored in
             }
         }
     }
