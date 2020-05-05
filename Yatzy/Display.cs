@@ -15,13 +15,13 @@ namespace Yatzy
                 Console.Write("[" + die.Value + "]");
                 Console.ResetColor();
             }
+
             Console.WriteLine();
         }
 
         public static void DisplayCategories(ScoreCard scoreCard, List<int> diceCup)
         {
             Console.Write("Categories:\n");
-
             foreach (var category in scoreCard.CategoryScoreCard)
             {
                 if (category.IsUsed)
@@ -32,9 +32,11 @@ namespace Yatzy
                 }
                 else
                 {
-                    Console.WriteLine($"{category.CategoryKey}) {category.CategoryName}: {ScoreCalculator.CalculateScore(diceCup, category.CategoryKey)}");
+                    Console.WriteLine(
+                        $"{category.CategoryKey}) {category.CategoryName}: {ScoreCalculator.CalculateScore(diceCup, category.CategoryKey)}");
                 }
             }
+
             Console.Write("\n");
         }
 
@@ -46,14 +48,13 @@ namespace Yatzy
             Console.WriteLine(" > Type Category Key to score in that category (e.g. \"a\") ");
             Console.WriteLine(" > Press q to quit game");
             Console.ResetColor();
-
         }
 
         public static void NewRoundTitle()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nNEW ROUND");
-            Console.ResetColor();        
+            Console.ResetColor();
         }
 
         public static void WelcomeMessage()
@@ -71,7 +72,8 @@ namespace Yatzy
 
         public static void FinishedGame(ScoreCard scoreCard)
         {
-            Console.WriteLine($"You Finished Yatzy! Your total score was {scoreCard.CategoryScoreCard.Sum(category => category.CategoryScore)}");
+            Console.WriteLine(
+                $"You Finished Yatzy! Your total score was {scoreCard.CategoryScoreCard.Sum(category => category.CategoryScore)}");
         }
     }
 }

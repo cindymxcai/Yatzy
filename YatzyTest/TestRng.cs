@@ -4,7 +4,7 @@ namespace YatzyTest
 {
     public class TestRng : IRng
     {
-        private  int _numberToReturn;
+        private readonly int _numberToReturn;
 
         public TestRng(int numberToReturn)
         {
@@ -14,11 +14,6 @@ namespace YatzyTest
         public int Next(int minValue, int maxValue)
         {
             return _numberToReturn;
-        }
-
-        public void ChangeReturnValue(int i)
-        {
-            _numberToReturn = i;
         }
     }
 }

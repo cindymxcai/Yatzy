@@ -8,14 +8,20 @@ namespace YatzyTest
     {
         private List<int> SetUpDice(int a, int b, int c, int d, int e)
         {
-            var diceCup = new List<int> {a, b, c, d, e};
+            var diceCup = new List<int>
+            {
+                a,
+                b,
+                c,
+                d,
+                e
+            };
             return diceCup;
         }
-        
-        [Theory]
-        [InlineData(5,5,5,5,5, 25)]
-        [InlineData(1,6,5,2,5, 19)]
 
+        [Theory]
+        [InlineData(5, 5, 5, 5, 5, 25)]
+        [InlineData(1, 6, 5, 2, 5, 19)]
         public void DiceSumAndChanceTest(int dieA, int dieB, int dieC, int dieD, int dieE, int expectedSum)
         {
             var dice = SetUpDice(dieA, dieB, dieC, dieD, dieE);
@@ -23,10 +29,10 @@ namespace YatzyTest
         }
 
         [Theory]
-        [InlineData( 1, 1, 1, 1, 1, 50)]
+        [InlineData(1, 1, 1, 1, 1, 50)]
         [InlineData(6, 6, 6, 6, 6, 50)]
-        [InlineData( 3, 1, 1, 1, 1, 0)]
-        public void YatzyTest  (int dieA, int dieB, int dieC, int dieD, int dieE, int expected)
+        [InlineData(3, 1, 1, 1, 1, 0)]
+        public void YatzyTest(int dieA, int dieB, int dieC, int dieD, int dieE, int expected)
         {
             var dice = SetUpDice(dieA, dieB, dieC, dieD, dieE);
             Assert.Equal(expected, ScoreCalculator.Yatzy(dice));
@@ -125,6 +131,5 @@ namespace YatzyTest
             var dice = SetUpDice(dieA, dieB, dieC, dieD, dieE);
             Assert.Equal(expected, ScoreCalculator.FullHouse(dice));
         }
-
     }
 }

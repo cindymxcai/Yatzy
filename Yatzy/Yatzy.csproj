@@ -45,7 +45,6 @@
         <Compile Include="Die.cs" />
         <Compile Include="Display.cs" />
         <Compile Include="IConsoleReader.cs" />
-        <Compile Include="InvalidResponseException.cs" />
         <Compile Include="IRng.cs" />
         <Compile Include="Player.cs" />
         <Compile Include="Program.cs" />

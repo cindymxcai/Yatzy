@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Yatzy
 {
     public class ScoreCard
     {
-        public List<Category> CategoryScoreCard { get; } 
+        public List<Category> CategoryScoreCard { get; }
 
         public ScoreCard()
         {
@@ -26,8 +27,12 @@ namespace Yatzy
                 new Category("n", "Chance"),
                 new Category("o", "Yatzy")
             };
-            
         }
-        
+
+        public Category CheckIfCategoryUsed(Response response)
+        {
+            var chosenCategory = CategoryScoreCard.First(category => category.CategoryKey == response.Input.ToLower());
+            return chosenCategory;
+        }
     }
 }

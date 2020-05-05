@@ -5,7 +5,6 @@ namespace Yatzy
 {
     public static class ScoreCalculator
     {
-
         public static int CalculateScore(IEnumerable<int> diceCup, string input)
         {
             var score = input switch
@@ -27,9 +26,9 @@ namespace Yatzy
                 "o" => Yatzy(diceCup),
                 _ => 0
             };
-
             return score;
         }
+
         public static int GetSumOfDice(IEnumerable<int> diceCup)
         {
             return diceCup.Sum();
@@ -64,7 +63,6 @@ namespace Yatzy
         {
             var numberOfPairs = 0;
             var sumOfPairs = 0;
-            
             var orderedDiceCup = new List<int>(diceCup.OrderBy(die => die));
             for (var currentDie = 0; currentDie < diceCup.Count - 1; currentDie++)
             {
@@ -79,10 +77,9 @@ namespace Yatzy
                     return sumOfPairs;
                 }
             }
-            
+
             return 0;
         }
-
 
         public static int ThreeOfAKind(List<int> diceCup)
         {
@@ -103,25 +100,38 @@ namespace Yatzy
 
             return 0;
         }
-        
+
         public static int SmallStraight(IEnumerable<int> diceCup)
         {
             var orderedDiceCup = diceCup.OrderBy(dieValue => dieValue);
-            var smallStraightMatch = new List<int>{1, 2, 3, 4, 5};
+            var smallStraightMatch = new List<int>
+            {
+                1,
+                2,
+                3,
+                4,
+                5
+            };
             return orderedDiceCup.SequenceEqual(smallStraightMatch) ? 15 : 0;
         }
 
         public static int LargeStraight(IEnumerable<int> diceCup)
         {
             var orderedDiceCup = diceCup.OrderBy(dieValue => dieValue);
-            var largeStraightMatch = new List<int>{2, 3, 4, 5, 6};
+            var largeStraightMatch = new List<int>
+            {
+                2,
+                3,
+                4,
+                5,
+                6
+            };
             return orderedDiceCup.SequenceEqual(largeStraightMatch) ? 20 : 0;
         }
 
         public static int FullHouse(List<int> diceCup)
         {
             var distinctValues = diceCup.Distinct();
-            
             if (distinctValues.Count() != 2) return 0;
             var sumOfThreeOfAKind = ThreeOfAKind(diceCup);
             var sumOfStrictPair = StrictPair(diceCup);
@@ -138,8 +148,8 @@ namespace Yatzy
                     return group.Sum();
                 }
             }
+
             return 0;
         }
-
     }
 }

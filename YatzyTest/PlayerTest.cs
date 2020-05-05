@@ -8,7 +8,7 @@ namespace YatzyTest
     public class PlayerTest
     {
         [Theory]
-        [InlineData("1",  ResponseType.HoldDice)]
+        [InlineData("1", ResponseType.HoldDice)]
         [InlineData("1,2,3", ResponseType.HoldDice)]
         [InlineData("a", ResponseType.ScoreInCategory)]
         [InlineData("g", ResponseType.ScoreInCategory)]
@@ -16,8 +16,6 @@ namespace YatzyTest
         [InlineData("R", ResponseType.RerollDice)]
         [InlineData("q", ResponseType.QuitGame)]
         [InlineData("Q", ResponseType.QuitGame)]
-
-
         public void PlayerShouldReturnResponseTypeGivenPlayerInput(string input, ResponseType responseType)
         {
             var consoleReader = new TestConsoleReader(input);
@@ -29,7 +27,8 @@ namespace YatzyTest
         [InlineData("a,a")]
         [InlineData("z,1")]
         [InlineData("y")]
-        
+        [InlineData("8")]
+        [InlineData("2,a")]
         public void ReturnInvalidResponseIfPlayerGivesInvalidInput(string input)
         {
             var consoleReader = new TestConsoleReader(input);
@@ -37,14 +36,6 @@ namespace YatzyTest
             Assert.Equal(ResponseType.InvalidResponse, player.Respond().ResponseType);
         }
 
-        [Fact]
-
-        public void ThrowExceptionWhenDiceValueOutOfRange()
-        {
-            var consoleReader = new TestConsoleReader("8");
-            var player = new Player(consoleReader);
-            Assert.Throws<InvalidResponseException>(() => player.Respond());
-        }
         
     }
 }

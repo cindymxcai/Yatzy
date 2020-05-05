@@ -2,7 +2,7 @@ namespace Yatzy
 {
     public class Response
     {
-        public ResponseType ResponseType { get; }
+        public ResponseType ResponseType { get; set; }
         public string Input { get; }
 
         public Response(ResponseType chosenResponseType) 
