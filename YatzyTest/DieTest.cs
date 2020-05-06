@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using Yatzy;
+using Moq; 
 
 namespace YatzyTest
 {
@@ -9,8 +10,9 @@ namespace YatzyTest
         public void DiceShouldReturnValueWhenRolled()
         {
             var die = new Die();
-            var rng = new TestRng(1);
-            die.Roll(rng); 
+            var mock = new Mock<IRng>();
+            mock.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
+            die.Roll(mock.Object); 
             var value = die.Value;
             Assert.Equal(1, value);
         }
@@ -19,12 +21,12 @@ namespace YatzyTest
         public void DiceShouldChangeValueWhenRolledAgain()
         {
             var die = new Die();
-            var testRng = new TestRng(1);
-            die.Roll(testRng);
-            var rng = new TestRng(4);
-            die.Roll(rng);
+            var mock = new Mock<IRng>();
+            mock.SetupSequence(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(4).Returns(1);            
+            die.Roll(mock.Object);
+            die.Roll(mock.Object);
             var value = die.Value;
-            Assert.NotEqual(1, value);
+            Assert.Equal(1, value);
         }
     }
 }

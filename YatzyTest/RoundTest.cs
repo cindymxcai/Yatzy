@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
 using Xunit;
 using Yatzy;
 
@@ -19,8 +21,9 @@ namespace YatzyTest
                 new Die()
             };
             var round = new Round();
-            var rng = new TestRng(1);
-            round.RollDice(diceCup, rng);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);            
+            round.RollDice(diceCup, mockRng.Object);
             foreach (var die in diceCup)
             {
                 Assert.NotEqual(0, die.Value);
@@ -38,24 +41,29 @@ namespace YatzyTest
                 new Die(),
                 new Die()
             };
-            var rng = new TestRng(1);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
             var round = new Round();
-            round.RollDice(diceCup, rng);
-            round.RollDice(diceCup, rng);
-            round.RollDice(diceCup, rng);
-            Assert.Throws<RoundOverException>(() => round.RollDice(diceCup, rng));
+            round.RollDice(diceCup, mockRng.Object);
+            round.RollDice(diceCup, mockRng.Object);
+            round.RollDice(diceCup, mockRng.Object);
+            Assert.Throws<RoundOverException>(() => round.RollDice(diceCup, mockRng.Object));
         }
 
         [Fact]
         public void HeldDiceShouldNotGetRerolled()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader(new List<string> {"1,1,1", "q"});
-            var player = new Player(consoleReader);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.SetupSequence(consoleReader => consoleReader.GetInput())
+                .Returns("1,1,1")  
+                .Returns("q");
+            var player = new Player(mockInput.Object);
             var scorecard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scorecard, rng);
+            var yatzy = new YatzyGame(player, scorecard, mockRng.Object);
             var round = new Round();
-            round.RollDice(yatzy.DiceCup, rng);
+            round.RollDice(yatzy.DiceCup, mockRng.Object);
             yatzy.HandleResponse(player.Respond(), round);
             Assert.Equal(3, yatzy.DiceCup.Count(die => die.IsHeld));
         }
@@ -63,13 +71,18 @@ namespace YatzyTest
         [Fact]
         public void InputForNonExistentDieReturnsInvalid()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader(new List<string> {"2", "q"});
-            var player = new Player(consoleReader);
+            
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.SetupSequence(consoleReader => consoleReader.GetInput())
+                .Returns("2")  
+                .Returns("q");
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
+            var player = new Player(mockInput.Object);
             var scorecard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scorecard, rng);
+            var yatzy = new YatzyGame(player, scorecard, mockRng.Object);
             var round = new Round();
-            round.RollDice(yatzy.DiceCup, rng);
+            round.RollDice(yatzy.DiceCup, mockRng.Object);
             var response = player.Respond();
             Round.HoldDice(response, yatzy.DiceCup);
             Assert.Equal(ResponseType.InvalidResponse, response.ResponseType);

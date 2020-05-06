@@ -56,7 +56,6 @@
         <Compile Include="RoundOverException.cs" />
         <Compile Include="ScoreCalculator.cs" />
         <Compile Include="ScoreCard.cs" />
-        <Compile Include="TestConsoleReader.cs" />
         <Compile Include="YatzyGame.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

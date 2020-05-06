@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
 using Xunit;
 using Yatzy;
 
@@ -18,8 +19,9 @@ namespace YatzyTest
         [InlineData("Q", ResponseType.QuitGame)]
         public void PlayerShouldReturnResponseTypeGivenPlayerInput(string input, ResponseType responseType)
         {
-            var consoleReader = new TestConsoleReader(input);
-            var player = new Player(consoleReader);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.Setup(consoleReader => consoleReader.GetInput()).Returns(input);            
+            var player = new Player(mockInput.Object);
             Assert.Equal(responseType, player.Respond().ResponseType);
         }
 
@@ -31,8 +33,9 @@ namespace YatzyTest
         [InlineData("2,a")]
         public void ReturnInvalidResponseIfPlayerGivesInvalidInput(string input)
         {
-            var consoleReader = new TestConsoleReader(input);
-            var player = new Player(consoleReader);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.Setup(consoleReader => consoleReader.GetInput()).Returns(input);      
+            var player = new Player(mockInput.Object);
             Assert.Equal(ResponseType.InvalidResponse, player.Respond().ResponseType);
         }
 

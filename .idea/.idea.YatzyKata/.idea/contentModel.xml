@@ -35,6 +35,7 @@
         <e p="DieTest.cs" t="Include" />
         <e p="GameTest.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
         <e p="PlayerTest.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
@@ -42,7 +43,6 @@
         <e p="RoundTest.cs" t="Include" />
         <e p="ScoreCalculatorTest.cs" t="Include" />
         <e p="ScoreCardTest.cs" t="Include" />
-        <e p="TestRng.cs" t="Include" />
         <e p="YatzyTest.csproj" t="IncludeRecursive" />
       </e>
     </e>

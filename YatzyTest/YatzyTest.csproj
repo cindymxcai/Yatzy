@@ -76,13 +76,15 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="ScoreCalculatorTest.cs" />
         <Compile Include="ScoreCardTest.cs" />
-        <Compile Include="TestRng.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Yatzy\Yatzy.csproj">
         <Project>{4b20bb8f-cb2e-413c-b514-90f58028bad4}</Project>
         <Name>Yatzy</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

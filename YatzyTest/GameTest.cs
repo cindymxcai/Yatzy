@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Moq;
 using Xunit;
 using Yatzy;
 
@@ -9,11 +10,13 @@ namespace YatzyTest
         [Fact]
         public void GameShouldEndWhenUserRespondsQuit()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader("q");
-            var player = new Player(consoleReader);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.Setup(consoleReader => consoleReader.GetInput()).Returns("q");
+            var player = new Player(mockInput.Object);
             var scoreCard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scoreCard, rng);
+            var yatzy = new YatzyGame(player, scoreCard, mockRng.Object);
             yatzy.PlayGame();
             Assert.False(yatzy.IsPlayingGame);
         }
@@ -21,11 +24,13 @@ namespace YatzyTest
         [Fact]
         public void GameShouldStartARoundByRolling5Dice()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader(new List<string> {"r", "q"});
-            var player = new Player(consoleReader);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.SetupSequence(consoleReader => consoleReader.GetInput()).Returns("r").Returns("q");
+            var player = new Player(mockInput.Object);
             var scoreCard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scoreCard, rng);
+            var yatzy = new YatzyGame(player, scoreCard, mockRng.Object);
             yatzy.PlayRound();
             Assert.NotEqual(0, yatzy.DiceCup[0].Value);
         }
@@ -44,8 +49,9 @@ namespace YatzyTest
         [InlineData("k", 0)]
         public void GameShouldScoreIfResponseIsScoreInCategory(string input, int expected)
         {
-            var consoleReader = new TestConsoleReader(input);
-            var player = new Player(consoleReader);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.Setup(consoleReader => consoleReader.GetInput()).Returns(input);
+            var player = new Player(mockInput.Object);
             var score = ScoreCalculator.CalculateScore(new List<int>
             {
                 1,
@@ -60,13 +66,15 @@ namespace YatzyTest
         [Fact]
         public void GameShouldNotScoreIfUsed()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader(new List<string> {"a", "a", "q"});
-            var player = new Player(consoleReader);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.SetupSequence(consoleReader => consoleReader.GetInput()).Returns("a").Returns("a").Returns("q");
+            var player = new Player(mockInput.Object);
             var response = player.Respond();
             var scorecard = new ScoreCard();
             var round = new Round();
-            var yatzy = new YatzyGame(player, scorecard, rng);
+            var yatzy = new YatzyGame(player, scorecard, mockRng.Object);
             yatzy.PlayRound();
             Assert.Equal(ResponseType.ScoreInCategory, response.ResponseType);
             yatzy.HandleResponse(response, round);
@@ -76,11 +84,13 @@ namespace YatzyTest
         [Fact]
         public void CategoryShouldBeUsedIfScoredInCategory()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader("a");
-            var player = new Player(consoleReader);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);            
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.Setup(consoleReader => consoleReader.GetInput()).Returns("a");
+            var player = new Player(mockInput.Object);
             var scoreCard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scoreCard, rng);
+            var yatzy = new YatzyGame(player, scoreCard, mockRng.Object);
             Assert.False(scoreCard.CategoryScoreCard[0].IsUsed);
             yatzy.PlayRound();
             Assert.True(scoreCard.CategoryScoreCard[0].IsUsed);
@@ -89,39 +99,28 @@ namespace YatzyTest
         [Fact]
         public void GameShouldThrowRoundOverExceptionWhenRollsExceeded()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader(new List<string> {"r", "r", "r", "q"});
-            var player = new Player(consoleReader);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.SetupSequence(consoleReader => consoleReader.GetInput()).Returns("r").Returns("r").Returns("r").Returns("q");
+            var player = new Player(mockInput.Object);
             var scoreCard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scoreCard, rng);
+            var yatzy = new YatzyGame(player, scoreCard, mockRng.Object);
             Assert.Throws<RoundOverException>(() => yatzy.PlayGame());
         }
 
         [Fact]
         public void GameShouldEndWhenAllCategoriesScored()
         {
-            var rng = new TestRng(1);
-            var consoleReader = new TestConsoleReader(new List<string>
-            {
-                "a",
-                "b",
-                "c",
-                "d",
-                "e",
-                "f",
-                "g",
-                "h",
-                "i",
-                "j",
-                "k",
-                "l",
-                "m",
-                "n",
-                "o"
-            });
-            var player = new Player(consoleReader);
+            var mockRng = new Mock<IRng>();
+            mockRng.Setup(rng => rng.Next(It.IsAny<int>(), It.IsAny<int>())).Returns(1);            
+            
+            var mockInput = new Mock<IConsoleReader>();
+            mockInput.SetupSequence(consoleReader => consoleReader.GetInput()).Returns("a").Returns("b").Returns("c").Returns("d").Returns("e").Returns("f").Returns("g").Returns("h").Returns("i").Returns("j").Returns("k").Returns("l").Returns("m").Returns("n").Returns("o");
+            
+            var player = new Player(mockInput.Object);
             var scoreCard = new ScoreCard();
-            var yatzy = new YatzyGame(player, scoreCard, rng);
+            var yatzy = new YatzyGame(player, scoreCard, mockRng.Object);
             yatzy.PlayGame();
             Assert.False(yatzy.IsPlayingGame);
         }
