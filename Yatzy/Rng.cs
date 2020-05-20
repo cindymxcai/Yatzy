@@ -16,5 +16,4 @@ namespace Yatzy
                 return _random.Next(minValue, maxValue);
             }
         }
-    
 }
