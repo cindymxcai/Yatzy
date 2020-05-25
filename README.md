@@ -1,2 +1,1 @@
 # Yatzy
-# GameOfLife
