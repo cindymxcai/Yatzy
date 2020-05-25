@@ -11,21 +11,21 @@ namespace YatzyGame
         {
             CategoryScoreCard = new List<Category>
             {
-                new Category("a", "Ones"),
-                new Category("b", "Twos"),
-                new Category("c", "Threes"),
-                new Category("d", "Fours"),
-                new Category("e", "Fives"),
-                new Category("f", "Sixes"),
-                new Category("g", "Pairs"),
-                new Category("h", "Two Pairs"),
-                new Category("i", "Three Of A Kind"),
-                new Category("j", "Four Of A Kind"),
-                new Category("k", "Small Straight"),
-                new Category("l", "Large Straight"),
-                new Category("m", "Full House"),
-                new Category("n", "Chance"),
-                new Category("o", "Yatzy")
+                new Category("a", CategoryName.Ones),
+                new Category("b", CategoryName.Twos),
+                new Category("c", CategoryName.Threes),
+                new Category("d", CategoryName.Fours),
+                new Category("e", CategoryName.Fives),
+                new Category("f", CategoryName.Sixes),
+                new Category("g", CategoryName.Pairs),
+                new Category("h", CategoryName.TwoPairs),
+                new Category("i", CategoryName.ThreeOfAKind),
+                new Category("j", CategoryName.FourOfAKind),
+                new Category("k", CategoryName.SmallStraight),
+                new Category("l", CategoryName.LargeStraight),
+                new Category("m", CategoryName.FullHouse),
+                new Category("n", CategoryName.Chance),
+                new Category("o", CategoryName.Yatzy)
             };
         }
         public Category CheckIfCategoryUsed(Response response)

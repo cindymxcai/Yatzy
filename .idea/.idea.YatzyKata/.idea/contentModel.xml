@@ -6,6 +6,8 @@
       <e p="Yatzy3" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="Category.cs" t="Include" />
+        <e p="CategoryName.cs" t="Include" />
+        <e p="Constants.cs" t="Include" />
         <e p="Die.cs" t="Include" />
         <e p="Filters" t="Include">
           <e p="FullHouseFilter.cs" t="Include" />
@@ -32,13 +34,13 @@
         <e p="ResponseType.cs" t="Include" />
         <e p="Rng.cs" t="Include" />
         <e p="Round.cs" t="Include" />
-        <e p="ScoreCalculator.cs" t="Include" />
         <e p="ScoreCard.cs" t="Include" />
-        <e p="Strategies" t="Include">
+        <e p="Scoring" t="Include">
           <e p="IAggregationStrategy.cs" t="Include" />
-          <e p="ScoreCalculatorStrategy.cs" t="Include" />
-          <e p="SummingStrategy.cs" t="Include" />
-          <e p="YatzyStrategy.cs" t="Include" />
+          <e p="ScoreCalculator.cs" t="Include" />
+          <e p="ScoreCalculatorFactory.cs" t="Include" />
+          <e p="SummingScorer.cs" t="Include" />
+          <e p="YatzyScorer.cs" t="Include" />
         </e>
         <e p="Yatzy3.csproj" t="IncludeRecursive" />
       </e>

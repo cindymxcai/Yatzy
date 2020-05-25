@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using YatzyGame.InputOutput;
-using YatzyGame.Strategies;
+using YatzyGame.Scoring;
 
 namespace YatzyGame
 {
@@ -66,10 +66,8 @@ namespace YatzyGame
                     Round.HoldDice(response, DiceCup);
                     break;
                 case ResponseType.ScoreInCategory:
-                {
                     ScoreForChosenCategory(response);
                     break;
-                }
                 case ResponseType.RerollDice:
                     break;
                 case ResponseType.InvalidResponse:
@@ -88,7 +86,7 @@ namespace YatzyGame
             }
             else
             {
-                chosenCategory.CategoryScore = ScoreCalculatorStrategy.CreateCalculator(chosenCategory, DiceCup).Calculate();
+                chosenCategory.CategoryScore = ScoreCalculatorFactory.CreateCalculator(chosenCategory, DiceCup).Calculate();
                 chosenCategory.IsUsed = true;
                 if (!_scoreCard.CategoryScoreCard.All(category => category.IsUsed)) return;
                 Display.FinishedGame(_scoreCard);

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using YatzyGame.Strategies;
+using YatzyGame.Scoring;
 
 namespace YatzyGame.InputOutput
 {
@@ -34,7 +34,7 @@ namespace YatzyGame.InputOutput
                 else
                 {
                     Console.WriteLine(
-                        $"{category.CategoryKey}) {category.CategoryName}: {ScoreCalculatorStrategy.CreateCalculator(category, diceCup).Calculate()}");
+                        $"{category.CategoryKey}) {category.CategoryName}: {ScoreCalculatorFactory.CreateCalculator(category, diceCup).Calculate()}");
                 }
             }
 

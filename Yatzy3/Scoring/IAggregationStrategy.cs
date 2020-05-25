@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using YatzyGame.Filters;
 
-namespace YatzyGame.Strategies
+namespace YatzyGame.Scoring
 {
     public interface IAggregationStrategy
     {
-        int Aggregate(IEnumerable<Die> filteredDice);
+        int Aggregate(List<Die> dice);
     }
 }

@@ -4,7 +4,7 @@ using Moq;
 using Xunit;
 using YatzyGame;
 using YatzyGame.InputOutput;
-using YatzyGame.Strategies;
+using YatzyGame.Scoring;
 
 namespace DieTest
 {
@@ -96,15 +96,12 @@ namespace DieTest
         [InlineData("n", 11, 1,2,2,2,4)]
         [InlineData("O", 0, 1,3,4,5,6)]
         [InlineData("O", 50, 1,1,1,1,1)]
-        
-        
-        
-        
+
         public void GameShouldScoreIfResponseIsScoreInCategory(string input, int expected, int a, int b, int c, int d, int e)
         {
             var scoreCard = new ScoreCard();
 
-            var score = ScoreCalculatorStrategy.CreateCalculator(scoreCard.CategoryScoreCard.First(category => category.CategoryKey == input.ToLower()), new List<Die>
+            var score = ScoreCalculatorFactory.CreateCalculator(scoreCard.CategoryScoreCard.First(category => category.CategoryKey == input.ToLower()), new List<Die>
             {
                 new Die{ Value =  a},
                 new Die{ Value =  b},
@@ -120,7 +117,7 @@ namespace DieTest
         {
             var scoreCard = new ScoreCard();
 
-            var score = ScoreCalculatorStrategy.CreateCalculator(scoreCard.CategoryScoreCard.First(category => category.CategoryKey == "o"), new List<Die>
+            var score = ScoreCalculatorFactory.CreateCalculator(scoreCard.CategoryScoreCard.First(category => category.CategoryKey == "o"), new List<Die>
             {
                 new Die{ Value =  1},
                 new Die{ Value =  1},

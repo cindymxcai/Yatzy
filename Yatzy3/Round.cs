@@ -34,7 +34,7 @@ namespace YatzyGame
 
         public static void HoldDice(Response response, List<Die> diceCup)
         {
-            var dieValuesToHold = response.Input.Split(',');
+            var dieValuesToHold = response.Input.Split(Constants.Separator);
             
             foreach (var holdValue in dieValuesToHold)
             {

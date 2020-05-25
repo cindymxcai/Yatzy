@@ -17,12 +17,11 @@ namespace YatzyGame
         public Response Respond()
         {
             var input = _consoleReader.GetInput();
-            const string regex = "[a-oA-O]";
-            var match = Regex.Match(input, regex);
+            var match = Regex.Match(input, Constants.Regex);
 
-            if (input.Split(',').All(s => int.TryParse(s, out _)))
+            if (input.Split(Constants.Separator).All(s => int.TryParse(s, out _)))
             {
-                var dieValuesToHold = input.Split(',');
+                var dieValuesToHold = input.Split(Constants.Separator);
                 if (dieValuesToHold.Any(element => int.Parse(element) > 6))
                 {
                     return new Response(ResponseType.InvalidResponse);
@@ -31,7 +30,7 @@ namespace YatzyGame
                 return new Response(ResponseType.HoldDice, input);
             }
 
-            if (input.Equals("r", StringComparison.OrdinalIgnoreCase))
+            if (input.Equals(Constants.Reroll, StringComparison.OrdinalIgnoreCase))
             {
                 return new Response(ResponseType.RerollDice);
             }
@@ -41,7 +40,7 @@ namespace YatzyGame
                 return new Response(ResponseType.ScoreInCategory, input);
             }
 
-            if (input.Equals("q", StringComparison.OrdinalIgnoreCase))
+            if (input.Equals(Constants.Quit, StringComparison.OrdinalIgnoreCase))
             {
                 return new Response(ResponseType.QuitGame);
             }

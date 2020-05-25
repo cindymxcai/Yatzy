@@ -2,7 +2,7 @@ namespace YatzyGame
 {
     public class Category
     {
-        public string CategoryName { get; }
+        public CategoryName CategoryName { get; }
         public string CategoryKey { get; }
         public int CategoryScore { get; set; }
         public bool IsUsed { get; set; }
@@ -11,7 +11,7 @@ namespace YatzyGame
             return $"{CategoryKey}) {CategoryName} : {CategoryScore}";
         }
 
-        public Category(string key, string name)
+        public Category(string key, CategoryName name)
         {
             IsUsed = false;
             CategoryScore = 0;

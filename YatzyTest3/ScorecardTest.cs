@@ -9,7 +9,7 @@ namespace DieTest
         public void ScoreCardSetUpShouldAssignNameToEachCategory()
         {
             var scoreCard = new ScoreCard();
-            Assert.Equal("Ones",scoreCard.CategoryScoreCard[0].CategoryName);
+            Assert.Equal(CategoryName.Ones,scoreCard.CategoryScoreCard[0].CategoryName);
             Assert.Equal(false,scoreCard.CategoryScoreCard[0].IsUsed);
             Assert.Equal(0,scoreCard.CategoryScoreCard[0].CategoryScore);
         }

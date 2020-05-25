@@ -54,6 +54,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Category.cs" />
+        <Compile Include="CategoryName.cs" />
+        <Compile Include="Constants.cs" />
         <Compile Include="Filters\FullHouseFilter.cs" />
         <Compile Include="Filters\IFilter.cs" />
         <Compile Include="Filters\NoFilter.cs" />
@@ -73,12 +75,12 @@
         <Compile Include="ResponseType.cs" />
         <Compile Include="Rng.cs" />
         <Compile Include="Round.cs" />
-        <Compile Include="ScoreCalculator.cs" />
         <Compile Include="ScoreCard.cs" />
-        <Compile Include="Strategies\IAggregationStrategy.cs" />
-        <Compile Include="Strategies\ScoreCalculatorStrategy.cs" />
-        <Compile Include="Strategies\SummingStrategy.cs" />
-        <Compile Include="Strategies\YatzyStrategy.cs" />
+        <Compile Include="Scoring\IAggregationStrategy.cs" />
+        <Compile Include="Scoring\ScoreCalculator.cs" />
+        <Compile Include="Scoring\ScoreCalculatorFactory.cs" />
+        <Compile Include="Scoring\SummingScorer.cs" />
+        <Compile Include="Scoring\YatzyScorer.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
